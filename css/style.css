@@ -1,0 +1,40 @@
+<style type="text/css">
+  	body{
+  		background-image: url(images/register.jpg);
+  	}
+    .container{
+      background-color: #000;
+      opacity: 0.9;
+      padding-top: 30px;
+      border-radius: 10px;
+      min-height: 800px;
+    }
+    #form{
+      text-align: center;
+      margin-left: 250px;
+    }
+    .text-center{
+      font-size: 46px;
+      font-family: sans-serif;
+      font-style: italic;
+      color: orange;
+    }
+    label{
+      color: white;
+      font-size: 20px;
+    }
+    .btn-primary{
+      border-radius: none;
+      padding: 10px;
+      width: 49%;
+    }
+    .btn-danger{
+      border-radius: none;
+      padding: 10px;
+      width: 49%;
+    }
+    .gen{
+      color: white;
+      font-size: 16px;
+    }
+  </style>
