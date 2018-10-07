@@ -4,7 +4,7 @@
   	}
     .container{
       background-color: #000;
-      opacity: 0.9;
+      opacity: 0.95;
       padding-top: 30px;
       border-radius: 10px;
       min-height: 800px;
@@ -21,7 +21,7 @@
     }
     label{
       color: white;
-      font-size: 20px;
+      font-size: 24px;
     }
     .btn-primary{
       border-radius: none;
