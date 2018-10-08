@@ -195,11 +195,11 @@
 </head>
 <body>
 	<div class="container">
-      <div class="col-md-6" id="form">
+      <div class="col-md-9" id="form">
         <h2 class="text-center"><b>Registration Form</b></h2>
         <form action="" method="POST">
           <div class="form-group">
-            <label for="inputfname" id="label-fname" class="col-sm-3 col-form-label">First Name:</label>
+            <label for="inputfname" id="label-fname" class="col-form-label">First Name:</label>
             <input type="text" name="fname" id="label-fname" 
             onkeyup ="firstname(this, 'fnm');"  
             onchange="firstname(this, 'fnm');" 
@@ -212,7 +212,7 @@
             <span id="fnm" class="text-danger"></span>
           </div>
           <div class="form-group">
-            <label for="inputlname" id="label-lname" class="col-sm-3 col-form-label">Last Name:</label>
+            <label for="inputlname" id="label-lname" class="col-form-label">Last Name:</label>
             <input type="text" name="lname" id="label-lname" 
             onkeyup ="firstname(this, 'lnm');"  
             onchange="firstname(this, 'lnm');" 
@@ -225,7 +225,7 @@
             <span id="lnm" class="text-danger"></span>
           </div>
           <div class="form-group">
-            <label for="inputEmail" id="label-mail" class="col-sm-3 col-form-label">Email:</label>
+            <label for="inputEmail" id="label-mail" class="col-form-label">Email:</label>
             <input type="text" name="email" id="label-mail" 
             onkeyup ="Mail(this, 'mail');"  
             onchange="Mail(this, 'mail');" 
@@ -238,7 +238,7 @@
             <span id="mail" class="text-danger"></span>
           </div>
           <div class="form-group">
-            <label for="inputpass" id="label-pass"  class="col-sm-3 col-form-label">Password:</label>
+            <label for="inputpass" id="label-pass"  class="col-form-label">Password:</label>
             <input type="text" name="pass" id="label-pass" 
             onkeyup ="security(this, 'Password');"  
             onchange="security(this, 'Password');" 
@@ -251,7 +251,7 @@
             <span id="Password" class="text-danger"></span>
           </div>
           <div class="form-group">
-            <label for="inputcpass" id="label-cpass" class="col-sm-4 col-form-label">Confirm Password:</label>
+            <label for="inputcpass" id="label-cpass" class="col-form-label">Confirm Password:</label>
             <input type="text" name="cpass" id="label-cpass" 
             onkeyup ="csecurity(this, 'conpass');"  
             onchange="csecurity(this, 'conpass');" 
@@ -264,7 +264,7 @@
             <span id="conpass" class="text-danger"></span>
           </div>
           <div class="form-group">
-            <label for="inputmob" id="label-mob" class="col-sm-3 col-form-label">Mobile:</label>
+            <label for="inputmob" id="label-mob" class="col-form-label">Mobile:</label>
             <input type="text" name="mobile" id="label-mob" 
             onkeyup ="number(this, 'Mob');"  
             onchange="number(this, 'Mob');" 
@@ -277,14 +277,14 @@
             <span id="Mob" class="text-danger"></span>
           </div>
           <div class="form-group">
-            <label for="inputdob" id="label-dob" class="col-sm-3 col-form-label">Date Of Birth:</label>
+            <label for="inputdob" id="label-dob" class="col-form-label">Date Of Birth:</label>
             <input type="Date" name="date" id="label-dob"  class="form-control text" placeholder="" value="">
           </div>
           <div class="col-md-7">
             <span id="dob" class="text-danger"></span>
           </div>
           <div class="form-group">
-            <label for="inputgen" id="label-gen" class="col-sm-2 col-form-label">Gender:</label>
+            <label for="inputgen" id="label-gen" class="col-form-label">Gender:</label>
              <input type="radio" id="input-gen" name="gender" value="Male"/><i class="gen">&nbsp;Male</b>&nbsp;
              <input type="radio" id="input-gen" name="gender" value="Female"/><i class="gen">&nbsp;Female</i>&nbsp;
              <input type="radio" id="input-gen" name="gender" value="Others"/><i class="gen">&nbsp;Others</i>
