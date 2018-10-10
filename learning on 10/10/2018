@@ -1,0 +1,12 @@
+a) visiblity hidden vs display none vs opacity 0.
+b) Read about all the function in depth, and write there notes in copy and push to Git.
+
+c) Do dry run of the stopwatch
+d) Make 2 watch in same watch -- (both the following action will affect the same timer)
+  -- On with different start,stop and reset button.
+  -- Ono with start/stop and reset button.
+e) Ternary operator
+f) Comment your code
+g) Format your code
+h) Write notes about the existing function that we have learned.
+i) Date Object in javascript.
