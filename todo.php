@@ -160,6 +160,7 @@
     $('ul').append("<li>" +  $('input').val() + "<a> X </a></li>"); //for add input value we add through add button
 
       $('input').val('');
+
       });
 
 
@@ -168,6 +169,7 @@
 
 
       $('a').click(onclickFunction);
+
 
     // Function to add li dynamically
 
@@ -181,8 +183,9 @@
       }
       else{
         $(this).addClass('checked');     // adding the class checked on li if not checked. 
+      }
 
-      });
+    });
  });
 
     </script>
