@@ -115,7 +115,7 @@
       left: 20px;
       width: 7px;
       height: 15px;
-      border-color: #fff;
+      border-color: #fff; 
       position: absolute;
       border-style: solid;
       transform: rotate(45deg);
@@ -129,9 +129,12 @@
     <input type="text" id="In" placeholder="Enter The Text Here...">
     <button class="btn"> Add </button>
   </div>
+    <small>this field required</small>
+
 
   <ul>
-    <li>Hit the gym <a> X </a></li>
+    <li>Hit the gym+
+     <a> X </a></li>
     <li class="checked">Pay bills <a> X </a></li>
     <li>Meet George <a> X </a> </li>
     <li>Buy eggs <a> X </a> </li>

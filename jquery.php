@@ -11,553 +11,553 @@
   <script type="text/javascript">
     $(document).ready(function(){
 
-      /* Function name : first */
+  /* Function name : first */
 
-      // Name required validations
+  // Name required validations
 
-      $("#inputfname").val();
+    $("#inputfname").val();
 
-      var first = function(){
+    var first = function(){
 
-        $('#fnm').html("");
+    $('#fnm').html("");
 
 
 
-        // Message
+      // Message
 
-        $(this).removeClass('is-invalid');
-        $(this).addClass("is-valid");
+      $(this).removeClass('is-invalid');
+      $(this).addClass("is-valid");
 
-        //Label
+      //Label
 
-        $("#label-fname").removeClass('text-danger');
-        $("#label-fname").addClass("text-success");        
+      $("#label-fname").removeClass('text-danger');
+      $("#label-fname").addClass("text-success");        
 
-        if( $(this).val() == ""){
+      if( $(this).val() == ""){
 
-          $('#fnm').html(" ** First Name is required");
-
-          $(this).removeClass('is-valid');
-          $(this).addClass("is-invalid");
-
-          $("#label-fname").removeClass('text-success');
-          $("#label-fname").addClass("text-danger"); 
-          return;
-      }  
-
-        if(!isNaN($(this).val())){
-
-          $('#fnm').html(" ** Only characters are required");
-
-          $(this).removeClass('is-valid');
-          $(this).addClass("is-invalid");
-
-          $("#label-fname").removeClass('text-success');
-          $("#label-fname").addClass("text-danger");
-          return;  
-
-        }
-
-        if($(this).val().length < 3){
-
-          $('#fnm').html(" ** At least 3 characters are required");
-
-          $(this).removeClass('is-valid');
-          $(this).addClass("is-invalid");
-
-          $("#label-fname").removeClass('text-success');
-          $("#label-fname").addClass("text-danger");
-          return;  
-
-        }
-
-        if($(this).val().length > 12 ){
-
-          $('#fnm').html(" ** Maximum 12 characters are allowed");
-
-          $(this).removeClass('is-valid');
-          $(this).addClass("is-invalid");
-
-          $("#label-fname").removeClass('text-success');
-          $("#label-fname").addClass("text-danger");
-          return;  
-
-        }   
-
-    }
-
-      $('#inputfname').change(first);
-
-      $('#inputfname').blur(first);
-
-      $('#inputfname').keyup(first);
-
-
-      /* Function name : lastname */
-
-      // last Name required validations
-
-      $("#inputlname").val();
-
-      var last = function(){
-
-        $('#lnm').html("");
-
-
-
-        // Message
-
-        $(this).removeClass('is-invalid');
-        $(this).addClass("is-valid");
-
-        //Label
-
-        $("#label-lname").removeClass('text-danger');
-        $("#label-lname").addClass("text-success");        
-
-        if( $(this).val() == ""){
-
-          $('#lnm').html(" ** Last Name is required");
-
-          $(this).removeClass('is-valid');
-          $(this).addClass("is-invalid");
-
-          $("#label-lname").removeClass('text-success');
-          $("#label-lname").addClass("text-danger"); 
-          return;
-      }  
-
-        if(!isNaN($(this).val())){
-
-          $('#lnm').html(" ** Only characters are required");
-
-          $(this).removeClass('is-valid');
-          $(this).addClass("is-invalid");
-
-          $("#label-lname").removeClass('text-success');
-          $("#label-lname").addClass("text-danger");
-          return;  
-
-        }
-
-        if($(this).val().length < 3){
-
-          $('#lnm').html(" ** At least 3 characters are required");
-
-          $(this).removeClass('is-valid');
-          $(this).addClass("is-invalid");
-
-          $("#label-lname").removeClass('text-success');
-          $("#label-lname").addClass("text-danger");
-          return;  
-
-        }
-
-        if($(this).val().length > 12 ){
-
-          $('#lnm').html(" ** Maximum 12 characters are allowed");
-
-          $(this).removeClass('is-valid');
-          $(this).addClass("is-invalid");
-
-          $("#label-lname").removeClass('text-success');
-          $("#label-lname").addClass("text-danger");
-          return;  
-
-        }   
-
-    }
-
-      $('#inputlname').change(last);
-
-      $('#inputlname').blur(last);
-
-      $('#inputlname').keyup(last);
-
-
-
-
-      /* Function name : Email */
-
-      // Email required validations
-
-      $("#inputEmail").val();
-
-      var Email = function(){
-
-      var char = ["@","."];
-
-        $('#mail').html("");
-
-
-
-        // Message
-
-        $(this).removeClass('is-invalid');
-        $(this).addClass("is-valid");
-
-        //Label
-
-        $("#label-mail").removeClass('text-danger');
-        $("#label-mail").addClass("text-success");        
-
-        if( $(this).val() == ""){
-
-          $('#mail').html(" ** Email is required");
-
-          $(this).removeClass('is-valid');
-          $(this).addClass("is-invalid");
-
-          $("#label-mail").removeClass('text-success');
-          $("#label-mail").addClass("text-danger"); 
-          return;
-      }
-
-      // First letter must be a character
-
-      if($(this).val()[0].indexOf("@") !== -1 || $(this).val()[0].indexOf(".") !== -1){
-
-        $('#mail').html(" ** First letter must be a character");
+        $('#fnm').html(" ** First Name is required");
 
         $(this).removeClass('is-valid');
         $(this).addClass("is-invalid");
 
-        $("#label-mail").removeClass('text-success');
-        $("#label-mail").addClass("text-danger");
-        return; 
-
-      }
-      // last letter must be a character
-
-      if(char.indexOf($(this).val()[$(this).val().length -1]) !== -1){
-
-        $('#mail').html(" ** Last letter must be a character");
-
-        $(this).removeClass('is-valid');
-        $(this).addClass("is-invalid");
-
-        $("#label-mail").removeClass('text-success');
-        $("#label-mail").addClass("text-danger");
-        return; 
-        }
-
-      // Checking if there is both @ and . is present
-
-      if($(this).val().indexOf("@") == -1 || $(this).val().indexOf(".") == -1){
-
-        $('#mail').html(" ** @ and . must be required");
-
-        $(this).removeClass('is-valid');
-        $(this).addClass("is-invalid");
-
-        $("#label-mail").removeClass('text-success');
-        $("#label-mail").addClass("text-danger");
+        $("#label-fname").removeClass('text-success');
+        $("#label-fname").addClass("text-danger"); 
         return;
-      }
+    }  
 
+      if(!isNaN($(this).val())){
 
-      // "." is followed by "@"
-
-      if($(this).val().indexOf("@") == $(this).val().indexOf(".")){
-
-        $('#mail').html(" ** Undefined Possition of @");
+        $('#fnm').html(" ** Only characters are required");
 
         $(this).removeClass('is-valid');
         $(this).addClass("is-invalid");
 
-        $("#label-mail").removeClass('text-success');
-        $("#label-mail").addClass("text-danger");
+        $("#label-fname").removeClass('text-success');
+        $("#label-fname").addClass("text-danger");
+        return;  
+
+      }
+
+      if($(this).val().length < 3){
+
+        $('#fnm').html(" ** At least 3 characters are required");
+
+        $(this).removeClass('is-valid');
+        $(this).addClass("is-invalid");
+
+        $("#label-fname").removeClass('text-success');
+        $("#label-fname").addClass("text-danger");
+        return;  
+
+      }
+
+      if($(this).val().length > 12 ){
+
+        $('#fnm').html(" ** Maximum 12 characters are allowed");
+
+        $(this).removeClass('is-valid');
+        $(this).addClass("is-invalid");
+
+        $("#label-fname").removeClass('text-success');
+        $("#label-fname").addClass("text-danger");
+        return;  
+
+      }   
+
+  }
+
+    $('#inputfname').change(first);
+
+    $('#inputfname').blur(first);
+
+    $('#inputfname').keyup(first);
+
+
+    /* Function name : lastname */
+
+    // last Name required validations
+
+    $("#inputlname").val();
+
+    var last = function(){
+
+    $('#lnm').html("");
+
+
+
+    // Message
+
+    $(this).removeClass('is-invalid');
+    $(this).addClass("is-valid");
+
+    //Label
+
+    $("#label-lname").removeClass('text-danger');
+    $("#label-lname").addClass("text-success");        
+
+      if( $(this).val() == ""){
+
+        $('#lnm').html(" ** Last Name is required");
+
+        $(this).removeClass('is-valid');
+        $(this).addClass("is-invalid");
+
+        $("#label-lname").removeClass('text-success');
+        $("#label-lname").addClass("text-danger"); 
         return;
+    }  
+
+      if(!isNaN($(this).val())){
+
+        $('#lnm').html(" ** Only characters are required");
+
+        $(this).removeClass('is-valid');
+        $(this).addClass("is-invalid");
+
+        $("#label-lname").removeClass('text-success');
+        $("#label-lname").addClass("text-danger");
+        return;  
+
       }
 
-    // "." is not immediately before "@"
+      if($(this).val().length < 3){
 
-    if($(this).val().indexOf(".") == $(this).val().indexOf("@")- 1){
+        $('#lnm').html(" ** At least 3 characters are required");
 
-        $('#mail').html(" ** Undefined Possition of .");
+        $(this).removeClass('is-valid');
+        $(this).addClass("is-invalid");
+
+        $("#label-lname").removeClass('text-success');
+        $("#label-lname").addClass("text-danger");
+        return;  
+
+      }
+
+      if($(this).val().length > 12 ){
+
+        $('#lnm').html(" ** Maximum 12 characters are allowed");
+
+        $(this).removeClass('is-valid');
+        $(this).addClass("is-invalid");
+
+        $("#label-lname").removeClass('text-success');
+        $("#label-lname").addClass("text-danger");
+        return;  
+
+      }   
+
+  }
+
+    $('#inputlname').change(last);
+
+    $('#inputlname').blur(last);
+
+    $('#inputlname').keyup(last);
+
+
+
+
+    /* Function name : Email */
+
+    // Email required validations
+
+    $("#inputEmail").val();
+
+    var Email = function(){
+
+    var char = ["@","."];
+
+    $('#mail').html("");
+
+
+
+    // Message
+
+    $(this).removeClass('is-invalid');
+    $(this).addClass("is-valid");
+
+    //Label
+
+    $("#label-mail").removeClass('text-danger');
+    $("#label-mail").addClass("text-success");        
+
+      if( $(this).val() == ""){
+
+        $('#mail').html(" ** Email is required");
 
         $(this).removeClass('is-valid');
         $(this).addClass("is-invalid");
 
         $("#label-mail").removeClass('text-success');
-        $("#label-mail").addClass("text-danger");
+        $("#label-mail").addClass("text-danger"); 
         return;
     }
 
+    // First letter must be a character
 
-    // "." is not immediately followed by "@"
+    if($(this).val()[0].indexOf("@") !== -1 || $(this).val()[0].indexOf(".") !== -1){
 
-    if($(this).val().indexOf(".") == $(this).val().indexOf("@")+ 1){
+      $('#mail').html(" ** First letter must be a character");
 
-        $('#mail').html(" ** Undefined Possition of @ and .");
+      $(this).removeClass('is-valid');
+      $(this).addClass("is-invalid");
+
+      $("#label-mail").removeClass('text-success');
+      $("#label-mail").addClass("text-danger");
+      return; 
+
+    }
+    // last letter must be a character
+
+    if(char.indexOf($(this).val()[$(this).val().length -1]) !== -1){
+
+      $('#mail').html(" ** Last letter must be a character");
+
+      $(this).removeClass('is-valid');
+      $(this).addClass("is-invalid");
+
+      $("#label-mail").removeClass('text-success');
+      $("#label-mail").addClass("text-danger");
+      return; 
+      }
+
+    // Checking if there is both @ and . is present
+
+    if($(this).val().indexOf("@") == -1 || $(this).val().indexOf(".") == -1){
+
+      $('#mail').html(" ** @ and . must be required");
+
+      $(this).removeClass('is-valid');
+      $(this).addClass("is-invalid");
+
+      $("#label-mail").removeClass('text-success');
+      $("#label-mail").addClass("text-danger");
+      return;
+    }
+
+
+    // "." is followed by "@"
+
+    if($(this).val().indexOf("@") == $(this).val().indexOf(".")){
+
+      $('#mail').html(" ** Undefined Possition of @");
+
+      $(this).removeClass('is-valid');
+      $(this).addClass("is-invalid");
+
+      $("#label-mail").removeClass('text-success');
+      $("#label-mail").addClass("text-danger");
+      return;
+    }
+
+  // "." is not immediately before "@"
+
+  if($(this).val().indexOf(".") == $(this).val().indexOf("@")- 1){
+
+      $('#mail').html(" ** Undefined Possition of .");
+
+      $(this).removeClass('is-valid');
+      $(this).addClass("is-invalid");
+
+      $("#label-mail").removeClass('text-success');
+      $("#label-mail").addClass("text-danger");
+      return;
+  }
+
+
+  // "." is not immediately followed by "@"
+
+  if($(this).val().indexOf(".") == $(this).val().indexOf("@")+ 1){
+
+      $('#mail').html(" ** Undefined Possition of @ and .");
+
+      $(this).removeClass('is-valid');
+      $(this).addClass("is-invalid");
+
+      $("#label-mail").removeClass('text-success');
+      $("#label-mail").addClass("text-danger");
+      return;
+  }
+  }
+
+    $('#inputEmail').change(Email);
+
+    $('#inputEmail').blur(Email);
+
+    $('#inputEmail').keyup(Email);
+
+
+
+
+  /* Function name password */
+
+  // Password required validations
+
+    $("#inputpass").val();
+
+    var last = function(){
+
+    $('#Password').html("");
+
+
+
+  // Message
+
+    $(this).removeClass('is-invalid');
+    $(this).addClass("is-valid");
+
+    //Label
+
+    $("#label-pass").removeClass('text-danger');
+    $("#label-pass").addClass("text-success");        
+
+      if( $(this).val() == ""){
+
+        $('#Password').html(" ** Password is required");
 
         $(this).removeClass('is-valid');
         $(this).addClass("is-invalid");
 
-        $("#label-mail").removeClass('text-success');
-        $("#label-mail").addClass("text-danger");
+        $("#label-pass").removeClass('text-success');
+        $("#label-pass").addClass("text-danger"); 
+        return;
+    }    
+
+    // Confirm Password Validation
+
+      if(cPasswordTouched == true){
+        conpass();
+      } 
+
+      if($(this).val().length < 8){
+
+        $('#Password').html(" ** Minimum 8 characters are required");
+
+        $(this).removeClass('is-valid');
+        $(this).addClass("is-invalid");
+
+        $("#label-pass").removeClass('text-success');
+        $("#label-pass").addClass("text-danger");
+        return;  
+
+      }
+
+      if($(this).val().length > 18 ){
+
+        $('#Password').html(" ** Maximum 18 characters are allowed");
+
+        $(this).removeClass('is-valid');
+        $(this).addClass("is-invalid");
+
+        $("#label-pass").removeClass('text-success');
+        $("#label-pass").addClass("text-danger");
+        return;  
+
+      }   
+
+  }
+
+    $('#inputpass').change(last);
+
+    $('#inputpass').blur(last);
+
+    $('#inputpass').keyup(last);
+
+
+
+
+    /* Function name Cpassword */
+
+    // Confirm Password required validations
+
+    $("#inputcpass").val();
+
+    var Cpassword = function(){
+
+      cPasswordTouched = true;
+      
+      var errorElement = $('#cpass');
+      var password     = $("#inputpass");
+      var cPassword    = $("#inputcpass");
+
+      $('#conpass').html("");
+
+
+
+    // Message
+
+    $(this).removeClass('is-invalid');
+    $(this).addClass("is-valid");
+
+    //Label
+
+    $("#label-cpass").removeClass('text-danger');
+    $("#label-cpass").addClass("text-success");        
+
+      if( $(this).val() == ""){
+
+        $('#conpass').html(" ** Confirm Password is required");
+
+        $(this).removeClass('is-valid');
+        $(this).addClass("is-invalid");
+
+        $("#label-cpass").removeClass('text-success');
+        $("#label-cpass").addClass("text-danger"); 
         return;
     }
-    }
 
-      $('#inputEmail').change(Email);
+      if(password.val() != cPassword.val())
+      {
+       
+        $('#conpass').html(" ** Password Not matched");
 
-      $('#inputEmail').blur(Email);
+        $(this).removeClass('is-valid');
+        $(this).addClass("is-invalid");
 
-      $('#inputEmail').keyup(Email);
+        $("#label-cpass").removeClass('text-success');
+        $("#label-cpass").addClass("text-danger"); 
+        return;
+      }
+  }
 
+    $('#inputcpass').change(Cpassword);
 
+    $('#inputcpass').blur(Cpassword);
 
-
-      /* Function name password */
-
-      // Password required validations
-
-      $("#inputpass").val();
-
-      var last = function(){
-
-        $('#Password').html("");
+    $('#inputcpass').keyup(Cpassword);
 
 
+    /* Function name : Mobi */
 
-        // Message
+    // Number required validations
 
-        $(this).removeClass('is-invalid');
-        $(this).addClass("is-valid");
+    $("#inputmob").val();
 
-        //Label
+    var Mobi = function(){
 
-        $("#label-pass").removeClass('text-danger');
-        $("#label-pass").addClass("text-success");        
+    $('#Mob').html("");
 
-        if( $(this).val() == ""){
 
-          $('#Password').html(" ** Password is required");
 
-          $(this).removeClass('is-valid');
-          $(this).addClass("is-invalid");
+    // Message
 
-          $("#label-pass").removeClass('text-success');
-          $("#label-pass").addClass("text-danger"); 
-          return;
+    $(this).removeClass('is-invalid');
+    $(this).addClass("is-valid");
+
+    //Label
+
+    $("#label-mob").removeClass('text-danger');
+    $("#label-mob").addClass("text-success");        
+
+      if( $(this).val() == ""){
+
+        $('#Mob').html(" ** Mobile Number is required");
+
+        $(this).removeClass('is-valid');
+        $(this).addClass("is-invalid");
+
+        $("#label-mob").removeClass('text-success');
+        $("#label-mob").addClass("text-danger"); 
+        return;
+    }  
+
+      if(isNaN($(this).val())){
+
+        $('#Mob').html(" ** Only Numbers are allowed");
+
+        $(this).removeClass('is-valid');
+        $(this).addClass("is-invalid");
+
+        $("#label-mob").removeClass('text-success');
+        $("#label-mob").addClass("text-danger");
+        return;  
+
+      }
+
+      if($(this).val().length !== 10){
+
+        $('#Mob').html(" ** Only 10 digits are allowed");
+
+        $(this).removeClass('is-valid');
+        $(this).addClass("is-invalid");
+
+        $("#label-mob").removeClass('text-success');
+        $("#label-mob").addClass("text-danger");
+        return;  
+
       }    
 
-        // Confirm Password Validation
+  }
 
-        if(cPasswordTouched == true){
-          conpass();
-        } 
+    $('#inputmob').change(Mobi);
 
-        if($(this).val().length < 8){
+    $('#inputmob').blur(Mobi);
 
-          $('#Password').html(" ** Minimum 8 characters are required");
+    $('#inputmob').keyup(Mobi);
 
-          $(this).removeClass('is-valid');
-          $(this).addClass("is-invalid");
 
-          $("#label-pass").removeClass('text-success');
-          $("#label-pass").addClass("text-danger");
-          return;  
 
-        }
+    /* Function name : dob */
 
-        if($(this).val().length > 18 ){
+    // Date of Birth required validations
 
-          $('#Password').html(" ** Maximum 18 characters are allowed");
+    $("#inputdob").val();
 
-          $(this).removeClass('is-valid');
-          $(this).addClass("is-invalid");
+    var dob = function(){
 
-          $("#label-pass").removeClass('text-success');
-          $("#label-pass").addClass("text-danger");
-          return;  
+    $('#dob').html("");
 
-        }   
 
-    }
 
-      $('#inputpass').change(last);
+    // Message
 
-      $('#inputpass').blur(last);
+    $(this).removeClass('is-invalid');
+    $(this).addClass("is-valid");
 
-      $('#inputpass').keyup(last);
+    //Label
 
+    $("#label-dob").removeClass('text-danger');
+    $("#label-dob").addClass("text-success");        
 
+      if( $(this).val() == ""){
 
+        $('#dob').html(" ** Date of Birth is required");
 
-      /* Function name Cpassword */
+        $(this).removeClass('is-valid');
+        $(this).addClass("is-invalid");
 
-      // Confirm Password required validations
+        $("#label-dob").removeClass('text-success');
+        $("#label-dob").addClass("text-danger"); 
+        return;
+    }     
 
-      $("#inputcpass").val();
+  }
 
-      var Cpassword = function(){
+    $('#inputdob').change(dob);
 
-        cPasswordTouched = true;
-        
-        var errorElement = $('#cpass');
-        var password     = $("#inputpass");
-        var cPassword    = $("#inputcpass");
+    $('#inputdob').blur(dob);
 
-        $('#conpass').html("");
-
-
-
-        // Message
-
-        $(this).removeClass('is-invalid');
-        $(this).addClass("is-valid");
-
-        //Label
-
-        $("#label-cpass").removeClass('text-danger');
-        $("#label-cpass").addClass("text-success");        
-
-        if( $(this).val() == ""){
-
-          $('#conpass').html(" ** Confirm Password is required");
-
-          $(this).removeClass('is-valid');
-          $(this).addClass("is-invalid");
-
-          $("#label-cpass").removeClass('text-success');
-          $("#label-cpass").addClass("text-danger"); 
-          return;
-      }
-
-        if(password.val() != cPassword.val())
-        {
-         
-          $('#conpass').html(" ** Password Not matched");
-
-          $(this).removeClass('is-valid');
-          $(this).addClass("is-invalid");
-
-          $("#label-cpass").removeClass('text-success');
-          $("#label-cpass").addClass("text-danger"); 
-          return;
-        }
-    }
-
-      $('#inputcpass').change(Cpassword);
-
-      $('#inputcpass').blur(Cpassword);
-
-      $('#inputcpass').keyup(Cpassword);
-
-
-      /* Function name : Mobi */
-
-      // Number required validations
-
-      $("#inputmob").val();
-
-      var Mobi = function(){
-
-        $('#Mob').html("");
-
-
-
-        // Message
-
-        $(this).removeClass('is-invalid');
-        $(this).addClass("is-valid");
-
-        //Label
-
-        $("#label-mob").removeClass('text-danger');
-        $("#label-mob").addClass("text-success");        
-
-        if( $(this).val() == ""){
-
-          $('#Mob').html(" ** Mobile Number is required");
-
-          $(this).removeClass('is-valid');
-          $(this).addClass("is-invalid");
-
-          $("#label-mob").removeClass('text-success');
-          $("#label-mob").addClass("text-danger"); 
-          return;
-      }  
-
-        if(isNaN($(this).val())){
-
-          $('#Mob').html(" ** Only Numbers are allowed");
-
-          $(this).removeClass('is-valid');
-          $(this).addClass("is-invalid");
-
-          $("#label-mob").removeClass('text-success');
-          $("#label-mob").addClass("text-danger");
-          return;  
-
-        }
-
-        if($(this).val().length !== 10){
-
-          $('#Mob').html(" ** Only 10 digits are allowed");
-
-          $(this).removeClass('is-valid');
-          $(this).addClass("is-invalid");
-
-          $("#label-mob").removeClass('text-success');
-          $("#label-mob").addClass("text-danger");
-          return;  
-
-        }    
-
-    }
-
-      $('#inputmob').change(Mobi);
-
-      $('#inputmob').blur(Mobi);
-
-      $('#inputmob').keyup(Mobi);
-
-
-
-      /* Function name : dob */
-
-      // Date of Birth required validations
-
-      $("#inputdob").val();
-
-      var dob = function(){
-
-        $('#dob').html("");
-
-
-
-        // Message
-
-        $(this).removeClass('is-invalid');
-        $(this).addClass("is-valid");
-
-        //Label
-
-        $("#label-dob").removeClass('text-danger');
-        $("#label-dob").addClass("text-success");        
-
-        if( $(this).val() == ""){
-
-          $('#dob').html(" ** Date of Birth is required");
-
-          $(this).removeClass('is-valid');
-          $(this).addClass("is-invalid");
-
-          $("#label-dob").removeClass('text-success');
-          $("#label-dob").addClass("text-danger"); 
-          return;
-      }     
-
-    }
-
-      $('#inputdob').change(dob);
-
-      $('#inputdob').blur(dob);
-
-      $('#inputdob').keyup(dob);
+    $('#inputdob').keyup(dob);
 
     });
   </script>

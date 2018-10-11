@@ -98,24 +98,24 @@ $(document).ready(function(){
         //   console.log(deciSecond);
         //   deciSecond = "0" + deciSecond;
         // }
-  $('#output').html("<b>" + seconds + "</b>" + " <a>s</a>" + " : " + "<a>" + deciSecond + "</a>" );
-    
-    if(counter % 100 == 0){
-      seconds++;
-    }
-    counter++;      
-  }, 10 );
+      $('#output').html("<b>" + seconds + "</b>" + " <a>s</a>" + " : " + "<a>" + deciSecond + "</a>" );
+        
+        if(counter % 100 == 0){
+          seconds++;
+        }
+        counter++;      
+      }, 10 );
 
 
       // 100 mill Second = 1 Second
       // 10  mill Second = 1/10 Second
       // 50 mill Second  =  1/2 Second
 
-      $(this).text('Stop Time');
-    }else{ // i.e  $(this).text() == 'Stop Time'
-      clearInterval( intervalTracker );
-      $(this).text('Start Time');
-    }
+        $(this).text('Stop Time');
+      }else{ // i.e  $(this).text() == 'Stop Time'
+        clearInterval( intervalTracker );
+        $(this).text('Start Time');
+      }
     
   });
   
@@ -150,16 +150,25 @@ $(document).ready(function(){
 
   $('#output').html( "<b>" + seconds + "</b>" + "<a>s</a>" + " : " + "<a>" + parseInt(currentDate.getMilliseconds()/10) + "</a>");
       
-    if(counter % 10 == 0){
+    if(counter % 100 == 0){
       seconds++;
     }
       counter++;      
-    }, 100 );
+    }, 10 );
+
+    if( $('#start').text()  === 'Start Time'){
+      $('#start').text('Stop Time');
+    }
 
   });
 
   $('#stop1').click(function(){
-    clearInterval( intervalTracker );
+    clearInterval( intervalTracker );    
+
+    if( $('#start').text()  === 'Stop Time'){
+      $('#start').text('Start Time');
+    }
+
   })
 
   $('#reset1').click(function(){
@@ -167,7 +176,7 @@ $(document).ready(function(){
     if(intervalTracker !==null){
       clearInterval( intervalTracker );
     }
-    seconds = 0;
+      seconds = 0;
     counter = 0;
   $('#output').html("<b>" + seconds + "</b>" + " <a>s</a>" + " : " + "<a> 00 </a>" );
   $('#start').text('Start Time');
