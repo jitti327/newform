@@ -143,49 +143,50 @@
 
     $(document).ready(function(){
       
-    var onclickFunction = function(){
-      console.log("Default binding");
-      $(this).parent().remove();
-      }
+      var onclickFunction = function(){
+        $(this).parent().remove();
+        }
 
       // If we add a blank space it will stop us to add that.
 
-      $('button').click(function(){
+        $('button').click(function(){
 
-      if(  $('input').val() == "") {
+          if($('input').val() == "") {
+
       // show validation error;
-      return;
-    }
+          return;
+          }
 
-    $('ul').append("<li>" +  $('input').val() + "<a> X </a></li>"); //for add input value we add through add button
+        $('ul').append("<li>" +  $('input').val() + "<a> X </a></li>"); //for add input value we add through add button
 
-      $('input').val('');
+        $('input').val('');
+
+        });
+
+
+
+      // Event binding using `on`
+
+        $('ul').on( 'click', 'a',function(){
+          $(this).parent().remove();
+          });
+
+
+      // Function to add li dynamically
+
+        $('ul').on( 'click', 'li',function(){ // checking the last dynamically added li whether it is checked or not.
+
+        $(this).checked;
+
+          if( $(this).hasClass('checked') ){   // check the li if checked or not 
+
+            $(this).removeClass('checked');   // removing the class checked from li if checked. 
+          }
+          else{
+            $(this).addClass('checked');     // adding the class checked on li if not checked. 
+          }
 
       });
-
-
-
-    // Binding the anchor tags
-
-
-      $('a').click(onclickFunction);
-
-
-    // Function to add li dynamically
-
-    $('ul').on( 'click', 'li',function(){ // checking the last dynamically added li whether it is checked or not.
-
-      $(this).checked;
-
-      if( $(this).hasClass('checked') ){   // check the li if checked or not 
-
-        $(this).removeClass('checked');   // removing the class checked from li if checked. 
-      }
-      else{
-        $(this).addClass('checked');     // adding the class checked on li if not checked. 
-      }
-
-    });
  });
 
     </script>

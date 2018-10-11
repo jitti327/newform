@@ -145,13 +145,14 @@
 
 
     var onclickFunction = function(){
+      
       console.log("Default binding");
       $(this).parent().remove();
       }
 
       $('button').click(function(){
 
-      if(  $('input').val() == "") {
+      if( $('input').val() == "") {
       // show validation error;
       return;
     }
