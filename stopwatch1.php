@@ -85,7 +85,7 @@
 		<div class="col-md-12" id="form">
       <h1 class="text-center" style="color: RGB(250, 128, 114);">Stop Watch With Timer</h1><hr>
       <div col-lg-9> <button id="watch" class="stopwatch">STOP WATCH</button>&nbsp;<button id="timer" class="timer">TIMER</button></div><hr>
-      <div id="#hi">
+      <div id="hi">
 	      <div id="output"><span><b>0</b> <a>s</a>: <a>00</a></span></div>      
 			  <div class="bt"> 
 			    <button id='start' class="st">Start Time</button>&nbsp;
