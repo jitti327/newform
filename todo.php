@@ -17,14 +17,15 @@
 
   /* Css For Div */
 
-    div{
+    .fun{
       width: 100%;
       padding: 20px;
       min-height: 150px;
+      text-align: center;
       background-color: #F44336;
     }
 
-    div:after {
+    .fun:after {
       content: "";
       clear: both;
       display: table;
@@ -38,30 +39,43 @@
       text-align: center;
     }
 
+    .inputtask{
+      margin-top: 20px;
+      float: center;
+      height: 20px;
+    }
+
   /* Css For input */
 
-    #In{
-      width: 75%;
-      float: left;
+    #Input{
+      width: 300px;
       border: none;
       min-height: 36px;
-      border-radius: 0;
-      padding-left: 10px;
+    }
+
+    .hi{
+      padding-top: 20px;
+    }
+
+    .message{
+      padding-top: 40px;
+      text-align: center;
+    }
+
+    .inmessage{
+      width: 300px;
     }
 
   /* Css For button */
 
-    .btn{
-      width: 25%;
-      border: none;
-      border-radius: 0;
+    .btn-primary{
+      margin-top: 20px;
     }
 
   /* Css For button hover */
 
-    .btn:hover{
-      color: red;
-      background-color: #bfbfbf;
+    .btn-primary:hover{
+      color: yellow;
     }
 
   /* Css For ul */
@@ -126,70 +140,176 @@
 <body>
   <div id="todo" class="fun">
     <h2>My To Do List</h2>
-    <input type="text" id="In" placeholder="Enter The Text Here...">
-    <button class="btn"> Add </button>
+    <div class="inputtask">
+      <input type="text" id="Input" placeholder="Enter The Task Here..."/>
+    </div>
+    <div class="hi">
+      <small class="required"></small>
+    </div>
+    <div class="message">
+      <textarea class="inmessage" id="inmessage" name="message" placeholder="Enter your message here..." ></textarea>
+    </div>
+    <div>
+      <small class="msgrequired"></small>
+    </div>
+      <button class="btn-primary">Add</button>    
   </div>
-    <small>this field required</small>
 
 
   <ul>
     <li>Hit the gym+
      <a> X </a></li>
-    <li class="checked">Pay bills <a> X </a></li>
-    <li>Meet George <a> X </a> </li>
-    <li>Buy eggs <a> X </a> </li>
-    <li>Read a book <a> X </a> </li>
-    <li>Organize office <a> X </a> </li>
+    <li class="checked">Pay bills  <a> x </a></li>
+    <li>Meet George <a> x </a> </li>
+    <li>Buy eggs <a> x </a> </li>
+    <li>Read a book <a> x </a> </li>
+    <li>Organize office <a> x </a> </li>
   </ul>
 
   <script type="text/javascript">
 
     $(document).ready(function(){
-      
-      var onclickFunction = function(){
-        $(this).parent().remove();
+
+      $('#Input').change(function(){
+        Message(this , '.required' ); // Display the Error Message while Onchange
+      });
+
+      $('#Input').keyup(function(){
+        Message(this , '.required' ); // Display the Error Message on keyup
+      });
+
+      $('#Input').blur(function(){
+        Message(this , '.required' ); // Display the Error Message on blur if someone click on the text area and move it without inserting.
+      });
+
+      $('#inmessage').change(function(){
+        Message(this , '.msgrequired' ); // Display the Error Message while Onchange
+      });
+
+      $('#inmessage').keyup(function(){
+        Message(this , '.msgrequired' ); // Display the Error Message on keyup
+      });
+
+      $('#inmessage').blur(function(){
+        Message(this , '.msgrequired' ); // Display the Error Message on blur if someone click on the text area and move it without inserting.
+      });
+    
+    /*
+     * Function Name : Message
+     * This function is used to two parameters
+     * checked the input value and display the required message 
+     */
+
+      function Message(input , errorId){
+        $(errorId).html('');
+        if( $(input).val() == "" ){
+          $(errorId).html('This field is required');
+          $(input).css("color: green");
+          return;
+        }
+      }
+
+
+     /*
+      * THis function is used to accept the one parameter
+      * Display the current date and time for add a new element 
+      * Return the value
+      */
+
+      function Time( task ){
+        var currentDate = new Date();
+        var dd     = currentDate.getDate();
+        var mm     = currentDate.getMonth()+1;
+        var yyyy   = currentDate.getFullYear();
+        var hours  = currentDate.getHours();
+        var Minute = currentDate.getMinutes(); 
+        $(task).html( hours + ":" + Minute +"/"+ dd + "-" + mm + "-" + yyyy); 
+      } 
+        
+      var static = ["Study time", "Practical time"];
+
+      function listing(text, message){
+        $('ul').append("<li> <span>" +  text+ "<p class='descriptionValue'>" + message+ "</p>"+ "</span><a> X </a><div class='addTime'></div> </li>");
+        Time( '.addTime' );
+      }
+
+        for(var i=0 ; i <= static.length ; i++){
+          listing( static[i] );
         }
 
-      // If we add a blank space it will stop us to add that.
 
-        $('button').click(function(){
 
-          if($('input').val() == "") {
-
-      // show validation error;
+      $('button').click(function(){
+        if(  $('input').val() == "" && $('#inmessage').val() =="" ) {
+          $(".required").html('This field is required');
+          $(".msgrequired").html('This field is required');
+          $('input').css('color:white');
           return;
+        }
+        listing( $('input' ).val() , $('#inmessage').val() );
+        $('input').val('');
+        $('#inmessage').val('');
+      });
+         // Binding the anchor tags
+        // This is static binding i.e done with anchor present in the HTML
+        // $('a').click(onclickFunction);
+         // Event binding using `on`
+        // This is using because element are added dynamically
+      $('ul').on( 'click', 'a',function(){
+        $(this).closest('li').remove();
+      });
+      
+       // Toggling class on li click
+      $('ul').on('click','li',function(){
+        $(this).toggleClass('checked');
+      });
+
+        
+
+       /* var onclickFunction = function(){
+          $(this).parent().remove();
           }
 
-        $('ul').append("<li>" +  $('input').val() + "<a> X </a></li>"); //for add input value we add through add button
+        // If we add a blank space it will stop us to add that.
 
-        $('input').val('');
+          $('button').click(function(){
 
-        });
+            if($('input').val() == "") {
 
+        // show validation error;
+            return;
+            }
 
+          $('ul').append("<li>" +  $('input').val() + "<a> x </a></li>"); //for add input value we add through add button
 
-      // Event binding using `on`
+          $('input').val('');
 
-        $('ul').on( 'click', 'a',function(){
-          $(this).parent().remove();
           });
 
 
-      // Function to add li dynamically
 
-        $('ul').on( 'click', 'li',function(){ // checking the last dynamically added li whether it is checked or not.
+        // Event binding using `on`
 
-        $(this).checked;
+          $('ul').on( 'click', 'a',function(){
+            $(this).parent().remove();
+            });
 
-          if( $(this).hasClass('checked') ){   // check the li if checked or not 
 
-            $(this).removeClass('checked');   // removing the class checked from li if checked. 
-          }
-          else{
-            $(this).addClass('checked');     // adding the class checked on li if not checked. 
-          }
+        // Function to add li dynamically
 
-      });
+          $('ul').on( 'click', 'li',function(){ // checking the last dynamically added li whether it is checked or not.
+
+          $(this).checked;
+
+            if( $(this).hasClass('checked') ){   // check the li if checked or not 
+
+              $(this).removeClass('checked');   // removing the class checked from li if checked. 
+            }
+            else{
+              $(this).addClass('checked');     // adding the class checked on li if not checked. 
+            }
+
+        });*/   // Old method for todo task
  });
 
     </script>

@@ -36,7 +36,7 @@
 
     #myBar {
       background-color: #4CAF50;
-      width: 2px;
+      width: 1%;
       height: 3px;
       position: absolute;
     }
@@ -53,20 +53,17 @@
 </head>
 <body>
   <h1 style="color: lightblue;"> Stopwatch</h1><br>
-  <div>
   <div id="output"><span><b>0</b> <a>s</a>: <a>00</a></span></div>
-  <div id="myProgress">
+  <div id="myProgress"></div>
+  <div id="myBar"></div>
+  <div class="bt"> 
+    <button id='start' class="btn-primary">Start Time</button>
+    <button id="reset" class="btn-danger">Reset Time</button>
   </div>
   <div class="bt"> 
-   <button id='start' class="btn-primary">Start Time</button>
-   <button id="reset" class="btn-danger">Reset Time</button>
-  </div>
-
-
-  <div class="bt"> 
-   <button id='start1' class="btn-success">Start Time</button>
-   <button id='stop1' class="btn-danger">Stop Time</button>
-   <button id="reset1" class="btn-primary">Reset Time</button>
+    <button id='start1' class="btn-success">Start Time</button>
+    <button id='stop1' class="btn-danger">Stop Time</button>
+    <button id="reset1" class="btn-primary">Reset Time</button>
   </div>
 
 
@@ -78,7 +75,7 @@ $(document).ready(function(){
 
   var seconds = 0; // Track the number of seconds
   var counter = 0; // Track the number of time setInterval execute 
-  var width = 0;   // Track the width of progress bar
+  var width = 1;   // Track the width of progress bar
 
   $('#start').click(function(){ //Start the time using start button
 
@@ -94,16 +91,23 @@ $(document).ready(function(){
 
         var deciSecond =  parseInt(currentDate.getMilliseconds()/10);
         
-        // if(deciSecond >= 0 && deciSecond <= 9){
-        //   console.log(deciSecond);
-        //   deciSecond = "0" + deciSecond;
-        // }
+        if(deciSecond >= 0 && deciSecond <= 9){
+          deciSecond = "0" + deciSecond;
+        }
+        
       $('#output').html("<b>" + seconds + "</b>" + " <a>s</a>" + " : " + "<a>" + deciSecond + "</a>" );
         
         if(counter % 100 == 0){
           seconds++;
         }
-        counter++;      
+        counter++;
+        width++;
+
+        if(width == 100){
+          $('#myBar').css('width', width +'%');
+          console.log('width', width);
+        }
+        
       }, 10 );
 
 
@@ -153,7 +157,7 @@ $(document).ready(function(){
     if(counter % 100 == 0){
       seconds++;
     }
-      counter++;      
+      counter++;
     }, 10 );
 
     if( $('#start').text()  === 'Start Time'){
@@ -163,8 +167,7 @@ $(document).ready(function(){
   });
 
   $('#stop1').click(function(){
-    clearInterval( intervalTracker );    
-
+    clearInterval( intervalTracker );
     if( $('#start').text()  === 'Stop Time'){
       $('#start').text('Start Time');
     }
