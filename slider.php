@@ -13,7 +13,7 @@
       font-family: sans-serif;
     }
 
-    .slide-container{
+    .s-container{
       width: 800px;
       position: relative;
       margin: 8px 250px;
@@ -68,7 +68,7 @@
   </style>
 </head>
 <body>
-  <div class="slide-container">
+  <div class="s-container">
     <div class="slides" style="display: block;">
       <div id="img1"><img src="images/Lighthouse.jpg" width="800px" height="500px"></div>
     </div>
@@ -89,9 +89,14 @@
   <script type="text/javascript">
     $(document).ready(function(){
 
+      var i = 0;
       $('#nex').click(function(){
-
-      })
+        $("#img1").css('display','none');
+      });
+      $('#prev').click(function(){
+        $("#img1").css('display', 'block');
+      });
+      
     });
   </script>
 </body>
