@@ -88,15 +88,6 @@
   </div>
   <script type="text/javascript">
     $(document).ready(function(){
-
-      var i = 0;
-      $('#nex').click(function(){
-        $("#img1").css('display','none');
-      });
-      $('#prev').click(function(){
-        $("#img1").css('display', 'block');
-      });
-      
     });
   </script>
 </body>
