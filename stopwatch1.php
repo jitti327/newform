@@ -63,21 +63,35 @@
   		width  						: 130px;    	
   		height   					: 30px;
   		border    				: none;
-  		background-color  : rgb(163, 228, 215);  		
+  		background-color  : rgb(163, 228, 215);
     }
     .sto{
   		width  						: 130px;   	
     	margin   					: 10px;
   		height  					: 30px;
   		border  					: none;
-  		background-color  : rgb(245, 183, 177); 
+  		background-color  : rgb(245, 183, 177);
     }
     .re1{
   		width  						: 130px;    	
   		height   					: 30px;
   		border  					: none;
-  		background-color  : rgb(174, 182, 191); 
+  		background-color  : rgb(174, 182, 191);
   	}
+
+    #myProgress {
+      width             : 100%;
+      height            : 3px;
+      position          : relative;
+      background-color  : #ddd;
+    }
+
+    #myBar {
+      background-color  : #4CAF50;
+      width             : 1%;
+      height            : 3px;
+      position          : absolute;
+    }
   </style>
 </head>
 <body>
@@ -86,7 +100,9 @@
       <h1 class="text-center" style="color: RGB(250, 128, 114);">Stop Watch With Timer</h1><hr>
       <div col-lg-9> <button id="watch" class="stopwatch">STOP WATCH</button>&nbsp;<button id="timer" class="timer">TIMER</button></div><hr>
       <div id="hi">
-	      <div id="output"><span><b>0</b> <a>s</a>: <a>00</a></span></div>      
+	      <div id="output"><span><b>0</b> <a>s</a>: <a>00</a></span></div>
+        <div id="myProgress"></div>
+        <div id="myBar"></div>
 			  <div class="bt"> 
 			    <button id='start' class="st">Start Time</button>&nbsp;
 			    <button id="reset" class="re">Reset Time</button>
