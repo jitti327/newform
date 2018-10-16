@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Own Made Calculator</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style type="text/css">
+    body{
+      background-color: rgba(25,50,66,0.8);
+      text-align: center; 
+    }
+    .container{
+      margin-top: 30px;
+      border: 1px solid grey;
+      width: 350px;
+      height: 400px;
+      background-color: #16DACE;
+    }
+    .display{
+      height: 90px;
+      margin-top: 5px;
+      background-color: rgb(255,255,255); 
+    }
+    button{
+      margin: 5px;
+      margin-top: 10px;
+      padding-top: 5px;
+      width: 60PX;
+      height: 60PX;
+      font-size: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div id="output" class="display">0</div>
+
+    <div id="leastNumber"></div>
+
+    <button class="number" value="7">7</button>
+    <button class="number" value="8">8</button>
+    <button class="number" value="9">9</button>
+    <button class="operator" value="/">/</button>
+
+    <button class="number" value="4">4</button>
+    <button class="number" value="5">5</button>
+    <button class="number" value="6">6</button>
+    <button class="operator" value="=">=</button>
+
+    <button class="number" value="1">1</button>
+    <button class="number" value="2">2</button>
+    <button class="number" value="3">3</button>
+    <button class="operator" value=".">.</button>
+
+    <button class="number" value="0">0</button>
+    <button class="operator" value="+">+</button>
+    <button class="operator" value="-">-</button>
+    <button class="operator" value="*">*</button>
+
+
+    <button class="operator" value="CE">CE</button>
+  </div>
+
+  <script type="text/javascript">
+    $(document).ready(function(){
+
+      console.log($("#output").text());
+      
+      var firstOperand, // Contain the first operand
+       operator, // contain the selector operator
+       resetNumber = false; // Why this is used very important ????
+
+
+
+      // confused, don't know what to do ??
+   
+      // for now the following function is checking for check of length only
+      // Parameter : void
+      // return    : void
+      function validaiton(){
+
+        if($("#output").text().length >= 12){
+          $('#leastNumber').html(" ** Only 12 digits are allowed");
+          return;
+        }
+      }
+
+
+      var currnum = 0;
+      $('.number').click(function(){
+
+        if(resetNumber){
+          $('#output').html("");
+          resetNumber = false;
+        }
+
+       // Updating output div with the newly number selected
+       var first    = $('#output').append( $(this).val() );
+ 
+       validaiton();
+
+
+      })
+
+
+      // CE code
+
+      $('.operator[value="CE"]').click(function(){
+
+
+        // Take from here : https://stackoverflow.com/questions/952924/javascript-chop-slice-trim-off-last-character-in-string
+        var str = $("#output").text();
+        // str = str.substring(0, str.length - 1); 
+        str = str.slice(0, -1) 
+
+        if(str.length == 0){
+          str = "0";
+        }
+
+        $('#output').html( str );
+
+        validaiton();
+
+
+      })
+
+
+      $('.operator[value="+"]').click(function(){
+
+        firstOperand = $('#output').html();
+        operator     = "+";
+        resetNumber  = true
+        
+      });
+
+
+      $('.operator[value="="]').click(function(){
+
+        secondOperand = $('#output').html();
+
+        $('#output').html( parseInt(firstOperand) + parseInt(secondOperand) );
+       
+      });
+
+    });
+  </script>
+</body>
+</html>
