@@ -14,7 +14,7 @@
       margin-top: 30px;
       border: 1px solid grey;
       width: 350px;
-      height: 400px;
+      height: 550px;
       background-color: #16DACE;
     }
     .display{
@@ -34,7 +34,7 @@
 </head>
 <body>
   <div class="container">
-    <div id="output" class="display">0</div>
+    <div id="output" class="display"></div>
 
     <div id="leastNumber"></div>
 
@@ -60,6 +60,9 @@
 
 
     <button class="operator" value="CE">CE</button>
+    <button class="operator" value="%">%</button>
+    <button class="operator" value="(">(</button>
+    <button class="operator" value=")">)</button>
   </div>
 
   <script type="text/javascript">
@@ -122,9 +125,9 @@
 
         validaiton();
 
-
       })
 
+      // Function for Addition
 
       $('.operator[value="+"]').click(function(){
 
@@ -134,12 +137,47 @@
         
       });
 
+      // function for substraction
+
+      $('.operator[value="-"]').click(function(){
+
+        firstOperand = $('#output').html();
+        operator     = "-";
+        resetNumber  = true
+        
+      });
+
+      // function for multiplication
+
+      $('.operator[value="*"]').click(function(){
+
+        firstOperand = $('#output').html();
+        operator     = "*";
+        resetNumber  = true
+        
+      });
+
+      // function for divison
+
+      $('.operator[value="/"]').click(function(){
+
+        firstOperand = $('#output').html();
+        operator     = "/";
+        resetNumber  = true
+        
+      });
+
+      // Trying to add Operators in one function
+      // Getting the values of all operator
 
       $('.operator[value="="]').click(function(){
 
         secondOperand = $('#output').html();
 
-        $('#output').html( parseInt(firstOperand) + parseInt(secondOperand) );
+        var outcome = $('operator').html();
+
+        $('#output').html( parseInt(firstOperand) +operator+ parseInt(secondOperand) );
+        console.log('operator',operator);
        
       });
 
