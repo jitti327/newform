@@ -174,9 +174,9 @@
 
         secondOperand = $('#output').html();
 
-        var outcome = $('operator').html();
+        var outcome = eval(parseInt(firstOperand) +operator+ parseInt(secondOperand));
 
-        $('#output').html( parseInt(firstOperand) +operator+ parseInt(secondOperand) );
+        $('#output').html(outcome);
         console.log('operator',operator);
        
       });
