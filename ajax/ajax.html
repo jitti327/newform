@@ -1,0 +1,54 @@
+
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>Ajax</title>
+    <link rel="stylesheet" href="../css/custom-calculator.css" />
+    <link rel="stylesheet" href="../css/bootstrap.min.css" />
+    <script src="../includes/jquery.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      Hi 
+      <div id="dynamic-output">
+
+      </div>
+    </div>
+  <script type="text/javascript">
+function loadDoc(data) {
+  var xhttp;
+
+
+  if (window.XMLHttpRequest) {
+    // code for modern browsers
+    xhttp = new XMLHttpRequest();
+    } else {
+    // code for IE6, IE5
+    xhttp = new ActiveXObject("Microsoft.XMLHTTP");
+  }
+
+
+  xhttp.onreadystatechange = function() {
+
+    // status -- Response header from server
+    // console.log("readystate", this.readyState );
+    // console.log("status", this.status );
+    if (this.readyState == 4 && this.status == 200) {
+      document.getElementById("dynamic-output").innerHTML = this.responseText;
+    }
+  };
+
+  console.log("Hi");
+
+  xhttp.open("POST", "server.php", true );
+
+  xhttp.setRequestHeader("test", "ok");
+  xhttp.send(data);
+  // xhttp.abort();
+
+
+  console.log("Next line");
+}
+  </script>
+  </body>
+</html>
