@@ -44,7 +44,7 @@ try {
 
 
   $row = [
-    'username'   => 'emaial@gmail.com',
+    'username'   => 'email@gmail.com',
     'password'   => md5('password'),
     'first_name' => 'My first name',
   ];
