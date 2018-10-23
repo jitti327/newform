@@ -9,8 +9,6 @@
     <th>Last Name</th>
     <th>User Name</th>
     <th>Email</th>
-    <th>Password</th>
-    <th>Confirm Password</th>
     <th>Edit</th>
     <th>Delete</th>
   </tr>
@@ -42,10 +40,8 @@
     <td><?php echo $row['lastname']; ?></td>
     <td><?php echo $row['displayname']; ?></td>
     <td><?php echo $row['email']; ?></td>
-    <td><?php echo $row['password']; ?></td>
-    <td><?php echo $row['confirmpassword']; ?></td>
-    <td><a href="edit.php?id=<?php echo $row['id']?>">edit</a></td>
-    <td><a href="delete.php?id=<?php echo $row['id']?>">delete</a></td>
+    <td><a href="edit.php?id=<?php echo $row['id']?>"><img src="images/edit.jpg" width="40px" height="40px"></i></a></td>
+    <td><a href="delete.php?id=<?php echo $row['id']?>"><img src="images/delete.jpg" width="40px" height="40px"></a></td>
   </tr>
 <?php
   }

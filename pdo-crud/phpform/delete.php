@@ -4,11 +4,19 @@ include("connection.php");
 try{
 
   $row = [
-    'id' => $_GET['id']
+    'id' => $_GET['id'],
   ];
 
-  $del = $dbh->prepare("DELETE FROM `sign-up` WHERE id= ':id'");
-  $del = execute($row);
+  $stm = $dbh->prepare("DELETE FROM `sign-up` WHERE id= :id");
+  //$stm = $dbh->prepare("DELETE FROM `sign-up` WHERE id= ".$_GET['id']);
+  $del = $stm->execute($row);
+
+  if($del !== false){
+    echo "Delete sucessfull";
+  }else{
+    echo "record not deleted";
+  }
+header("location:record.php");
 
 }
 
