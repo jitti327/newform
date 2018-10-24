@@ -1,5 +1,6 @@
 <?php
 include("connection.php");
+include("function.php");
 
   
   
@@ -14,7 +15,13 @@ include("connection.php");
 
   $editId = $_GET['id'];
 
+  $firstnameError = "";
+
+  $lastnameError = "";
+
   $usernameError = "";
+
+  $emailError = "";
 
 
   
@@ -31,32 +38,39 @@ include("connection.php");
 
     $error = false;
 
-    # Username is required
-
-    if(empty($username)){
-      $usernameError = 'Username is required';
-      $error = true;
-    }
+    # Firstname is required
 
     if(empty($firstname)){
-      echo 'firstname is required';
+      $firstnameError = '<span style="color: rgb(255,0,0);">** Firstname is required</span>';
       $error = true;
     }
+
+    # Lastname is required
 
 
     if(empty($lastname)){
-      echo 'lastname is required';
+      $lastnameError = '<span style="color: rgb(255,0,0);">** Lastname is required</span>';
       $error = true;
     }
 
+    # Username is required
+
+    if(empty($username)){
+      $usernameError = '<span style="color: rgb(255,0,0);">** Username is required</span>';
+      $error = true;
+    }
+
+    # Email is required
+
     if(empty($email)){
-      echo 'email is required';
+      $emailError = '<span style="color: rgb(255,0,0);">** Email is required</span>';
       $error = true;
     }
 
 
 
     # Finding if the email is not taken by other
+
     $stmt = $dbh->prepare( "
       SELECT 
         * 
@@ -137,10 +151,6 @@ catch (PDOException $e) {
 include("header.php");
 
 ?>
-<!DOCTYPE html>
-<html>
-<body> 
-
   <div class="container">
 
   <div class="row">
@@ -153,23 +163,34 @@ include("header.php");
             <div class="form-group">
               <label>First Name</label>
               <input type="text" name="firstname" id="first_name" class="form-control input-lg" placeholder="First Name" tabindex="1" value="<?php echo $show['firstname']; ?>" autocomplete="off">
+            <div class="Message">
+              <?php echo $firstnameError; ?>
+            </div>
             </div>
           </div>
           <div class="col-xs-12 col-sm-6 col-md-6">
             <div class="form-group">
               <label>Last Name</label>
               <input type="text" name="lastname" id="last_name" class="form-control input-lg" placeholder="Last Name" tabindex="2" value="<?php echo $show['lastname']; ?>" autocomplete="off">
+            <div class="Message">
+              <?php echo $lastnameError; ?>
+            </div>
             </div>
           </div>
         </div>
         <div class="form-group">
           <label>User Name</label>
           <input type="text" name="username" id="display_name" class="form-control input-lg" placeholder="User Name" tabindex="3" value="<?php echo $show['displayname']; ?>" autocomplete="off">
+        <div class="Message">
           <?php echo $usernameError; ?>
+        </div>
         </div>
         <div class="form-group">
           <label>Email</label>
           <input type="email" name="email" id="email" class="form-control input-lg" placeholder="Email Address" tabindex="4" value="<?php echo $show['email']; ?>" autocomplete="off">
+        </div>
+        <div class="Message">
+          <?php echo $emailError; ?>
         </div>
         
         <hr class="colorgraph">
@@ -181,5 +202,6 @@ include("header.php");
     </div>
   </div>
   </div>
-</body>
-</html>
+<?php
+  include("footer.php");
+ ?>

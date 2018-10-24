@@ -1,16 +1,134 @@
 <?php
   include("connection.php");
+  include("function.php");
+
+
+  $editId = "";
+
+  $firstnameError = "";
+
+  $lastnameError = "";
+
+  $usernameError = "";
+
+  $emailError = "";
+
+  $passError = "";
+
+  $cpassError = "";
+  try{
+    if(isset($_POST['Submit'])){
+
+      
+      #Validation Starts Here
+
+      $firstname = $_POST['firstname'];
+      $lastname  = $_POST['lastname'];
+      $username  = $_POST['username'];
+      $email     = $_POST['email'];
+      $pass      = $_POST['password'];
+      $cpass     = $_POST['confpassword'];
+
+      $error = false;
+
+      # Firstname is required
+
+      if(empty($firstname)){
+        $firstnameError = '<span style="color: rgb(255,0,0);">** Firstname is required</span>';
+        $error = true;
+      }
+
+      # Lastname is required
+
+
+      if(empty($lastname)){
+        $lastnameError = '<span style="color: rgb(255,0,0);">** Lastname is required</span>';
+        $error = true;
+      }
+
+      # Username is required
+
+      if(empty($username)){
+        $usernameError = '<span style="color: rgb(255,0,0);">** Username is required</span>';
+        $error = true;
+      }
+
+      # Email is required
+
+      if(empty($email)){
+        $emailError  = '<span style="color: rgb(255,0,0);">** Email is required</span>';
+        $error = true;
+      }
+
+      # Password is required
+
+      if(empty($pass)){
+        $passError = '<span style="color: rgb(255,0,0);">** Password is required</span>';
+        $error = true;
+      }
+
+      # Confirm Password is required
+
+      if(empty($cpass)){   $cpassError = '<span style="color: rgb(255,0,0);">** Confirm Password is required</span>';
+      $error = true; }
+
+
+
+    # Finding if the email is not taken by other
+
+    $stmt = $dbh->prepare( "
+      SELECT 
+        * 
+      FROM
+        `sign-up` 
+      WHERE 
+        email= :email 
+        && 
+        id <> :id
+      LIMIT 1");
+
+    $stmt->execute([ 
+      'email' => $email,
+      'id'    => $editId
+    ]);
+
+    if($stmt->rowCount() != 0){
+      $emailError  ='<span style="color: rgb(255,0,0);">** Sorry Email is already taken<span>';
+      $error = true;
+    }  
+
+
+
+      # There is no error in the validation and data
+      # Hence saving the data
+      if(!$error){
+
+      $row = [
+        'fname'  => $firstname,
+        'lname'  => $lastname,
+        'uname'  => $username,
+        'mail'   => $email,
+        'pass'   => $pass,
+        'cpass'  => $cpass,
+      ];
+
+      $sql = "
+        INSERT 
+         INTO `sign-up`
+          (`firstname`, `lastname`, `displayname`, `email`, `password`, `confirmpassword`) 
+        VALUES 
+        (:fname , :lname , :uname , :mail , :pass , :cpass)";
+        
+      $statement = $dbh->prepare($sql);
+      $status    = $statement->execute($row);
+    }
+  }
+}
+catch (PDOException $e) {
+  echo 'Connection failed: ' . $e->getMessage();
+} 
+include("header.php"); 
 ?>
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Php Data Object</title>
-  <link href="css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-  <link rel="stylesheet" href="css/style.css">
-  <script src="js/jquery.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-</head>
-<body> 
 
   <div class="container">
 
@@ -24,34 +142,52 @@
             <div class="form-group">
               <label>First Name</label>
               <input type="text" name="firstname" id="first_name" class="form-control input-lg" placeholder="First Name" tabindex="1" autocomplete="off">
+            <div class="Message">
+              <?php echo $firstnameError; ?>
+            </div>
             </div>
           </div>
           <div class="col-xs-12 col-sm-6 col-md-6">
             <div class="form-group">
               <label>Last Name</label>
               <input type="text" name="lastname" id="last_name" class="form-control input-lg" placeholder="Last Name" tabindex="2" autocomplete="off">
+            <div class="Message">              
+              <?php echo $lastnameError; ?>
+            </div>
             </div>
           </div>
         </div>
         <div class="form-group">
           <label>User Name</label>
           <input type="text" name="username" id="display_name" class="form-control input-lg" placeholder="User Name" tabindex="3" autocomplete="off">
+        <div class="Message">
+          <?php echo $usernameError; ?>
+        </div>
         </div>
         <div class="form-group">
           <label>Email</label>
           <input type="email" name="email" id="email" class="form-control input-lg" placeholder="Email Address" tabindex="4" autocomplete="off">
+        <div class="Message">
+          <?php echo $emailError; ?>
+        </div>
         </div>
         <div class="row">
           <div class="col-xs-12 col-sm-6 col-md-6">
             <div class="form-group">
               <label>Password</label>
               <input type="password" name="password" id="password" class="form-control input-lg" placeholder="Password" tabindex="5" autocomplete="off">
+            <div class="Message">
+              <?php echo $passError; ?>
+            </div>
             </div>
           </div>
           <div class="col-xs-12 col-sm-6 col-md-6">
             <div class="form-group">
               <label>Confirm password</label>
               <input type="password" name="confpassword" id="password_confirmation" class="form-control input-lg" placeholder="Confirm Password" tabindex="6" autocomplete="off">
+            <div class="Message">
+              <?php echo $cpassError; ?>
+            </div>
             </div>
           </div>
         </div>
@@ -90,38 +226,6 @@
     </div><!-- /.modal-dialog -->
   </div><!-- /.modal -->
   </div>
-</body>
-</html>
-
-<?php
-
-#TODO : Move to header
-
-try{
-  if(isset($_POST['Submit'])){
-
-    # Check if email exists in database or not.
-
-    $row = [
-      'fname'  => $_POST['firstname'],
-      'lname'  => $_POST['lastname'],
-      'uname'  => $_POST['username'],
-      'mail'   => $_POST['email'],
-      'pass'   => $_POST['password'],
-      'cpass'  => $_POST['confpassword'],
-    ];
-    $sql = "
-      INSERT 
-       INTO `sign-up`
-        (`firstname`, `lastname`, `displayname`, `email`, `password`, `confirmpassword`) 
-      VALUES 
-      (:fname , :lname , :uname , :mail , :pass , :cpass)";
-      
-    $statement = $dbh->prepare($sql);
-    $status    = $statement->execute($row);
-  }
-}
-catch (PDOException $e) {
-  echo 'Connection failed: ' . $e->getMessage();
-}  
+<?php 
+  include("footer.php");
 ?>

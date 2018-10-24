@@ -1,7 +1,7 @@
 <?php
   include("connection.php");
 ?>
-<button><a href="index.php">Records</a></button>&nbsp;&nbsp;
+<button><a href="index.php">Homepage</a></button>&nbsp;&nbsp;
 <!--For making the Header of a table--->
 <table border="2">
   <tr>
