@@ -2,12 +2,14 @@
 <html>
 <head>
   <title>Php Data Object</title>
-  <link href="css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
   <link rel="stylesheet" href="css/style.css">
   <script src="js/jquery.min.js"></script>
+  <script src="js/registerjquery.min.js"></script>
   <script src="js/tablejquery.min.js"></script>
   <script src="js/table.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 </head>
 
 <body> 

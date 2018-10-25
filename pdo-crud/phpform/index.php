@@ -26,8 +26,8 @@
       $lastname  = $_POST['lastname'];
       $username  = $_POST['username'];
       $email     = $_POST['email'];
-      $pass      = $_POST['password'];
-      $cpass     = $_POST['confpassword'];
+      $pass      = md5($_POST['password']);
+      $cpass     = md5($_POST['confpassword']);
 
       $error = false;
 
@@ -199,7 +199,7 @@ include("header.php");
             </span>
           </div>
           <div class="col-xs-8 col-sm-9 col-md-9">
-             By clicking <strong class="label label-primary">Register</strong>, you agree to the <a href="#" data-toggle="modal" data-target="#t_and_c_m">Terms and Conditions</a> set out by this site, including our Cookie Use.&nbsp;&nbsp;<a href="record.php">Records</a>
+             By clicking <strong class="label label-primary">Register</strong>, you agree to the <a href="#" data-toggle="modal" data-target="#t_and_c_m">Terms and Conditions</a> set out by this site, including our Cookie Use.&nbsp;&nbsp;<a href="list.php">Records</a>
           </div>
         </div>
         

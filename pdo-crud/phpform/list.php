@@ -1,11 +1,18 @@
 <?php
   include("connection.php");
+  include("header.php");
 ?>
 
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <h4>Database Records</h4>
+      <h2 align="center"><b color= rgb(0,0,255)>Database Records</b></h2>
+      <div class="searched">
+        <form>
+          <input type="text" name="search" class="search" id="searching" placeholder="What you looking for?">
+          <button type="submit" class="btn btn-primary btn-sm" name="locate"><span class="glyphicon glyphicon-search"></span></button>
+        </form>     
+      </div>
       <div class="table-responsive">
         <table id="mytable" class="table table-bordred table-striped">
           <thead>
@@ -16,11 +23,12 @@
               <th>User Name</th>
               <th>Email</th>
               <th>Edit</th>
-              <th>Delete</th>
+              <th>Delete</th> 
             </tr>
           </thead>
         <!----Query Running for fetching data from database--->
         <?php
+
           $record = $dbh->prepare( "SELECT * FROM `sign-up`");
           $record-> execute();
 
@@ -33,12 +41,36 @@
           $result = $record->fetchAll();
           #print_r($result);
           
+
+
+          $record = $dbh->prepare( "
+            SELECT 
+              *
+            FROM 
+              `sign-up` 
+            WHERE
+              `firstname` LIKE :search
+            OR
+              `lastname`  LIKE :search
+          ");
+          $record-> execute([ 'search' => '%' .$_GET['search'] . '%' ]);
+
+
+          #ref link:-- http://php.net/manual/en/pdostatement.fetchall.php
+
+          #echo "<pre>";
+          
+          #print("Fetch all of the remaining rows in the result set:\n");
+
+          $result = $record->fetchAll();
+          #print_r($result);
+
           // Foreach loop for getting all data seprately
+
 
           foreach($result as $row){
             #print_r($row);
     
-          include("header.php");
             ?>
 
           <tbody>
@@ -55,7 +87,7 @@
           <?php
             }
           ?>
-        </table>
+        </table><a href="index.php" class="return-btn"><i class="glyphicon glyphicon-home"></i>&nbsp;Back To Home</a>
 
       <div class="clearfix"></div>
         <ul class="pagination pull-right">

@@ -12,11 +12,11 @@ try{
   $del = $stm->execute($row);
 
   if($del !== false){
-    echo "Delete sucessfull";
+    $message = "<p class='alert alert-success'>Deleted sucessfully</p>";
   }else{
-    echo "record not deleted";
+    $message = "<p class='alert alert-danger'>Record not deleted</p>";
   }
-header("location:record.php");
+header("location:list.php");
 
 }
 
