@@ -1,5 +1,58 @@
 <?php
   include("connection.php");
+
+#Query Running for fetching data from database
+
+  if(isset($_POST['locate'])){
+
+    $search = $_POST['search'];
+
+    $row = [
+      'search' => $search
+    ];
+    
+    $record = $dbh->prepare( "
+      SELECT 
+        *
+      FROM 
+        `sign-up` 
+      WHERE
+        `firstname` LIKE :search
+      OR
+        `displayname`  LIKE :search
+    ");
+    $record-> execute($row);
+
+
+    #ref link:-- http://php.net/manual/en/pdostatement.fetchall.php
+
+    #echo "<pre>";
+    
+    #print("Fetch all of the remaining rows in the result set:\n");
+
+    $result = $record->fetchAll();
+    #print_r($result);
+
+  }
+  else{  
+
+    $record = $dbh->prepare( "
+      SELECT
+       *
+      FROM
+       `sign-up`");
+    $record-> execute();
+
+    #ref link:-- http://php.net/manual/en/pdostatement.fetchall.php
+
+    #echo "<pre>";
+    
+    #print("Fetch all of the remaining rows in the result set:\n");
+
+    $result = $record->fetchAll();
+    #print_r($result);
+  }
+
   include("header.php");
 ?>
 
@@ -8,7 +61,7 @@
     <div class="col-md-12">
       <h2 align="center"><b color= rgb(0,0,255)>Database Records</b></h2>
       <div class="searched">
-        <form>
+        <form method="post">
           <input type="text" name="search" class="search" id="searching" placeholder="What you looking for?">
           <button type="submit" class="btn btn-primary btn-sm" name="locate"><span class="glyphicon glyphicon-search"></span></button>
         </form>     
@@ -26,47 +79,9 @@
               <th>Delete</th> 
             </tr>
           </thead>
-        <!----Query Running for fetching data from database--->
         <?php
 
-          $record = $dbh->prepare( "SELECT * FROM `sign-up`");
-          $record-> execute();
-
-          #ref link:-- http://php.net/manual/en/pdostatement.fetchall.php
-
-          #echo "<pre>";
-          
-          #print("Fetch all of the remaining rows in the result set:\n");
-
-          $result = $record->fetchAll();
-          #print_r($result);
-          
-
-
-          $record = $dbh->prepare( "
-            SELECT 
-              *
-            FROM 
-              `sign-up` 
-            WHERE
-              `firstname` LIKE :search
-            OR
-              `lastname`  LIKE :search
-          ");
-          $record-> execute([ 'search' => '%' .$_GET['search'] . '%' ]);
-
-
-          #ref link:-- http://php.net/manual/en/pdostatement.fetchall.php
-
-          #echo "<pre>";
-          
-          #print("Fetch all of the remaining rows in the result set:\n");
-
-          $result = $record->fetchAll();
-          #print_r($result);
-
           // Foreach loop for getting all data seprately
-
 
           foreach($result as $row){
             #print_r($row);
