@@ -30,17 +30,55 @@
     
     #print("Fetch all of the remaining rows in the result set:\n");
 
-    $result = $record->fetchAll();
+    $result = $record;
     #print_r($result);
 
   }
   else{  
 
-    $record = $dbh->prepare( "
+    # Pagination coding Start here..
+
+    if(empty($_GET['page'])){
+      $currentPage = 1;
+    }else{
+      $currentPage = intval($_GET['page']);
+    }
+    
+
+    if($currentPage <= 0 ){
+      $currentPage = 1;
+    }
+
+
+    // $currentPage = empty($_GET['page']) ? 1 : intval( $_GET['page'] );
+    // $currentPage = max($currentPage, 1);
+
+
+    $page = $currentPage -1 ; 
+
+
+    $postPerPage = 3;
+
+    $offset = $page * $postPerPage;
+
+    // LIMIT 10 OFFSET 25;
+
+    // LIMIT 25, 10;
+
+    // LIMIT $offset, $page;
+
+    $record = $dbh->prepare("
       SELECT
        *
       FROM
-       `sign-up`");
+       `sign-up`
+      LIMIT :offset , :postPerPage 
+    ");
+
+    // I have used this because
+    // PDO was converting the value into string
+    $record->bindValue(':offset', $offset, PDO::PARAM_INT);
+    $record->bindValue(':postPerPage', $postPerPage, PDO::PARAM_INT);
     $record-> execute();
 
     #ref link:-- http://php.net/manual/en/pdostatement.fetchall.php
@@ -108,7 +146,7 @@
         <ul class="pagination pull-right">
           <li class="disabled"><a href="#"><span class="glyphicon glyphicon-chevron-left"></span></a></li>
           <li class="active"><a href="#">1</a></li>
-          <li><a href="#">2</a></li>
+          <li><a href="?page=2">2</a></li>
           <li><a href="#">3</a></li>
           <li><a href="#">4</a></li>
           <li><a href="#">5</a></li>
