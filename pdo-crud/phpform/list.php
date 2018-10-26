@@ -3,12 +3,12 @@
 
 #Query Running for fetching data from database
 
-  if(isset($_POST['locate'])){
+  if(isset($_GET['locate'])){
 
-    $search = $_POST['search'];
+    $search = $_GET['search'];
 
     $row = [
-      'search' => $search
+      'search' => '%'.$search.'%'
     ];
     
     $record = $dbh->prepare( "
@@ -62,16 +62,21 @@
     $offset = $page * $postPerPage;
 
 
-    // This method is used to count the total of row
-      $sql                = $dbh->prepare("
+
+
+    # This method is used to count the total rows
+    $sql = $dbh->prepare("
       SELECT
        *
       FROM
        `sign-up`"
-     );
-      $sql->execute();
-      $Counter            = $sql->rowCount();
-      $totalpages         = ceil( $Counter / $postPerPage );
+
+    );
+
+    #SELECT COUNT(*) FROM `sign-up`;
+    $sql->execute();
+    $Counter            = $sql->rowCount();
+    $totalpages         = ceil( $Counter / $postPerPage );
 
     // LIMIT 10 OFFSET 25;
 
@@ -81,6 +86,7 @@
 
     $record = $dbh->prepare("
       SELECT
+      SQL_CALC_FOUND_ROWS
        *
       FROM
        `sign-up`
@@ -93,11 +99,24 @@
     $record->bindValue(':postPerPage', $postPerPage, PDO::PARAM_INT);
     $record-> execute();
 
-    #ref link:-- http://php.net/manual/en/pdostatement.fetchall.php
 
-    #echo "<pre>";
+    // $statement = $dbh->query('SELECT FOUND_ROWS()');
+    // $response = $statement->fetchColumn();
+
+
+    // echo '<pre>'; 
+    // print_r($response);
+    // echo '</pre>';
+
+
+    // $statement = $dbh->query('SELECT COUNT(*) FROM `sign-up`');
+    // $response = $statement->fetchColumn();
+
     
-    #print("Fetch all of the remaining rows in the result set:\n");
+
+    // echo '<pre>'; 
+    // print_r($response);
+    // echo '</pre>';
 
     $result = $record->fetchAll();
     #print_r($result);
@@ -114,7 +133,7 @@
         <b color= rgb(0,0,255)>Database Records</b>
       </h2>
       <div class="searched">
-        <form method="post">
+        <form method="get">
           <input type="text" name="search" class="search" id="searching" placeholder="What you looking for?">
           <button type="submit" class="btn btn-primary btn-sm" name="locate"><span class="glyphicon glyphicon-search"></span></button>
         </form>     
@@ -148,8 +167,16 @@
               <td><?php echo $row['lastname']; ?></td>
               <td><?php echo $row['displayname']; ?></td>
               <td><?php echo $row['email']; ?></td>
-              <td><a href="edit.php?id=<?php echo $row['id']?>"><p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" ><span class="glyphicon glyphicon-pencil"></span></button></p></a></td>
-              <td><a href="delete.php?id=<?php echo $row['id']?>"><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button></p></a></td>
+              <td>
+                <a href="edit.php?id=<?php echo $row['id']?>"><button class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-pencil"></span></button></a></td>
+
+              <td>
+                <p data-placement="top" data-toggle="tooltip" title="Delete">
+                  <button class="btn btn-danger btn-sm" data-title="Delete" data-toggle="modal" data-target="#delete" >
+                    <span class="glyphicon glyphicon-trash"></span>
+                  </button>
+                </p>
+              </td>
             </tr>
           </tbody>
           <?php
@@ -163,16 +190,13 @@
 
           <?php 
             for($i =1; $i <= $totalpages; $i++){ 
-              if($i == $currentPage){
-          ?>
-                <li class="active"><a href="?page=<?php echo $i; ?>"><?php echo $i; ?></a></li>
-          <?php
-              }
-              else{
-            ?>            
-              <li class=""><a href="?page=<?php echo $i; ?>"><?php echo $i; ?></a></li>
-          <?php 
-              }
+              $class = ($i == $currentPage) ? "active" : "";
+              $href  = ($i == $currentPage) ? "#"      : "?page={$i}"
+              ?> 
+              <li class="<?php echo $class;?>">
+                <a href="<?php echo $href; ?>"><?php echo $i; ?></a>
+              </li> 
+              <?php
             }
           ?> 
           
@@ -202,7 +226,7 @@
       <div class="alert alert-danger"><span class="glyphicon glyphicon-warning-sign"></span> Are you sure you want to delete this Record?</div>
       </div>
       <div class="modal-footer ">
-        <button type="button" class="btn btn-success" ><span class="glyphicon glyphicon-ok-sign"></span> Yes</button>
+        <a href="delete.php?id=<?php echo $row['id']?>"><button type="button" class="btn btn-success" ><span class="glyphicon glyphicon-ok-sign"></span> Yes</button></a>
         <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> No</button>
       </div>
     </div>
