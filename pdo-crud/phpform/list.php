@@ -23,7 +23,6 @@
     ");
     $record-> execute($row);
 
-
     #ref link:-- http://php.net/manual/en/pdostatement.fetchall.php
 
     #echo "<pre>";
@@ -49,20 +48,14 @@
       $currentPage = 1;
     }
 
-
     // $currentPage = empty($_GET['page']) ? 1 : intval( $_GET['page'] );
     // $currentPage = max($currentPage, 1);
 
-
-    $page = $currentPage -1 ; 
-
+    $page = $currentPage -1 ;
 
     $postPerPage = 5;
 
     $offset = $page * $postPerPage;
-
-
-
 
     # This method is used to count the total rows
     $sql = $dbh->prepare("
@@ -103,16 +96,12 @@
     // $statement = $dbh->query('SELECT FOUND_ROWS()');
     // $response = $statement->fetchColumn();
 
-
     // echo '<pre>'; 
     // print_r($response);
     // echo '</pre>';
 
-
     // $statement = $dbh->query('SELECT COUNT(*) FROM `sign-up`');
-    // $response = $statement->fetchColumn();
-
-    
+    // $response = $statement->fetchColumn();    
 
     // echo '<pre>'; 
     // print_r($response);
@@ -162,17 +151,36 @@
 
           <tbody>
             <tr>
-              <td><input type="checkbox" class="checkthis" /></td>
-              <td><?php echo $row['firstname']; ?></td>
-              <td><?php echo $row['lastname']; ?></td>
-              <td><?php echo $row['displayname']; ?></td>
-              <td><?php echo $row['email']; ?></td>
               <td>
-                <a href="edit.php?id=<?php echo $row['id']?>"><button class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-pencil"></span></button></a></td>
+                <input type="checkbox" class="checkthis" />
+              </td>
+              <td>
+                <?php echo $row['firstname']; ?>
+                  
+                </td>
+              <td>
+                <?php echo $row['lastname']; ?>
+                  
+                </td>
+              <td>
+                <?php echo $row['displayname']; ?>
+                  
+                </td>
+              <td>
+                <?php echo $row['email']; ?>
+                  
+                </td>
+              <td>
+                <a href="edit.php?id=<?php echo $row['id']?>">
+                  <button class="btn btn-primary btn-sm">
+                    <span class="glyphicon glyphicon-pencil"></span>
+                  </button>
+                </a>
+              </td>
 
               <td>
                 <p data-placement="top" data-toggle="tooltip" title="Delete">
-                  <button class="btn btn-danger btn-sm" data-title="Delete" data-toggle="modal" data-target="#delete" >
+                  <button class="btn btn-danger btn-sm" data-title="Delete" data-toggle="modal" data-target="#delete">
                     <span class="glyphicon glyphicon-trash"></span>
                   </button>
                 </p>
@@ -182,11 +190,15 @@
           <?php
             }
           ?>
-        </table><a href="index.php" class="return-btn"><i class="glyphicon glyphicon-home"></i>&nbsp;Back To Home</a>
+        </table>
+        <a href="index.php" class="return-btn">
+          <i class="glyphicon glyphicon-home"></i>&nbsp;
+          Back To Home
+        </a>
 
       <div class="clearfix"></div>
         <ul class="pagination pull-right">
-          <!--Dynamic Pagination Used in  listing--->         
+          <!--Dynamic Pagination Used in  listing--->
 
           <?php 
             for($i =1; $i <= $totalpages; $i++){ 
@@ -198,8 +210,7 @@
               </li> 
               <?php
             }
-          ?> 
-          
+          ?>
 
           <!--Static Pagination Used in  listing--->         
           <!-- <li class="disabled"><a href="?page=1"><span class="glyphicon glyphicon-chevron-left"></span></a></li>
@@ -209,6 +220,7 @@
           <li><a href="?page=4">4</a></li>
           <li><a href="?page=5">5</a></li>
           <li><a href="?page=6"><span class="glyphicon glyphicon-chevron-right"></span></a></li> -->
+
         </ul>
       </div>
     </div>
@@ -219,15 +231,28 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+          <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+        </button>
         <h4 class="modal-title custom_align" id="Heading">Delete this entry</h4>
       </div>
       <div class="modal-body">
-      <div class="alert alert-danger"><span class="glyphicon glyphicon-warning-sign"></span> Are you sure you want to delete this Record?</div>
+        <div class="alert alert-danger">
+          <span class="glyphicon glyphicon-warning-sign"></span>
+           Are you sure you want to delete this Record?
+         </div>
       </div>
       <div class="modal-footer ">
-        <a href="delete.php?id=<?php echo $row['id']?>"><button type="button" class="btn btn-success" ><span class="glyphicon glyphicon-ok-sign"></span> Yes</button></a>
-        <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> No</button>
+        <a href="delete.php?id=<?php echo $row['id']?>">
+          <button type="button" class="btn btn-success" >
+            <span class="glyphicon glyphicon-ok-sign"></span>
+            Yes
+          </button>
+        </a>
+        <button type="button" class="btn btn-default" data-dismiss="modal">
+          <span class="glyphicon glyphicon-remove"></span>
+          No
+        </button>
       </div>
     </div>
   <!-- /.modal-content --> 
