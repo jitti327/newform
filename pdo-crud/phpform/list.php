@@ -57,9 +57,21 @@
     $page = $currentPage -1 ; 
 
 
-    $postPerPage = 3;
+    $postPerPage = 5;
 
     $offset = $page * $postPerPage;
+
+
+    // This method is used to count the total of row
+      $sql                = $dbh->prepare("
+      SELECT
+       *
+      FROM
+       `sign-up`"
+     );
+      $sql->execute();
+      $Counter            = $sql->rowCount();
+      $totalpages         = ceil( $Counter / $postPerPage );
 
     // LIMIT 10 OFFSET 25;
 
@@ -97,7 +109,10 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <h2 align="center"><b color= rgb(0,0,255)>Database Records</b></h2>
+      <h2 align="center">
+        <img src="images/jp.png" width="60px" height="60px" />
+        <b color= rgb(0,0,255)>Database Records</b>
+      </h2>
       <div class="searched">
         <form method="post">
           <input type="text" name="search" class="search" id="searching" placeholder="What you looking for?">
@@ -144,13 +159,32 @@
 
       <div class="clearfix"></div>
         <ul class="pagination pull-right">
-          <li class="disabled"><a href="#"><span class="glyphicon glyphicon-chevron-left"></span></a></li>
-          <li class="active"><a href="#">1</a></li>
+          <!--Dynamic Pagination Used in  listing--->         
+
+          <?php 
+            for($i =1; $i <= $totalpages; $i++){ 
+              if($i == $currentPage){
+          ?>
+                <li class="active"><a href="?page=<?php echo $i; ?>"><?php echo $i; ?></a></li>
+          <?php
+              }
+              else{
+            ?>            
+              <li class=""><a href="?page=<?php echo $i; ?>"><?php echo $i; ?></a></li>
+          <?php 
+              }
+            }
+          ?> 
+          
+
+          <!--Static Pagination Used in  listing--->         
+          <!-- <li class="disabled"><a href="?page=1"><span class="glyphicon glyphicon-chevron-left"></span></a></li>
+          <li class="active"><a href="?page=1">1</a></li>
           <li><a href="?page=2">2</a></li>
-          <li><a href="#">3</a></li>
-          <li><a href="#">4</a></li>
-          <li><a href="#">5</a></li>
-          <li><a href="#"><span class="glyphicon glyphicon-chevron-right"></span></a></li>
+          <li><a href="?page=3">3</a></li>
+          <li><a href="?page=4">4</a></li>
+          <li><a href="?page=5">5</a></li>
+          <li><a href="?page=6"><span class="glyphicon glyphicon-chevron-right"></span></a></li> -->
         </ul>
       </div>
     </div>

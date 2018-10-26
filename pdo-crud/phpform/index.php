@@ -135,7 +135,10 @@ include("header.php");
   <div class="row">
       <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
       <form role="form" method="POST">
-        <h2 align="center">Registration Form</h2>
+        <h2 align="center">
+          <img src="images/jp.png" width="60px" height="60px" />
+          Registration Form
+        </h2>
         <hr class="colorgraph">
         <div class="row">
           <div class="col-xs-12 col-sm-6 col-md-6">
