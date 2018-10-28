@@ -141,7 +141,7 @@
             </tr>
           </thead>
         <?php
-
+          $del = $row['id'];
           // Foreach loop for getting all data seprately
 
           foreach($result as $row){
@@ -171,7 +171,7 @@
                   
                 </td>
               <td>
-                <a href="edit.php?id=<?php echo $row['id']?>">
+                <a href="edit.php?id=<?php echo $del?>">
                   <button class="btn btn-primary btn-sm">
                     <span class="glyphicon glyphicon-pencil"></span>
                   </button>
@@ -243,7 +243,7 @@
          </div>
       </div>
       <div class="modal-footer ">
-        <a href="delete.php?id=<?php echo $row['id']?>">
+        <a href="delete.php?id=<?php echo $del?>">
           <button type="button" class="btn btn-success" >
             <span class="glyphicon glyphicon-ok-sign"></span>
             Yes

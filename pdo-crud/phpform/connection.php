@@ -4,7 +4,6 @@
 // ini_set('display_error', 1);
 // error_reporting(-1); // showing all errors
 
-
 // Making connection with database ('registration')
 
 $dsn      = 'mysql:dbname=registration;host=127.0.0.1';  // $dsn = data source name
