@@ -5,7 +5,7 @@
 
   if(isset($_GET['locate'])){
 
-    $search = $_GET['search'];
+    $search = "%".$_GET['search']."%";
 
     $row = [
       'search' => '%'.$search.'%'
@@ -31,6 +31,10 @@
 
     $result = $record;
     #print_r($result);
+    
+    $sql->execute();
+    $Counter            = $sql->rowCount();
+    $totalpages         = ceil( $Counter / $postPerPage );
 
   }
   else{  
