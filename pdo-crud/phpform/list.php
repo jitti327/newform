@@ -5,6 +5,26 @@
 
   if(isset($_GET['locate'])){
 
+    if(empty($_GET['page'])){
+      $currentPage = 1;
+    }else{
+      $currentPage = intval($_GET['page']);
+    }
+    
+
+    if($currentPage <= 0 ){
+      $currentPage = 1;
+    }
+
+    // $currentPage = empty($_GET['page']) ? 1 : intval( $_GET['page'] );
+    // $currentPage = max($currentPage, 1);
+
+    $page = $currentPage -1 ;
+
+    $postPerPage = 5;
+
+    $offset = $page * $postPerPage;
+
     $search = "%".$_GET['search']."%";
 
     $row = [
@@ -31,7 +51,7 @@
 
     $result = $record;
     #print_r($result);
-    
+
     $sql->execute();
     $Counter            = $sql->rowCount();
     $totalpages         = ceil( $Counter / $postPerPage );
