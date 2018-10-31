@@ -15,6 +15,8 @@ include("function.php");
 
   $editId = $_GET['id'];
 
+  $message = "";
+
   $firstnameError = "";
 
   $lastnameError = "";
@@ -28,7 +30,6 @@ include("function.php");
  try{
 
   if(isset($_POST['Update'])){
-
     
     #Validation Starts Here
     $username  = $_POST['username'];
@@ -46,7 +47,6 @@ include("function.php");
     }
 
     # Lastname is required
-
 
     if(empty($lastname)){
       $lastnameError = '<span style="color: rgb(255,0,0);">** Lastname is required</span>';
@@ -67,8 +67,6 @@ include("function.php");
       $error = true;
     }
 
-
-
     # Finding if the email is not taken by other
 
     $stmt = $dbh->prepare( "
@@ -88,11 +86,9 @@ include("function.php");
     ]);
 
     if($stmt->rowCount() != 0){
-      echo 'Email is already taken';
+      $emailError = '<span style="color: rgb(255,0,0);">** Email is already taken</span>';
       $error = true;
     }
-
-
 
     # There is no error in the validation and data
     # Hence saving the data
@@ -121,14 +117,12 @@ include("function.php");
       $status = $stmt->execute($data);
 
       if($status !== false){
-        echo "Update sucessfully";
+        $message = '<span style="color: rgb(255,0,0);">Update sucessfully</span>';
       }
       else{
-        echo "Not Updated";
+        $message = '<span style="color: rgb(255,0,0);">** Not Updated</span>';
       }      
     }
-
-
   }
 
   $row = [
@@ -137,22 +131,18 @@ include("function.php");
 
   $edit = $dbh->prepare( "SELECT * FROM `sign-up` WHERE id= :id");
   $edit-> execute($row);
-  $show = $edit->fetch(); 
-
-
+  $show = $edit->fetch();
 }
 catch (PDOException $e) {
   echo 'Connection failed: ' . $e->getMessage();
   header("Location: 500.php");
   die();
-
 } 
 
 include("header.php");
 
 ?>
   <div class="container">
-
   <div class="row">
       <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
       <form role="form" method="POST">
@@ -161,6 +151,7 @@ include("header.php");
           Update Your Details
         </h2>
         <hr class="colorgraph">
+        <?php echo $message; ?>
         <div class="row">
           <div class="col-xs-12 col-sm-6 col-md-6">
             <div class="form-group">

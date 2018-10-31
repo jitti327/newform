@@ -1,26 +1,24 @@
 <?php
-include("connection.php");
+  include("connection.php");
 
-try{
+  try{
+    $row = [
+    'id' => $_GET['id']
+    ];
 
-  $row = [
-    'id' => $_GET['id'],
-  ];
+    $stm = $dbh->prepare("DELETE FROM `sign-up` WHERE id= :id");
+    //$stm = $dbh->prepare("DELETE FROM `sign-up` WHERE id= ".$_GET['id']);
+    $del = $stm->execute($row);
 
-  $stm = $dbh->prepare("DELETE FROM `sign-up` WHERE id= :id");
-  //$stm = $dbh->prepare("DELETE FROM `sign-up` WHERE id= ".$_GET['id']);
-  $del = $stm->execute($row);
-
-  if($del !== false){
-    $message = "<p class='alert alert-success'>Deleted sucessfully</p>";
-  }else{
-    $message = "<p class='alert alert-danger'>Record not deleted</p>";
+    if($del !== false){
+      echo "<p class='alert alert-success'>Deleted sucessfully</p>";
+      header("location:list.php?id=delete&page=".$_GET['page']);
+    }
+    else{
+      echo "<p class='alert alert-danger'>Record not deleted</p>";
+    }   
   }
-header("location:list.php");
-
-}
-
-catch (PDOException $e) {
-  echo 'Connection failed: ' . $e->getMessage();
-} 
+  catch (PDOException $e) {
+    echo 'Connection failed: ' . $e->getMessage();
+  } 
 ?>
