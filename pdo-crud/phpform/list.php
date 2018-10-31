@@ -168,6 +168,19 @@
         <input type="text" name="search" id="searching" placeholder="What you looking for?">
         <button type="submit" class="btn btn-primary btn-sm" name="locate"><span class="glyphicon glyphicon-search"></span></button>
       </div>
+     <!--  <div class="row">
+        <div class="col-sm-12">
+          <div class="col-sm-10">
+            <select class="custom-select" id="inputGroupSelect04" name="multiDelete">
+              <option value="">Choose...</option>
+              <option value="deleted">Delete</option>
+            </select>
+          </div>
+          <div class="col-sm-2">
+            <button class="btn btn-sm btn-primary btn-create" id="actionButton" name="action">Action</button>
+          </div>
+        </div>
+      </div> -->
       <div class="table-responsive">
         <table id="mytable" class="table table-bordred table-striped">
           <thead>
