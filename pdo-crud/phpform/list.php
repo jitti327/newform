@@ -29,7 +29,7 @@
 
     $search = "%".$_GET['search']."%";
 
-    $row = [
+    $row    = [
       'search' => '%'.$search.'%'
     ];
     
@@ -50,9 +50,9 @@
 
     #echo "<pre>";
 
-    $statement = $dbh->query('SELECT FOUND_ROWS()');
-    $response = $statement->fetchColumn();
-    $totalpages  = ceil( $response / $postPerPage );
+    $statement  = $dbh->query('SELECT FOUND_ROWS()');
+    $response   = $statement->fetchColumn();
+    $totalpages = ceil( $response / $postPerPage );
     
     #print("Fetch all of the remaining rows in the result set:\n");
 
@@ -60,8 +60,8 @@
     #print_r($result);
 
     // $sql->execute();
-    // $Counter            = $sql->rowCount();
-    // $totalpages         = ceil( $Counter / $postPerPage );
+    // $Counter    = $sql->rowCount();
+    // $totalpages = ceil( $Counter / $postPerPage );
 
   }
   else{  
@@ -117,8 +117,8 @@
 
     // I have used this because
     // PDO was converting the value into string
-    $record->bindValue(':offset', $offset, PDO::PARAM_INT);
-    $record->bindValue(':postPerPage', $postPerPage, PDO::PARAM_INT);
+    $record-> bindValue(':offset', $offset, PDO::PARAM_INT);
+    $record-> bindValue(':postPerPage', $postPerPage, PDO::PARAM_INT);
     $record-> execute();
 
     // $statement = $dbh->query('SELECT FOUND_ROWS()');
@@ -141,10 +141,14 @@
     if($currentPage > $totalpages) {
     
     // This method is convert the Querystring to array using parse_str
-    // QUERY_STRING are like url:?searchBar=shubha&page=1 to 6
+    // QUERY_STRING are like url:?searchBar=Rahul&page=1 to 2
+
       parse_str($_SERVER['QUERY_STRING'], $queryArray); 
       $queryArray['page'] = $totalpages;
+
     // This method is used to convert the ArrayQuery to stringQuery
+    // http_build_query is used to generate url-encoded string from the provided array
+
       $queryString =  http_build_query($queryArray);
       header("Location: ?".$queryString);
     }
@@ -154,7 +158,7 @@
 
 <form method="get">
 <div class="container">
-  <div class="row">
+  <div class="row">   
     <div class="col-md-12">
       <h2 align="center">
         <img src="images/jp.png" width="60px" height="60px" />
@@ -192,19 +196,19 @@
               </td>
 
               <td>
-                <?php echo $row['firstname']; ?>                  
+                <?php echo $row['firstname']; ?>
               </td>
 
               <td>
-                <?php echo $row['lastname']; ?>                  
+                <?php echo $row['lastname']; ?>
               </td>
 
               <td>
-                <?php echo $row['displayname']; ?>                  
+                <?php echo $row['displayname']; ?>
               </td>
 
               <td>
-                <?php echo $row['email']; ?>                  
+                <?php echo $row['email']; ?>
               </td>
 
               <td>
@@ -244,13 +248,13 @@
             for($i =1; $i <= $totalpages; $i++){ 
               $class = ($i == $currentPage) ? "active" : "";
               $href  = ($i == $currentPage) ? "#"      : "&page={$i}"
-              ?> 
+          ?> 
               <li class="<?php echo $class;?>">
                 <a href="?search=<?php echo $_GET['search']; ?><?php echo $href; ?>">
                   <?php echo $i; ?>                    
                 </a>
               </li> 
-              <?php
+          <?php
             }
           ?>
         </ul>

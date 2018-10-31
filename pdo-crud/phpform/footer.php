@@ -39,7 +39,7 @@
 <script type="text/javascript">
   function confirmation(ID){
     var message = "Are you sure you want to delete this Record?"; 
-    var info    = confirm( message );
+    var info    = confirm(message);
     if(info){
       var deleteRow = window.location = "delete.php?id="+ID;
       if(deleteRow){
