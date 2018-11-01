@@ -1,7 +1,80 @@
 <?php
   include("connection.php");
 
+  #Query Running for fetching data from database without using foreach loop
+
+  if(isset($_REQUEST['multiDelete']) && $_REQUEST['multiDelete'] == 'deleted'){
+    // 
+  }
+  
+
   #Query Running for fetching data from database
+
+  if(isset($_REQUEST['multiDelete']) && $_REQUEST['multiDelete'] == 'deleted'){
+    // foreach( $_REQUEST['userDlt'] as $id){
+    //   $query = "DELETE FROM `sign-up` WHERE id = :id ";
+    //   $deleteQuery = $dbh->prepare($query);
+    //   $response    = $deleteQuery->execute(['id' => $id]);
+    //   if($response !== false){
+    //     echo "Record delete are successfully";
+    //   }else{
+    //     echo "Your records are not deleted";
+    //   }
+    // }
+
+    echo '<pre>';
+    print_r($_REQUEST['userDlt']);
+    echo '</pre>';
+
+    $temp = "";
+
+
+    // for($i = 0 ; $i< count($_REQUEST['userDlt']); $i++ ){
+
+
+    // }
+
+    // Understand this logic
+
+    // foreach($_REQUEST['userDlt'] as $key => $id){
+
+    //   // Check for the last of element
+    //   // if(count($_REQUEST['userDlt']) - 1 == $key  ){
+    //   //   $temp .= $id;
+    //   //   break;
+    //   // }
+
+    //   $temp .= $id . ",";
+
+
+    // }
+
+    // echo $temp;
+    // echo ' ';
+    // echo trim(','.$temp, ",");
+
+    // echo implode(",", $_REQUEST['userDlt']);
+
+    // die();
+
+    // $_REQUEST['userDlt'];
+
+    // IN ('18', '19', '24');
+
+    // 18,19,20
+    // '18','19','20'
+    // die();
+    $query = "DELETE FROM `sign-up` WHERE id IN (':id') ";
+    $deleteQuery = $dbh->prepare($query);
+    $response    = $deleteQuery->execute(['id' =>  implode("','", $_REQUEST['userDlt']) ]);
+    if($response !== false){
+      echo "Record delete are successfully";
+    }else{
+      echo "Your records are not deleted";
+    }    
+  }
+
+  //"?page=".$page."&search=".$search."&order=DESC&column=id"
 
   (!isset($_GET['search'])) ? $_GET['search'] = '' : $_GET['search'];
 
@@ -23,7 +96,7 @@
 
     $page = $currentPage -1 ;
 
-    $postPerPage = 5;
+    $postPerPage = 3;
 
     $offset = $page * $postPerPage;
 
@@ -51,6 +124,10 @@
     #echo "<pre>";
 
     $statement  = $dbh->query('SELECT FOUND_ROWS()');
+    
+    # 0-indexed number of the column you wish to retrieve from the row. If no value is supplied, PDOStatement::fetchColumn() fetches the first column.
+    # http://php.net/manual/en/pdostatement.fetchcolumn.php
+
     $response   = $statement->fetchColumn();
     $totalpages = ceil( $response / $postPerPage );
     
@@ -83,7 +160,7 @@
 
     $page = $currentPage -1 ;
 
-    $postPerPage = 5;
+    $postPerPage = 3;
 
     $offset = $page * $postPerPage;
 
@@ -153,6 +230,10 @@
       header("Location: ?".$queryString);
     }
 
+
+
+
+
   include("header.php");
 ?>
 
@@ -168,7 +249,7 @@
         <input type="text" name="search" id="searching" placeholder="What you looking for?">
         <button type="submit" class="btn btn-primary btn-sm" name="locate"><span class="glyphicon glyphicon-search"></span></button>
       </div>
-     <!--  <div class="row">
+      <div class="row">
         <div class="col-sm-12">
           <div class="col-sm-10">
             <select class="custom-select" id="inputGroupSelect04" name="multiDelete">
@@ -180,12 +261,13 @@
             <button class="btn btn-sm btn-primary btn-create" id="actionButton" name="action">Action</button>
           </div>
         </div>
-      </div> -->
+      </div>
       <div class="table-responsive">
         <table id="mytable" class="table table-bordred table-striped">
           <thead>
             <tr>
               <th><input type="checkbox" id="checkall" /></th>
+              <th>Serial Number</th>
               <th>First Name</th>
               <th>Last Name</th>
               <th>User Name</th>
@@ -196,7 +278,8 @@
           </thead>
         <?php
           // Foreach loop for getting all data seprately
-
+          $i = $offset;
+          $serial = 1;
           foreach($result as $row){
             #print_r($row);
     
@@ -205,7 +288,11 @@
           <tbody>
             <tr>
               <td>
-                <input type="checkbox" class="checkthis" />
+                <input type="checkbox" value = "<?php echo $row['id']; ?>" name="userDlt[]" class="checkthis" />
+              </td>
+
+              <td>
+                <?php echo $i+$serial; ?>
               </td>
 
               <td>
@@ -244,6 +331,7 @@
             </tr>
           </tbody>
           <?php
+            $i++;
             }
           ?>
         </table>

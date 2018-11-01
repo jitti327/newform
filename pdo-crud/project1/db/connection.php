@@ -10,4 +10,12 @@
   catch(PDOException $e){
     echo 'Connection Failed Because Of: ' . $e->getMessage();
   }
+
+
+  // $dbConfig = array(
+  //   'user'     => 'root',
+  //   'password' => 'root'
+  // );
+
+  // $dbConfig['user']
 ?>
