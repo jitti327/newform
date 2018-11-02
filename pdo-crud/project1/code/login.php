@@ -9,6 +9,13 @@
       $email      = $_POST['email'];  
       $password   = $_POST['password'];
 
+
+    # Email and Password Only For Admin Login
+
+      if($email == "jatin@gmail.com" && $password == "jatin"){
+        header('Location:index.php');
+      }
+
     # Finding Wheather email and password matched with databse
 
       $stmt = $dbh->prepare( "
@@ -30,7 +37,7 @@
       $rowCount = $stmt->rowCount();
       if($rowCount > 0){
         // $message = "<span style='color: rgba(0,255,0,0.8);'>Wellcome</span>";
-        header("Location:record.php");
+        header("Location:wellcome.php");
       }else{
         $message = "<span style='color: rgb(255,0,0);'>** Email and Password Doesn't Matched</span>";
       }

@@ -9,17 +9,16 @@
       'firstname' => $row1['contactFirstName'],
       'lastname'  => $row1['contactLastName'],
       'username'  => $row1['customerName'],
-      'email'     => $row1['contactFirstName'].$row1['contactLastName'].'@gmail.com',
-      'pass'      => md5( $row1['contactFirstName'] ),
-      'cpass'     => $row1['phone'],
+      'email'     => $row1['contactFirstName'].'@'.$row1['contactLastName'].'gmail.com',
+      'pass'      => md5( $row1['contactFirstName'] )
     ];
 
   $sql = "
     INSERT 
      INTO `pdo`
-      (`firstname`, `lastname`, `username`, `email`, `password`, `conpassword`)
+      (`firstname`, `lastname`, `username`, `email`, `password`)
     VALUES 
-    (:firstname , :lastname , :username , :email , :pass , :cpass)";
+    (:firstname , :lastname , :username , :email , :pass )";
         
   $statement = $dbh->prepare($sql);
   $status    = $statement->execute($row);
