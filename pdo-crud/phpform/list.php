@@ -21,9 +21,9 @@
     //   }
     // }
 
-    echo '<pre>';
-    print_r($_REQUEST['userDlt']);
-    echo '</pre>';
+    // echo '<pre>';
+    // print_r($_REQUEST['userDlt']);
+    // echo '</pre>';
 
     $temp = "";
 

@@ -1,4 +1,5 @@
 <?php
+  include("db/connection.php");
   include("code/record.php")
 ?>
 

@@ -1,7 +1,5 @@
 <?php
 
-  include("db/connection.php");
-
   $editId = "";
 
   $firstnameError = "";

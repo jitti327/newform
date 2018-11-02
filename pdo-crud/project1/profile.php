@@ -1,4 +1,5 @@
 <?php
+  include("db/connection.php");
   include("include/userheader.php");
 ?>
 <head>

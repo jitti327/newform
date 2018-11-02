@@ -14,7 +14,6 @@
       'cpass'     => $row1['phone'],
     ];
 
-
   $sql = "
     INSERT 
      INTO `pdo`

@@ -1,5 +1,4 @@
 <?php
-  include("db/connection.php");
 
   #Query Running for fetching data from database
 

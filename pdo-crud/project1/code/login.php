@@ -1,5 +1,4 @@
 <?php
-  include("db/connection.php");
 
   $message = "";
   

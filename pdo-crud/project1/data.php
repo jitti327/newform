@@ -1,6 +1,6 @@
 <?php
   include("db/connection.php");
-  
+
   $record = $dbh->prepare( "SELECT * FROM `pdo`");
   $record-> execute();
   $result = $record->fetchAll();
@@ -410,7 +410,7 @@
                   </td>
                   <td>
                     <a 
-                      href = "javascript:confirmation(<?php echo $row['id']; ?>)" 
+                      href = "delete.php?id=<?php echo $row['id']?>" 
                       class="btn btn-danger btn-sm"
                       data-toggle="tooltip" 
                       title="Delete" 
@@ -668,7 +668,7 @@
 <!-- page script -->
 <script>
   $(function () {
-    $('#example1').DataTable()
+    // $('#example1').DataTable()
     $('#example2').DataTable({
       'paging'      : true,
       'lengthChange': false,

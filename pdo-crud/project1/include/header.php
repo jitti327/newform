@@ -1,6 +1,3 @@
-<?php
-  include("db/connection.php");
-?>
 <!DOCTYPE html>
 <html>
 <head>
