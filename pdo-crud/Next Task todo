@@ -1,0 +1,21 @@
+Make a admin panel
+
+ - Admin can see user
+ - Admin can add, edit, delete, block, unblock users
+ - Admin can manage his profile
+
+User
+
+ - User can regsiter
+ - User can login
+ - User can edit there profile
+ - If user is blocked then error message will be shown.
+
+
+---------
+
+ - Multiple Delete
+ - Delete with Ajax 
+ - Multiple Delete with Ajax
+ - S.NO addition
+ - Sorting
