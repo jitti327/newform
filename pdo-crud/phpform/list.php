@@ -5,8 +5,7 @@
 
   if(isset($_REQUEST['multiDelete']) && $_REQUEST['multiDelete'] == 'deleted'){
     // 
-  }
-  
+  }  
 
   #Query Running for fetching data from database
 
