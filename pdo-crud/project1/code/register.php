@@ -22,8 +22,8 @@
       $lastname   = $_POST['lastname'];
       $username   = $_POST['username'];
       $email      = $_POST['email'];  
-      $pass       = md5($_POST['password']);
-      $cpass      = md5($_POST['conpassword']);
+      $pass       = $_POST['password'];
+      $cpass      = $_POST['conpassword'];
 
       $error = false;
 
@@ -101,19 +101,19 @@
         'lastname'  => $lastname,
         'username'  => $username,
         'email'     => $email,
-        'pass'      => $pass,
-        'cpass'     => $cpass,
+        'pass'      => md5($pass),
       ];
 
       $sql = "
         INSERT 
          INTO `pdo`
-          (`firstname`, `lastname`, `username`, `email`, `password`, `conpassword`)
+          (`firstname`, `lastname`, `username`, `email`, `password`)
         VALUES 
-        (:firstname , :lastname , :username , :email , :pass , :cpass)";
+        (:firstname , :lastname , :username , :email , :pass)";
         
       $statement = $dbh->prepare($sql);
       $status    = $statement->execute($row);
+      header("Location:login.php");
     }
   }
 }

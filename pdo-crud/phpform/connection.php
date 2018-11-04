@@ -9,7 +9,7 @@
 $dsn      = 'mysql:dbname=registration;host=127.0.0.1';  // $dsn = data source name
 
 $user     = 'root';
-$password = 'root';
+$password = '';
 
 try{
   $dbh = new PDO($dsn, $user, $password );

@@ -13,7 +13,7 @@
     # Email and Password Only For Admin Login
 
       if($email == "jatin@gmail.com" && $password == "jatin"){
-        header('Location:index.php');
+        header('Location:Admin.php');
       }
 
     # Finding Wheather email and password matched with databse
