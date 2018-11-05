@@ -243,7 +243,8 @@
 <script src="dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="dist/js/demo.js"></script>
-<script>
+<script src="js/table.min.js"></script>
+<!-- <script>
   $(function () {
     $('#example1').DataTable()
     $('#example2').DataTable({
@@ -255,6 +256,6 @@
       'autoWidth'   : false
     })
   })
-</script>
+</script> -->
 </body>
 </html>
