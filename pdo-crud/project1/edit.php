@@ -2,77 +2,92 @@
   include("db/connection.php");
   include("code/function.php");
   include("code/edit.php");
+  include("include/header.php");
+  include("include/sidebar.php");
 ?>
-<head>
-  <title>Project1 | Edit Page</title>
-</head>
-<body class="hold-transition register-page">
-<div class="register-box">
-  <div class="register-logo">
-    <a href="#"><b>User</b>Update</a>
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+<!-- Main content -->
+<section class="content">
+  <div class="row">
+    <div class="col-xs-12">
+
+      <div class="box">
+        <div class="box-header">
+          <h3 class="box-title">User Data</h3>
+        </div>
+        <!-- /.box-header -->            
+
+        <!-- Main content -->
+        <section class="content">
+          <div class="row">
+            <!-- left column -->
+            <div class="col-md-6">
+              <!-- general form elements -->
+              <div class="box box-primary">
+                <div class="box-header with-border">
+                  <h3 class="box-title">Update User Data</h3>
+                </div>
+                <!-- /.box-header -->
+                <!-- form start -->
+                <form role="form" method="POST">
+                  <?php echo $message; ?>
+                  <div class="box-body">
+                    <div class="form-group">
+                      <label for="firstname">First Name</label>
+                      <input type="text" name="firstname" class="form-control" id="firstname" value="<?php echo $show['firstname']; ?>">
+                      <div class="Message">
+                        <?php echo $firstnameError; ?>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="lastname">Last Name</label>
+                      <input type="text" name="lastname" class="form-control" id="lastname" value="<?php echo $show['lastname']; ?>">
+                      <div class="Message">
+                        <?php echo $lastnameError; ?>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="username">User Name</label>
+                      <input type="text" name="username" class="form-control" id="username" value="<?php echo $show['username']; ?>">
+                      <div class="Message">
+                        <?php echo $usernameError; ?>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Email address</label>
+                      <input type="email" name="email" class="form-control" id="exampleInputEmail1" value="<?php echo $show['email']; ?>">
+                      <div class="Message">
+                        <?php echo $emailError; ?>
+                      </div>
+                    </div>
+                    <div class="checkbox">
+                      <label>
+                        <input type="checkbox" value="blocked" name="block"> Check for Block user
+                      </label>
+                    </div>
+                  </div>
+                  <!-- /.box-body -->
+                  <div class="box-footer">
+                    <button type="submit" name="update" value="update" class="btn btn-primary">Update</button>
+                  </div>
+                </form>
+              </div>
+              <!-- /.box -->
+                <!-- /.box-body -->
+              </div>
+              <!-- /.box -->
+            </div>
+            <!-- /.col -->
+          </section>
+      </div>
+      <!-- /.row -->
+    </section>
+    <!-- /.content -->
   </div>
-
-  <div class="register-box-body">
-    <p class="login-box-msg">Edit Your Details</p>
-
-    <form action="" method="post">
-      <div class="form-group has-feedback">
-        <input type="text" name="firstname" value="<?php echo $show['firstname']; ?>" class="form-control" placeholder="First name">
-        <span class="glyphicon glyphicon-user form-control-feedback"></span>
-        <div class="Message">
-          <?php echo $firstnameError; ?>
-        </div>
-      </div>
-      <div class="form-group has-feedback">
-        <input type="text" name="lastname" value="<?php echo $show['lastname']; ?>" class="form-control" placeholder="Last name">
-        <span class="glyphicon glyphicon-user form-control-feedback"></span>
-        <div class="Message">
-          <?php echo $lastnameError; ?>
-        </div>
-      </div>
-      <div class="form-group has-feedback">
-        <input type="text" name="username" value="<?php echo $show['username']; ?>" class="form-control" placeholder="User name">
-        <span class="glyphicon glyphicon-user form-control-feedback"></span>
-        <div class="Message">
-          <?php echo $usernameError; ?>
-        </div>
-      </div>
-      <div class="form-group has-feedback">
-        <input type="email" name="email" value="<?php echo $show['email']; ?>" class="form-control" placeholder="Email">
-        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-        <div class="Message">
-          <?php echo $emailError; ?>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-xs-8">
-          <div class="checkbox icheck">
-            <label>
-              <input type="checkbox"> I agree to the <a href="#">terms</a>
-            </label>
-          </div>
-        </div>
-        <!-- /.col -->
-        <div class="col-xs-4">
-          <button type="submit" name="submit" value="submit" class="btn btn-primary btn-block btn-flat">Update</button>
-        </div>
-        <!-- /.col -->
-      </div>
-    </form>
-
-    <div class="social-auth-links text-center">
-      <p>- OR -</p>
-      <a href="https://www.facebook.com/" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Sign up using
-        Facebook</a>
-      <a href="https://gmail.com" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i> Sign up using
-        Google+</a>
-    </div>
-
-    <a href="login.php" class="text-center">I already have a membership</a>
-  </div>
-  <!-- /.form-box -->
-</div>
-<!-- /.register-box -->
+  <!-- /.content-wrapper -->
 <?php
-  include("include/userfooter.php");
+  include("include/footer.php");
 ?>

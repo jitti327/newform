@@ -1,11 +1,10 @@
 <?php
   include("db/connection.php");
+  include("code/data.php");
 
   $record = $dbh->prepare( "SELECT * FROM `pdo`");
   $record-> execute();
   $result = $record->fetchAll();
-  include("include/header.php");
-  include("include/sidebar.php");
 ?>
 
   <!-- Content Wrapper. Contains page content -->
@@ -42,6 +41,7 @@
                   <th>Email</th>
                   <th>Edit</th>
                   <th>Delete</th>
+                  <th>Status</th>
                 </tr>
                 </thead>
               <?php
@@ -59,7 +59,7 @@
                   </td>
                   <td>
                     <a 
-                      href = "delete.php?id=<?php echo $row['id']?>" 
+                      href = "code/delete.php?id=<?php echo $row['id']?>" 
                       class="btn btn-danger btn-sm"
                       data-toggle="tooltip" 
                       title="Delete" 
@@ -68,6 +68,7 @@
                       <span class="glyphicon glyphicon-trash"></span>
                     </a>
                   </td>
+                  <td><?php echo $row['status']; ?></td>
                 </tr> 
                 </tbody>
               <?php 
@@ -80,6 +81,7 @@
                   <th>Email</th>
                   <th>Edit</th>
                   <th>Delete</th>
+                  <th>Status</th>
                 </tr>
                 </tfoot>
               </table>

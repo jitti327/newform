@@ -1,7 +1,4 @@
-<?php
-  include("include/header.php");
-
-  
+<?php 
   
   # Does this ID exists ??
   # If not through 404 page error
@@ -23,18 +20,37 @@
   $usernameError = "";
 
   $emailError = "";
-
-
   
  try{
 
-  if(isset($_POST['Update'])){
+  if(isset($_POST['update'])){
     
     #Validation Starts Here
-    $username  = $_POST['username'];
+
     $firstname = $_POST['firstname'];
     $lastname  = $_POST['lastname'];
+    $username  = $_POST['username'];
     $email     = $_POST['email'];
+
+    # This method is used for block any user by admin 
+
+    $status    = (isset($_POST['block'])) ? "Blocked" : "";
+
+    
+    // if(isset($_POST['block'])){      
+    //   echo "On";
+    //   $status = "On";
+    // }else{
+    //   $status = "Off";
+    //   echo "Hi";
+    // }
+
+
+
+    // $status = $_POST['block'];
+      // echo '<pre>';
+      //   print_r($_POST);
+      // echo '</pre>';
 
     $error = false;
 
@@ -98,7 +114,8 @@
         'fname'  => $firstname,
         'lname'  => $lastname,
         'uname'  => $username,
-        'mail'   => $email,
+        'email'  => $email,
+        'block'  => $status
       ];
 
       $sql = "
@@ -107,8 +124,9 @@
         SET 
           `firstname`= :fname,
           `lastname`= :lname,
-          `displayname`= :uname,
-          `email`= :mail
+          `username`= :uname,
+          `email`= :email,
+          `status`= :block
         WHERE 
           `id` =:id";
     
@@ -116,7 +134,7 @@
       $status = $stmt->execute($data);
 
       if($status !== false){
-        $message = '<span style="color: rgb(255,0,0);">Update sucessfully</span>';
+        $message = '<span style="color: rgb(0,255,0);">Update sucessfully</span>';
       }
       else{
         $message = '<span style="color: rgb(255,0,0);">** Not Updated</span>';
