@@ -16,7 +16,7 @@
         <li class="active">Data tables</li>
       </ol>
     </section>
-        
+
   <form method="get">
     <!-- Main content -->
     <section class="content">
@@ -69,9 +69,30 @@
                 <tr>
                   <th><input type="checkbox" class="checkthis" /></th>
                   <th>S.No.</th>
-                  <th><a href="?order-by=firstname&order=<?php echo $order == 'desc'?'asc':'desc'; ?>">Full Name</a></th>
-                  <th><a href="?order-by=username&order=<?php echo $order == 'desc'?'asc':'desc'; ?>">User Name</a></th>
-                  <th><a href="?order-by=email&order=<?php echo $order == 'desc'?'asc':'desc'; ?>">Email</a></th>
+                  <th>
+                    <a href="?order-by=firstname&order=<?php echo $order == 'desc'?'asc':'desc'; ?>">Full Name
+                      <!-- <?php
+                      // $order = '($order == "desc")' ? '<i class="fa fa-sort-amount-desc"></i>' : '<i class="fa fa-sort-amount-asc"></i>';
+                      // if($order == 'desc'){
+                      //     echo "<i class='fa fa-sort-amount-desc'></i>";
+                      //   }
+                      //   else{
+                      //     echo "<i class='fa fa-sort-amount-asc'></i>";
+                      //   }
+                        ?> -->
+                      <i class="fa fa-sort-amount-<?php echo $order; ?>"></i>
+                    </a>
+                  </th>
+                  <th>
+                    <a href="?order-by=username&order=<?php echo $order == 'desc'?'asc':'desc'; ?>">User Name   
+                      <i class="fa fa-sort-amount-<?php echo $order; ?>"></i>
+                    </a>
+                  </th>
+                  <th>
+                    <a href="?order-by=email&order=<?php echo $order == 'desc'?'asc':'desc'; ?>">Email   
+                      <i class="fa fa-sort-amount-<?php echo $order; ?>"></i>
+                    </a>
+                  </th>
                   <th>Edit</th>
                   <th>Delete</th>
                   <th>Status</th>
