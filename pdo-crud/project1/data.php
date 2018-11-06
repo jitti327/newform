@@ -1,12 +1,7 @@
 <?php
   include("db/connection.php");
   include("code/data.php");
-
-  // $record = $dbh->prepare( "SELECT * FROM `pdo`");
-  // $record-> execute();
-  // $result = $record->fetchAll();
 ?>
-
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -21,7 +16,8 @@
         <li class="active">Data tables</li>
       </ol>
     </section>
-
+        
+  <form method="get">
     <!-- Main content -->
     <section class="content">
       <div class="row">
@@ -33,8 +29,9 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body">
+              <div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
               <div class="row">
-                <div class="col-sm-6">
+                <div class="col-sm-4">
                   <div class="dataTables_length" id="example1_length">
                     <label>Show <select name="example1_length" aria-controls="example1" class="form-control input-sm">
                       <option value="10">10</option>
@@ -44,10 +41,25 @@
                     </select> entries</label>
                   </div>
                 </div>
-                <div class="col-sm-6">
+                <div class="col-sm-4">
+                  <div id="dataTables_length" class="example1_length">                    
+                    <select  name="multiDelete"" aria-controls="example1" class="form-control input-sm">
+                      <option value="">Choose</option>
+                      <option value="deleted">Delete</option>
+                      <option value="blocked">Block</option>
+                      <option value="unblocked">UnBlock</option>
+                    </select>
+                    <button class="btn btn-sm btn-primary btn-create" id="actionButton" name="action">Action
+                    </button>
+                  </div>
+                </div>
+                <div class="col-sm-4">
                   <div id="example1_filter" class="dataTables_filter">
                     <label>Search:
-                      <input type="search" class="form-control input-sm" placeholder="" aria-controls="example1">
+                      <input type="search" name="search" id="searching" class="form-control input-sm" placeholder="What you looking for?" aria-controls="example1">
+                      <button type="submit" class="btn btn-primary btn-sm" name="locate">
+                        <span class="glyphicon glyphicon-search"></span>
+                      </button>
                     </label>
                   </div>
                 </div>
@@ -55,11 +67,11 @@
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                  <th><input type="checkbox" id="checkall" /></th>
+                  <th><input type="checkbox" class="checkthis" /></th>
                   <th>S.No.</th>
-                  <th>Full Name</th>
-                  <th>User Name</th>
-                  <th>Email</th>
+                  <th><a href="?order-by=firstname&order=<?php echo $order == 'desc'?'asc':'desc'; ?>">Full Name</a></th>
+                  <th><a href="?order-by=username&order=<?php echo $order == 'desc'?'asc':'desc'; ?>">User Name</a></th>
+                  <th><a href="?order-by=email&order=<?php echo $order == 'desc'?'asc':'desc'; ?>">Email</a></th>
                   <th>Edit</th>
                   <th>Delete</th>
                   <th>Status</th>
@@ -70,7 +82,7 @@
               ?>
                 <tbody>
                 <tr>
-                  <td><input type="checkbox" class="checkthis" /></td>
+                  <td><input type="checkbox" value="<?php echo $row['id']; ?>" name="userDlt[]" class="checkthis" /></td>
                   <td><?php echo ++$offset; ?></td>
                   <td><?php echo $row['firstname']; ?> <?php echo $row['lastname']; ?></td>
                   <td><?php echo $row['username']; ?></td>
@@ -88,7 +100,7 @@
                       title="Delete" 
                       name="DeleteID"
                     >
-                      <span class="glyphicon glyphicon-trash"></span>
+                    <span class="glyphicon glyphicon-trash"></span>
                     </a>
                   </td>
                   <td><?php echo $row['status']; ?></td>
@@ -148,6 +160,7 @@
                 </div>
               </div>
             </div>
+            </div>
             <!-- /.box-body -->
           </div>
           <!-- /.box -->
@@ -157,6 +170,7 @@
       <!-- /.row -->
     </section>
     <!-- /.content -->
+</form>
   </div>
   <!-- /.content-wrapper -->
 <?php

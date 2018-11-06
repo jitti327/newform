@@ -1,10 +1,28 @@
 <?php 
+  #Query Running for fetching data from database
+
+    if(isset($_REQUEST['multiDelete']) && $_REQUEST['multiDelete'] == 'deleted'){
+      // echo '<pre>';
+      //   print_r($_REQUEST['userDlt']);
+      // echo '</pre>';
+      foreach( $_REQUEST['userDlt'] as $id){
+        $query = "DELETE FROM `pdo` WHERE id = :id ";
+        $deleteQuery = $dbh->prepare($query);
+        $response    = $deleteQuery->execute(['id' => $id]);
+        if($response !== false){
+          echo "Record delete are successfully";
+        }else{
+          echo "Your records are not deleted";
+        }
+      }
+    }
+  #search parameter
+  #pagination parameter
 
   $search      = isset($_GET['search'])   ? $_GET['search']    : "";
   $page        = isset($_GET['page'])     ? $_GET['page']      : 1;
   $orderBy     = isset($_GET['order-by']) ? $_GET['order-by']  : "";
-  $order       = isset($_GET['order'])    ? $_GET['order']     : 'DESC';
-  
+  $order       = isset($_GET['order'])    ? $_GET['order']     : 'DESC';  
 
   $postPerPage = 10;
 
@@ -14,25 +32,25 @@
 
   $offset      = ( $currentPage - 1) * $postPerPage;
   $queryPart   = "";
-  $orderPart   = "";
-  
+  $orderPart   = "";  
 
   if(!empty($search)){
     $queryPart   = "
       WHERE
         `firstname` LIKE :search
       OR
+        `lastname` LIKE :search
+      OR
+        `email` LIKE :search
+      OR
         `username`  LIKE :search
     ";
 
   }
 
-
-
   if(!empty($orderBy)){
     $orderPart = " ORDER BY `$orderBy` $order ";
-  }
-  
+  }  
 
   $query = "
     SELECT
@@ -54,25 +72,9 @@
 
   if(!empty($search)){
     $record-> bindValue(':search', $search);
-  }
-
-  // Binding not need 
-  // if(!empty($orderBy)){
-  //   $record-> bindValue(':orderBy', $orderBy, PDO::PARAM_STR);
-  //   $record-> bindValue(':order'  , $order  , PDO::PARAM_STR);
-
-  //   echo '<pre>';
-  //   print_r(array(
-  //     'orderBy' => $orderBy,
-  //     'order'   => $order
-  //   ));
-  //   echo '</pre>';
-  // }
-
-  
+  }  
 
   $record-> execute();
-
 
   $statement  = $dbh->query('SELECT FOUND_ROWS()');
   $response   = $statement->fetchColumn();

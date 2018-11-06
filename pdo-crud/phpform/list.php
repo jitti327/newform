@@ -1,11 +1,5 @@
 <?php
-  include("connection.php");
-
-  #Query Running for fetching data from database without using foreach loop
-
-  if(isset($_REQUEST['multiDelete']) && $_REQUEST['multiDelete'] == 'deleted'){
-    // 
-  }  
+  include("connection.php");  
 
   #Query Running for fetching data from database
 
