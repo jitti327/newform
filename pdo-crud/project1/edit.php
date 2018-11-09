@@ -65,7 +65,16 @@
                     </div>
                     <div class="checkbox">
                       <label>
-                        <input type="checkbox" value="" name="block"> Check for Block user
+                        <input type="checkbox" 
+                        <?php 
+                          if($show['status'] == "Blocked"){
+                            echo "checked";
+                          }
+                          else{
+                            echo "unchecked";
+                          } 
+                        ?>
+                        name="block"> Check for Block user
                       </label>
                     </div>
                   </div>

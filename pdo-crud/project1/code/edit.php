@@ -34,7 +34,7 @@
 
     # This method is used for block any user by admin 
 
-    $status    = (isset($_POST['block'])) ? "Blocked" : "";
+    $status    = (isset($_POST['block'])) ? "Blocked" : "Unblocked";
 
     
     // if(isset($_POST['block'])){      
