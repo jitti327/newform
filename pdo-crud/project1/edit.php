@@ -69,9 +69,6 @@
                         <?php 
                           if($show['status'] == "Blocked"){
                             echo "checked";
-                          }
-                          else{
-                            echo "unchecked";
                           } 
                         ?>
                         name="block"> Check for Block user

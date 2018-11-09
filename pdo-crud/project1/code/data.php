@@ -10,12 +10,40 @@
         $deleteQuery = $dbh->prepare($query);
         $response    = $deleteQuery->execute(['id' => $id]);
         if($response !== false){
-          echo "Record delete are successfully";
+          echo "Records are deleted successfully";
         }else{
           echo "Your records are not deleted";
         }
       }
     }
+
+  # Following Code is used for Block multiple users
+
+    if(isset($_REQUEST['multiDelete']) && $_REQUEST['multiDelete'] == 'blocked'){
+      foreach( $_REQUEST['userDlt'] as $id){
+        $query = "UPDATE `pdo` SET `status` = :status WHERE id = :id ";
+        //echo $query;
+        $blockQuery = $dbh->prepare($query);
+        $response   = $blockQuery->execute(['status'=>'Blocked','id' => $id]);
+        if($response !== false){
+          echo "Users are Blocked successfully";
+        }
+      }
+    }
+    # Following Code is used for Unblock multiple users
+    
+    if(isset($_REQUEST['multiDelete']) && $_REQUEST['multiDelete'] == 'unblocked'){
+      foreach( $_REQUEST['userDlt'] as $id){
+        $query = "UPDATE `pdo` SET `status` = :status WHERE id = :id ";
+        //echo $query;
+        $blockQuery = $dbh->prepare($query);
+        $response   = $blockQuery->execute(['status'=>'Unblocked','id' => $id]);
+        if($response !== false){
+          echo "Users are UnBlocked successfully";
+        }
+      }
+    }
+
   #search parameter
   #pagination parameter
 

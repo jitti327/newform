@@ -34,7 +34,7 @@
                 <div class="col-sm-4">
                   <div class="dataTables_length" id="example1_length">
                     <label>Show 
-                      <select name="example1_length" aria-controls="example1" class="form-control input-sm">
+                      <select name="listing" aria-controls="example1" class="form-control input-sm">
                         <option value="10">10</option>
                         <option value="25">25</option>
                         <option value="50">50</option>
@@ -45,7 +45,7 @@
                 </div>
                 <div class="col-sm-4">
                   <div id="dataTables_length" class="example1_length">                    
-                    <select  name="multiDelete"" aria-controls="example1" class="form-control input-sm">
+                    <select  name="multiDelete" aria-controls="example1" class="form-control input-sm">
                       <option value="">Choose</option>
                       <option value="deleted">Delete</option>
                       <option value="blocked">Block</option>
@@ -177,9 +177,9 @@
                       <?php } ?>
                       <?php  
                         if( $currentPage ){
-                          $next = $currentPage+1; 
-                          $class  = ($currentPage == $totalpages)? 'disabled' : '';
-                          $href = ($currentPage == $totalpages)? '#' : '&page=';
+                          $next  = $currentPage+1; 
+                          $class = ($currentPage == $totalpages)? 'disabled' : '';
+                          $href  = ($currentPage == $totalpages)? '#' : '&page=';
                           ?>
                       <li class="<?php echo $class; ?>" >
                         <a href="?search=<?php echo $search; ?><?php echo $href . $next; ?>">Next</a>
