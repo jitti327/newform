@@ -67,11 +67,11 @@
 
   // I have used this because
   // PDO was converting the value into string
-  $record-> bindValue(':offset', $offset, PDO::PARAM_INT);
-  $record-> bindValue(':postPerPage', $postPerPage, PDO::PARAM_INT);
+  $record->bindValue(':offset', $offset, PDO::PARAM_INT);
+  $record->bindValue(':postPerPage', $postPerPage, PDO::PARAM_INT);
 
   if(!empty($search)){
-    $record-> bindValue(':search', $search);
+    $record->bindValue(':search', '%'.$search.'% ');
   }  
 
   $record-> execute();
@@ -82,7 +82,7 @@
 
   $result = $record->fetchAll();
 
-  if($currentPage > $totalpages) {
+  if($totalpages != 0 &&  $currentPage > $totalpages) {
   
     // This method is convert the Querystring to array using parse_str
     // QUERY_STRING are like url:?searchBar=Rahul&page=1 to 2
@@ -94,6 +94,11 @@
     // http_build_query is used to generate url-encoded string from the provided array
 
     $queryString =  http_build_query($queryArray);
+
+    // echo 'Current Page'.$currentPage;
+    // echo '<br/>';
+    // echo 'Total Page'. $totalpages;
+    // die();
     header("Location: ?".$queryString);
   }
 

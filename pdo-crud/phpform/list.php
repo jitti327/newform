@@ -341,7 +341,7 @@
           <?php 
             for($i =1; $i <= $totalpages; $i++){ 
               $class = ($i == $currentPage) ? "active" : "";
-              $href  = ($i == $currentPage) ? "#"      : "&page={$i}"
+              $href  = ($i == $currentPage) ? "#"      : "&page={$i}";
           ?> 
               <li class="<?php echo $class;?>">
                 <a href="?search=<?php echo $_GET['search']; ?><?php echo $href; ?>">

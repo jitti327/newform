@@ -65,7 +65,7 @@
                     </div>
                     <div class="checkbox">
                       <label>
-                        <input type="checkbox" value="blocked" name="block"> Check for Block user
+                        <input type="checkbox" value="" name="block"> Check for Block user
                       </label>
                     </div>
                   </div>

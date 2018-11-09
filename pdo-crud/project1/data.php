@@ -56,7 +56,7 @@
                 <div class="col-sm-4">
                   <div id="example1_filter" class="dataTables_filter">
                     <label>Search:
-                      <input type="search" name="search" id="searching" class="form-control input-sm" placeholder="What you looking for?" aria-controls="example1">
+                      <input type="search" name="search" id="searching" value="<?php echo $search; ?>" class="form-control input-sm" placeholder="What you looking for?" aria-controls="example1">
                       <button type="submit" class="btn btn-primary btn-sm" name="locate">
                         <span class="glyphicon glyphicon-search"></span>
                       </button>
@@ -67,7 +67,7 @@
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                  <th><input type="checkbox" class="checkthis" /></th>
+                  <th><input type="checkbox" id="checkall" /></th>
                   <th>S.No.</th>
                   <th>
                     <a href="?order-by=firstname&order=<?php echo $order == 'desc'?'asc':'desc'; ?>">Full Name
@@ -84,12 +84,12 @@
                     </a>
                   </th>
                   <th>
-                    <a href="?order-by=username&order=<?php echo $order == 'desc'?'asc':'desc'; ?>">User Name   
+                    <a href="?order-by=username&order=<?php echo $order == 'desc'?'asc':'desc'; ?>">User Name
                       <i class="fa fa-sort-amount-<?php echo $order; ?>"></i>
                     </a>
                   </th>
                   <th>
-                    <a href="?order-by=email&order=<?php echo $order == 'desc'?'asc':'desc'; ?>">Email   
+                    <a href="?order-by=email&order=<?php echo $order == 'desc'?'asc':'desc'; ?>">Email
                       <i class="fa fa-sort-amount-<?php echo $order; ?>"></i>
                     </a>
                   </th>
@@ -146,36 +146,43 @@
 
               <div class="row">
                 <div class="col-sm-5">
-                  <div class="dataTables_info" id="example1_info" role="status" aria-live="polite">Showing 1 to 10 of 57 entries
+                  <div class="dataTables_info" id="example1_info" role="status" aria-live="polite">Showing 1 to 10 of <?php echo $response; ?> entries
                   </div>
                 </div>
                 <div class="col-sm-7">
                   <div class="dataTables_paginate paging_simple_numbers" id="example1_paginate">
                     <ul class="pagination">
-                      <li class="paginate_button previous disabled" id="example1_previous">
-                        <a href="#" aria-controls="example1" data-dt-idx="0" tabindex="0">Previous</a>
+                      <?php
+                      if( $currentPage ){ 
+                        $previous = $currentPage-1;
+                        $class    = ($currentPage == 1)? 'disabled' : '';
+                        $href     = ($currentPage == 1)? '#' : '&page=';
+                      ?>
+                      <li class="<?php echo $class; ?>">
+                        <a href="?search=<?php echo $search; ?><?php echo $href . $previous; ?>">Previous</a>
                       </li>
-                      <li class="paginate_button active">
-                        <a href="#" aria-controls="example1" data-dt-idx="1" tabindex="0">1</a>
+                     <?php } ?>
+                     <?php
+                        for($i =1; $i <= $totalpages; $i++){ 
+                          $class = ($i == $currentPage) ? "active" : "";
+                          $href  = ($i == $currentPage) ? "#"      : "&page={$i}";
+                       ?>
+                      <li class="<?php echo $class; ?>">
+                        <a href="?search=<?php echo $search; ?><?php echo $href; ?>">
+                          <?php echo $i; ?>
+                        </a>
                       </li>
-                      <li class="paginate_button ">
-                        <a href="#" aria-controls="example1" data-dt-idx="2" tabindex="0">2</a>
+                      <?php } ?>
+                      <?php  
+                        if( $currentPage ){
+                          $next = $currentPage+1; 
+                          $class  = ($currentPage == $totalpages)? 'disabled' : '';
+                          $href = ($currentPage == $totalpages)? '#' : '&page=';
+                          ?>
+                      <li class="<?php echo $class; ?>" >
+                        <a href="?search=<?php echo $search; ?><?php echo $href . $next; ?>">Next</a>
                       </li>
-                      <li class="paginate_button ">
-                        <a href="#" aria-controls="example1" data-dt-idx="3" tabindex="0">3</a>
-                      </li>
-                      <li class="paginate_button ">
-                        <a href="#" aria-controls="example1" data-dt-idx="4" tabindex="0">4</a>
-                      </li>
-                      <li class="paginate_button ">
-                        <a href="#" aria-controls="example1" data-dt-idx="5" tabindex="0">5</a>
-                      </li>
-                      <li class="paginate_button ">
-                        <a href="#" aria-controls="example1" data-dt-idx="6" tabindex="0">6</a>
-                      </li>
-                      <li class="paginate_button next" id="example1_next">
-                        <a href="#" aria-controls="example1" data-dt-idx="7" tabindex="0">Next</a>
-                      </li>
+                       <?php }  ?>
                     </ul>
                   </div>
                 </div>
