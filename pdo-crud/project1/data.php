@@ -127,10 +127,23 @@
                     </a>
                   </td>
                   <td><?php echo $row['status']; ?></td>
-                </tr> 
+                </tr>
                 </tbody>
               <?php 
                 } 
+              ?>
+
+            <!-- This Is used for Display the message While No data Found -->
+              <?php
+              if($response == 0){
+              ?>   
+              <tr class="odd">
+                <td valign="top" colspan="9" class="dataTables_empty text-center">
+                  <?php echo "No Result Were Found"; ?>
+                </td>
+              </tr>
+              <?php
+                }
               ?>
                 <tfoot>
                 <tr>
@@ -148,7 +161,7 @@
 
               <div class="row">
                 <div class="col-sm-5">
-                  <div class="dataTables_info" id="example1_info" role="status" aria-live="polite">Showing 1 to 10 of <?php echo $response; ?> entries
+                  <div class="dataTables_info" id="example1_info" role="status" aria-live="polite">Showing 1 to <?php echo $postPerPage; ?> of <?php echo $response; ?> entries
                   </div>
                 </div>
                 <div class="col-sm-7">

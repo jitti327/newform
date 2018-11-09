@@ -54,6 +54,16 @@
 
   $postPerPage = 10;
 
+  if(isset($_REQUEST['listing']) && $_REQUEST['listing'] == '25'){
+    $postPerPage = 25;
+  }
+  if(isset($_REQUEST['listing']) && $_REQUEST['listing'] == '50'){
+    $postPerPage = 50;
+  }
+  if(isset($_REQUEST['listing']) && $_REQUEST['listing'] == '100'){
+    $postPerPage = 100;
+  }
+
   $currentPage = empty($page) ? 1 : intval( $page );
   $currentPage = max($currentPage, 1);
   // $currentPage--; // Because MYSQL uses 0 index
@@ -100,9 +110,11 @@
 
   if(!empty($search)){
     $record->bindValue(':search', '%'.$search.'% ');
-  }  
+  }
 
   $record-> execute();
+ // $count = $record->rowCount();
+
 
   $statement  = $dbh->query('SELECT FOUND_ROWS()');
   $response   = $statement->fetchColumn();
@@ -122,11 +134,6 @@
     // http_build_query is used to generate url-encoded string from the provided array
 
     $queryString =  http_build_query($queryArray);
-
-    // echo 'Current Page'.$currentPage;
-    // echo '<br/>';
-    // echo 'Total Page'. $totalpages;
-    // die();
     header("Location: ?".$queryString);
   }
 
