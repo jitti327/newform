@@ -35,8 +35,7 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <!-- <li><a href="register.php"><i class="fa fa-circle-o"></i> Register</a></li>
-            <li><a href="login.php"><i class="fa fa-circle-o"></i> Login</a></li> -->
+            <li><a href="Index.php"><i class="fa fa-plus-square"></i> Add New User</a></li>
             <li><a href="profile.php"><i class="fa fa-circle-o"></i> Profile</a></li>
           </ul>
         </li>
@@ -49,6 +48,42 @@
           </a>
           <ul class="treeview-menu">
             <li class="active"><a href="data.php"><i class="fa fa-circle-o"></i> Data tables</a></li>
+          </ul>
+        </li>
+        <li class="treeview active">
+          <a href="#">
+            <i class="fa fa-group"></i> <span>Class</span>
+            <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+          </a>
+          <ul class="treeview-menu">
+            <li class="active"><a href="class.php"><i class="fa fa-plus-square"></i> Add New Class</a></li>
+            <li class="active"><a href="class.php"><i class="fa fa-circle-o"></i> All Classes</a></li>
+          </ul>
+        </li>
+        <li class="treeview active">
+          <a href="#">
+            <i class="fa fa-book"></i> <span>Subjects</span>
+            <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+          </a>
+          <ul class="treeview-menu">
+            <li class="active"><a href="class.php"><i class="fa fa-plus-square"></i> Add New Subjects</a></li>
+            <li class="active"><a href="class.php"><i class="fa fa-circle-o"></i> All Subjects</a></li>
+          </ul>
+        </li>
+        <li class="treeview active">
+          <a href="#">
+            <i class="fa fa-book"></i> <span>Chapters</span>
+            <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+          </a>
+          <ul class="treeview-menu">
+            <li class="active"><a href="class.php"><i class="fa fa-plus-square"></i> Add New Chapter</a></li>
+            <li class="active"><a href="class.php"><i class="fa fa-circle-o"></i> All Chapters</a></li>
           </ul>
         </li>
       </ul>
