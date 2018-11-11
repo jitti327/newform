@@ -20,5 +20,6 @@
   //   'password' => 'root'
   // );
 
-  // $dbConfig['user']
+  // $dbConfig['user']  
+  define('URL','http://localhost/newform/pdo-crud/project1/');
 ?>
