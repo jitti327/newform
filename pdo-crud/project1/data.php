@@ -29,18 +29,6 @@
               <div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
               <div class="row">
                 <div class="col-sm-4">
-                  <div class="dataTables_length" id="example1_length">
-                    <label>Show 
-                      <select name="listing" aria-controls="example1" class="form-control input-sm">
-                        <option value="10">10</option>
-                        <option value="25">25</option>
-                        <option value="50">50</option>
-                        <option value="100">100</option>
-                      </select> entries
-                    </label>
-                  </div>
-                </div>
-                <div class="col-sm-4">
                   <div id="dataTables_length" class="example1_length">                    
                     <select  name="multiDelete" aria-controls="example1" class="form-control input-sm">
                       <option value="">Choose</option>
@@ -50,6 +38,18 @@
                     </select>
                     <button class="btn btn-sm btn-primary btn-create" id="actionButton" name="action">Action
                     </button>
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="dataTables_length" id="example1_length">
+                    <label>Show 
+                      <select name="listing" aria-controls="example1" class="form-control input-sm">
+                        <option value="10" <?php echo ($postPerPage == '10') ? "selected='selected'" : "" ; ?>>10</option>
+                        <option value="25" <?php echo ($postPerPage == '25') ? "selected='selected'" : "" ; ?>>25</option>
+                        <option value="50" <?php echo ($postPerPage == '50') ? "selected='selected'" : "" ; ?>>50</option>
+                        <option value="100" <?php echo ($postPerPage == '100') ? "selected='selected'" : "" ; ?>>100</option>
+                      </select> entries
+                    </label>
                   </div>
                 </div>
                 <div class="col-sm-4">
