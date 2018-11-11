@@ -7,13 +7,11 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Data Tables
-        <small>advanced tables</small>
+        User Data
       </h1>
       <ol class="breadcrumb">
         <li><a href="Admin.php"><i class="fa fa-dashboard"></i> Home</a></li>
         <li><a href="data.php">Tables</a></li>
-        <li class="active">Data tables</li>
       </ol>
     </section>
 
@@ -25,7 +23,6 @@
 
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Data Table With Full Features</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
@@ -95,9 +92,9 @@
                       <i class="fa fa-sort-amount-<?php echo $order; ?>"></i>
                     </a>
                   </th>
+                  <th>Status</th>
                   <th>Edit</th>
                   <th>Delete</th>
-                  <th>Status</th>
                 </tr>
                 </thead>
               <?php
@@ -110,6 +107,7 @@
                   <td><?php echo $row['firstname']; ?> <?php echo $row['lastname']; ?></td>
                   <td><?php echo $row['username']; ?></td>
                   <td><?php echo $row['email']; ?></td>
+                  <td><?php echo $row['status']; ?></td>
                   <td>
                     <a class="btn btn-primary btn-sm" href="edit.php?id=<?php echo $row['id']; ?>">
                       <span class="glyphicon glyphicon-pencil"></span>
@@ -126,7 +124,6 @@
                     <span class="glyphicon glyphicon-trash"></span>
                     </a>
                   </td>
-                  <td><?php echo $row['status']; ?></td>
                 </tr>
                 </tbody>
               <?php 
@@ -152,9 +149,9 @@
                   <th>Full Name</th>
                   <th>User Name</th>
                   <th>Email</th>
+                  <th>Status</th>
                   <th>Edit</th>
                   <th>Delete</th>
-                  <th>Status</th>
                 </tr>
                 </tfoot>
               </table>

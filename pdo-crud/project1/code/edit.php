@@ -155,3 +155,7 @@ catch (pdoException $e) {
   header("Location: 500.php");
   die();
 } 
+
+
+  include("include/header.php");
+  include("include/sidebar.php");
