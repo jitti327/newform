@@ -7,7 +7,8 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        User Data
+        User Data        
+        <small><a href="Index.php">Add New User</a></small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="Admin.php"><i class="fa fa-dashboard"></i> Home</a></li>
