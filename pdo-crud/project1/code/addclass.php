@@ -8,6 +8,9 @@
   $classDescriptionError = "";
 
   $classDurationError = "";
+
+  $classcreatedError = "";
+
   try{
     if(isset($_POST['addclass'])){
       
@@ -16,31 +19,29 @@
       $classTitle         = $_POST['classTitle'];
       $classDescription   = $_POST['classDescription'];
       $classDuration      = $_POST['classDuration'];
+      $classcreated       = $_POST['classcreated'];
 
       $error = false;
-
-      # First Name is required
 
       if(empty($classTitle)){
         $classTitleError = '<span style="color: rgb(255,0,0);">**Class Title is required</span>';
         $error = true;
       }
 
-      # Last Name is required
-
       if(empty($classDescription)){
         $classDescriptionError = '<span style="color: rgb(255,0,0);">**Description is required</span>';
         $error = true;
       }
-
-      # User Name is required
 
       if(empty($classDuration)){
         $classDurationError = '<span style="color: rgb(255,0,0);">**Duration is required</span>';
         $error = true;
       }
 
-
+      if(empty($classcreated)){
+        $classDurationError = '<span style="color: rgb(255,0,0);">**Duration is required</span>';
+        $error = true;
+      }
 
     # Finding if the email is not taken by other
 
@@ -71,14 +72,15 @@
         'classTitle'       => $classTitle,
         'classDescription' => $classDescription,
         'classDuration'    => $classDuration,
+        'classcreated'     => $classcreated
       ];
 
       $sql = "
         INSERT 
          INTO `class`
-          (`classTitle`, `classDescription`, `classDuration`)
+          (`classTitle`, `classDescription`, `classDuration`, `clasCreated_on`)
         VALUES 
-        (:classTitle , :classDescription , :classDuration)";
+        (:classTitle , :classDescription , :classDuration , :classcreated)";
         
       $statement = $dbh->prepare($sql);
       $status    = $statement->execute($row);

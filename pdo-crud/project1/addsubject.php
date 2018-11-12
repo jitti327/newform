@@ -61,6 +61,22 @@
                         <?php echo $subjecttimeError; ?>
                       </div>
                     </div>
+                    <div class="form-group">
+                      <label for="class">Class :</label>                    
+                      <select  name="class" aria-controls="example1" class="form-control input-sm">
+                        <option value="">Select</option>
+                        <option value="">B.tech</option>
+                        <option value="">B.sc</option>
+                        <option value="">BCA</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="subjectcreated">Subject Created Date :</label>
+                      <input type="Date" name="subjectcreated" class="form-control" placeholder="Enter Subject Created Date Here ..." value="">
+                      <div class="Message">
+                        <?php echo $subjectcreatedError; ?>
+                      </div>
+                    </div>
                     <div class="box-footer">
                       <button type="submit" name="addsubject" class="btn btn-primary">Submit</button>
                     </div>

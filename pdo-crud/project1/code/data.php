@@ -82,6 +82,8 @@
         `email` LIKE :search
       OR
         `username`  LIKE :search
+      OR
+        `status`  LIKE :search
     ";
 
   }

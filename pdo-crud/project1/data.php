@@ -93,7 +93,11 @@
                       <i class="fa fa-sort-amount-<?php echo $order; ?>"></i>
                     </a>
                   </th>
-                  <th>Status</th>
+                  <th>
+                    <a href="?order-by=status&order=<?php echo $order == 'desc'?'asc':'desc'; ?>">Status
+                      <i class="fa fa-sort-amount-<?php echo $order; ?>"></i>
+                    </a>
+                  </th>
                   <th>Edit</th>
                   <th>Delete</th>
                 </tr>

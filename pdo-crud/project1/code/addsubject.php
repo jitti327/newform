@@ -15,6 +15,8 @@
 
   $classError = "";
 
+  $subjectcreatedError = "";
+
   try{
     if(isset($_POST['addsubject'])){
       
@@ -25,7 +27,8 @@
       $subjectpracticalnum  = $_POST['subjectpracticalnum'];
       $subjectnum           = $_POST['subjectnum'];
       $subjecttime          = $_POST['subjecttime'];
-      $subjecttime          = $_POST['subjecttime'];
+      // $class                = $_POST['class'];
+      $subjectcreated       = $_POST['subjectcreated'];
 
       $error = false;
 
@@ -54,35 +57,38 @@
         $error = true;
       }
 
-      if(empty($class)){
-        $classError = '<span style="color: rgb(255,0,0);">** Class is required</span>';
+      // if(empty($class)){
+      //   $classError = '<span style="color: rgb(255,0,0);">** Class is required</span>';
+      //   $error = true;
+      // }      
+
+      if(empty($subjectcreated)){
+        $subjectcreatedError = '<span style="color: rgb(255,0,0);">** Class is required</span>';
         $error = true;
       }
 
+    // # Finding if the email is not taken by other
 
+    // $stmt = $dbh->prepare( "
+    //   SELECT 
+    //     * 
+    //   FROM
+    //     `subject` 
+    //   WHERE 
+    //     class = :class
+    //     && 
+    //     id <> :id
+    //   LIMIT 1");
 
-    # Finding if the email is not taken by other
+    // $stmt->execute([
+    //   'class' => $class,
+    //   'id'    => $editId
+    // ]);
 
-    $stmt = $dbh->prepare( "
-      SELECT 
-        * 
-      FROM
-        `subject` 
-      WHERE 
-        class = :class
-        && 
-        id <> :id
-      LIMIT 1");
-
-    $stmt->execute([
-      'class' => $class,
-      'id'    => $editId
-    ]);
-
-    if($stmt->rowCount() != 0){
-      $message  = '<span style="color: rgb(255,0,0);">** Sorry Class is already added<span>';
-      $error = true;
-    }
+    // if($stmt->rowCount() != 0){
+    //   $message  = '<span style="color: rgb(255,0,0);">** Sorry Class is already added<span>';
+    //   $error = true;
+    // }
 
       if(!$error){
 
@@ -92,22 +98,23 @@
         'subjectpracticalnum' => $subjectpracticalnum,
         'subjectnum'          => $subjectnum,
         'subjecttime'         => $subjecttime,
-        'class'               => $class
+        // 'class'               => $class,
+        'subjectcreated'      => $subjectcreated
       ];
 
       $sql = "
         INSERT 
          INTO `subject`
-          (`subjectTitle`, `subjectDescription`, `subjectPracticalnumber`, `subjectTheoreticalnumber`, `subjectExaminationTime`, `Class`)
+          (`subjectTitle`, `subjectDescription`, `subjectPracticalnumber`, `subjectTheoreticalnumber`, `subjectExaminationTime`, `subjectCreated_on`)
         VALUES 
-        (:subjectTitle , :subjectDescription , :subjectpracticalnum , :subjectnum , :subjecttime , :class)";
+        (:subjectTitle , :subjectDescription , :subjectpracticalnum , :subjectnum , :subjecttime , :subjectcreated )";
         
       $statement = $dbh->prepare($sql);
       $status    = $statement->execute($row);
-      $message   = '<span style="color: rgb(0,255,0);">Class Added Successfully</span>';
+      $message   = '<span style="color: rgb(0,255,0);">Subject Added Successfully</span>';
     }
     else{
-      $message = '<span style="color: rgb(255,0,0);"> No Class Added</sapn>';
+      $message = '<span style="color: rgb(255,0,0);"> No Subject Added</sapn>';
     }
   }
 }

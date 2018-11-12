@@ -47,6 +47,13 @@
                         <?php echo $classDurationError; ?>
                       </div>
                     </div>
+                    <div class="form-group">
+                      <label for="classcreated">Class Created Date :</label>
+                      <input type="Date" name="classcreated" class="form-control" placeholder="Enter Class Creation Date Here ..." value="">
+                      <div class="Message">
+                        <?php echo $classcreatedError; ?>
+                      </div>
+                    </div>
                     <div class="box-footer">
                       <button type="submit" name="addclass" class="btn btn-primary">Submit</button>
                     </div>

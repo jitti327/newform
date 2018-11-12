@@ -59,7 +59,7 @@
           </a>
           <ul class="treeview-menu">
             <li class="active"><a href="addclass.php"><i class="fa fa-plus-square"></i> Add New Class</a></li>
-            <li class="active"><a href="addclasses.php"><i class="fa fa-circle-o"></i> All Classes</a></li>
+            <li class="active"><a href="allclasses.php"><i class="fa fa-circle-o"></i> All Classes</a></li>
           </ul>
         </li>
         <li class="treeview active">
@@ -71,7 +71,7 @@
           </a>
           <ul class="treeview-menu">
             <li class="active"><a href="addsubject.php"><i class="fa fa-plus-square"></i> Add New Subjects</a></li>
-            <li class="active"><a href="addsubjects.php"><i class="fa fa-circle-o"></i> All Subjects</a></li>
+            <li class="active"><a href="allsubjects.php"><i class="fa fa-circle-o"></i> All Subjects</a></li>
           </ul>
         </li>
         <li class="treeview active">
