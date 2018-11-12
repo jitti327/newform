@@ -88,6 +88,11 @@
                     </a>
                   </th>
                   <th>
+                    <a href="?order-by=Class&order=<?php echo $order == 'desc'?'asc':'desc'; ?>">Class
+                      <i class="fa fa-sort-amount-<?php echo $order; ?>"></i>
+                    </a>
+                  </th>
+                  <th>
                     <a href="?order-by=subjectCreated_on&order=<?php echo $order == 'desc'?'asc':'desc'; ?>">Created On
                       <i class="fa fa-sort-amount-<?php echo $order; ?>"></i>
                   </th>
@@ -111,6 +116,15 @@
                   <td><?php echo $row['subjectPracticalnumber']; ?></td>
                   <td><?php echo $row['subjectTheoreticalnumber']; ?></td>
                   <td><?php echo $row['subjectExaminationTime']; ?></td>
+                  <td>
+                    <?php                    
+                      $query = "SELECT * FROM `class` WHERE `id` = (SELECT `Class` FROM `subject` WHERE `Class` =".$row['Class'].")";
+                      $subQuery = $dbh->query($query);
+                      $fetch = $subQuery->fetch();
+
+                      echo ( $row['chapterSubject'] == $fetch['id'] ) ? $fetch['classTitle'] : $row['chapterSubject'] ; 
+                    ?>                        
+                  </td>
                   <td><?php echo $row['subjectCreated_on']; ?></td>
                   <td><?php echo $row['subjectUpdated_on']; ?></td>
                   <td>
@@ -173,6 +187,11 @@
                   </th>
                   <th>
                     <a href="?order-by=subjectExaminationTime&order=<?php echo $order == 'desc'?'asc':'desc'; ?>">Duration
+                      <i class="fa fa-sort-amount-<?php echo $order; ?>"></i>
+                    </a>
+                  </th>
+                  <th>
+                    <a href="?order-by=Class&order=<?php echo $order == 'desc'?'asc':'desc'; ?>">Class
                       <i class="fa fa-sort-amount-<?php echo $order; ?>"></i>
                     </a>
                   </th>

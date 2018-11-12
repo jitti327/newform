@@ -49,11 +49,14 @@
                     </div>
                     <div class="form-group">
                       <label for="subject">subject :</label>                    
-                      <select  name="subject" aria-controls="example1" class="form-control input-sm">
+                      <select  name="class" aria-controls="example1" class="form-control input-sm">
                         <option value="">Select</option>
-                        <option value="">B.tech</option>
-                        <option value="">B.sc</option>
-                        <option value="">BCA</option>
+                        <?php 
+                          $selectQuery = $dbh->query("SELECT * FROM `subject`");
+                            while($fetch = $selectQuery->fetch() ){
+                        ?>
+                        <option value="<?php echo $fetch['id']; ?>"><?php echo $fetch['subjectTitle']; ?></option>
+                      <?php } ?>
                       </select>
                     </div>
                     <div class="form-group">

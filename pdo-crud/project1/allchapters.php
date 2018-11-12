@@ -78,6 +78,11 @@
                     </a>
                   </th>
                   <th>
+                    <a href="?order-by=chapterSubject&order=<?php echo $order == 'desc'?'asc':'desc'; ?>">Subject 
+                      <i class="fa fa-sort-amount-<?php echo $order; ?>"></i>
+                    </a>
+                  </th>
+                  <th>
                     <a href="?order-by=chapterCreated_on&order=<?php echo $order == 'desc'?'asc':'desc'; ?>">Created On
                       <i class="fa fa-sort-amount-<?php echo $order; ?>"></i>
                   </th>
@@ -99,6 +104,7 @@
                   <td><?php echo $row['chapterTitle']; ?></td>
                   <td><?php echo $row['chapterDescription']; ?></td>
                   <td><?php echo $row['chapterNumber_assigned']; ?></td>
+                  <td><?php echo $row['chapterSubject']; ?></td>
                   <td><?php echo $row['chapterCreated_on']; ?></td>
                   <td><?php echo $row['chapterUpdated_on']; ?></td>
                   <td>
@@ -151,6 +157,11 @@
                   </th>
                   <th>
                     <a href="?order-by=chapterNumber_assigned&order=<?php echo $order == 'desc'?'asc':'desc'; ?>">Total No. asigned 
+                      <i class="fa fa-sort-amount-<?php echo $order; ?>"></i>
+                    </a>
+                  </th>
+                  <th>
+                    <a href="?order-by=chapterSubject&order=<?php echo $order == 'desc'?'asc':'desc'; ?>">Subject 
                       <i class="fa fa-sort-amount-<?php echo $order; ?>"></i>
                     </a>
                   </th>

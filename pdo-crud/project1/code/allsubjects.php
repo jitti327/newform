@@ -58,9 +58,11 @@
       OR
         `subjectExaminationTime` LIKE :search
       OR
-        `clasCreated_on`  LIKE :search
+        `class` LIKE :search
       OR
-        `classUpdated_on`  LIKE :search
+        `subjectCreated_on`  LIKE :search
+      OR
+        `subjectUpdated_on`  LIKE :search
     ";
   }
 

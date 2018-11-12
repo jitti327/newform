@@ -36,7 +36,7 @@
                     </div>
                     <div class="form-group">
                       <label>Description :</label>
-                      <textarea class="form-control" name="subjectDescription" value="<?php echo $show['subjectDescription']; ?>"></textarea>
+                      <textarea class="form-control" name="subjectDescription" ><?php echo $show['subjectDescription']; ?></textarea>
                       <div class="Message">
                         <?php echo $subjectDescriptionError; ?>
                       </div>
@@ -66,10 +66,17 @@
                       <label for="class">Class :</label>                    
                       <select  name="class" aria-controls="example1" class="form-control input-sm">
                         <option value="">Select</option>
-                        <option value="">B.tech</option>
-                        <option value="">B.sc</option>
-                        <option value="">BCA</option>
+                        <?php 
+                          $class = (empty($class)) ? '' : $class;
+                          $selectQuery = $dbh->query("SELECT * FROM `class`");
+                            while($fetch = $selectQuery->fetch() ){
+                        ?>
+                        <option value="<?php echo $fetch['id']; ?>"<?php echo ($fetch['id'] == $show['Class']) ? " selected='selected' " : ''; ?>><?php echo $fetch['classTitle']; ?></option>
+                      <?php } ?>
                       </select>
+                      <div class="Message">
+                        <?php echo $classError; ?>
+                      </div>
                     </div>
                     <div class="form-group">
                       <label for="subjectupdated">Subject Created Date :</label>

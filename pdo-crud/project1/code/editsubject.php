@@ -3,13 +3,13 @@
   # Does this ID exists ??
   # If not through 404 page error
 
-  if(empty( $_GET['id'] )){
+  if(empty( $_REQUEST['id'] )){
     // We need to go to 404 page
     header("Location: 404.php");
     die();
   }
 
-  $editId = $_GET['id'];
+  $editId = $_REQUEST['id'];
 
   $message = "";
 
@@ -29,15 +29,16 @@
   
  try{
 
-  if(isset($_POST['updatesubject'])){
+  if(isset($_REQUEST['updatesubject'])){
     
     #Validation Starts Here
 
-    $subjectTitle          = $_POST['subjectTitle'];
+    $subjectTitle         = $_POST['subjectTitle'];
     $subjectDescription   = $_POST['subjectDescription'];
     $subjectpracticalnum  = $_POST['subjectpracticalnum'];
     $subjectnum           = $_POST['subjectnum'];
     $subjecttime          = $_POST['subjecttime'];
+    $class                = $_POST['class'];
     $subjectupdated       = $_POST['subjectupdated'];
 
     $error = false;
@@ -67,62 +68,60 @@
       $error = true;
     }
 
+    if(empty($class)){
+      $classError = '<span style="color: rgb(255,0,0);">** Class is required</span>';
+      $error = true;
+    }
+
     if(empty($subjectupdated)){
       $subjectupdateddError = '<span style="color: rgb(255,0,0);">** Subject Updation Date is required</span>';
       $error = true;
     }
 
-    // # Finding if the subjectnum is not taken by other
+    # Finding if the email is not taken by other
 
-    // $stmt = $dbh->prepare( "
-    //   SELECT 
-    //     * 
-    //   FROM
-    //     `class` 
-    //   WHERE 
-    //     id <> :id
-    //   LIMIT 1");
+    $query = "SELECT * FROM `subject`WHERE Class = :class AND id = :id";
+    $stmt = $dbh->prepare( $query );
 
-    // $stmt->execute([ 
-    //   'id'         => $editId
-    // ]);
+    $stmt->execute([ 
+      'class' => $class,
+      'id' => $editId
+    ]);
 
-    // if($stmt->rowCount() != 0){
-    //   $subjectnumError = '<span style="color: rgb(255,0,0);">** Class is already taken</span>';
-    //   $error = true;
-    // }
+    if($stmt->rowCount() != 0){
+      $classError = '<span style="color: rgb(255,0,0);">** Class is already taken</span>';
+      $error = true;
+    }
 
-    # There is no error in the validation and data
-    # Hence saving the data
+    // There is no error in the validation and data
+    // Hence saving the data
     if(!$error){
-
       $data = [
         'id'                  => $editId,
-        'subjectTitle'         => $subjectTitle,
+        'subjectTitle'        => $subjectTitle,
         'subjectDescription'  => $subjectDescription,
         'subjectpracticalnum' => $subjectpracticalnum,
         'subjectnum'          => $subjectnum,
         'subjecttime'         => $subjecttime,
-        'subjectupdated'       => $subjectupdated
+        'class'               => $class,
+        'subjectupdated'      => $subjectupdated
       ];
 
       $sql = "
         UPDATE 
           `subject` 
         SET 
-          `subjectTitle`= :subjectTitle,
-          `subjectDescription`= :subjectDescription,
-          `subjectPracticalnumber`= :subjectpracticalnum,
-          `subjectTheoreticalnumber`= :subjectnum,
-          `subjectExaminationTime`= :subjecttime,
-          -- `Class`= :class,
-          `subjectUpdated_on`= :subjectupdated
+          `subjectTitle`             = :subjectTitle,
+          `subjectDescription`       = :subjectDescription,
+          `subjectPracticalnumber`   = :subjectpracticalnum,
+          `subjectTheoreticalnumber` = :subjectnum,
+          `subjectExaminationTime`   = :subjecttime,
+          `Class`                    = :class,
+          `subjectUpdated_on`        = :subjectupdated
         WHERE 
           `id` =:id";
-    
       $stmt   = $dbh->prepare($sql);
       $status = $stmt->execute($data);
-
       if($status !== false){
         $message = '<span style="color: rgb(0,255,0);">Update sucessfully</span>';
       }
@@ -142,10 +141,8 @@
 }
 catch (pdoException $e) {
   echo 'Connection failed: ' . $e->getMessage();
-  header("Location: 500.php");
-  die();
-} 
-
-
+ // header("Location: 500.php");
+  //die();
+}
   include("include/header.php");
   include("include/sidebar.php");

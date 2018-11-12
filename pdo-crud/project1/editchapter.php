@@ -36,7 +36,7 @@
                     </div>
                     <div class="form-group">
                       <label>Description :</label>
-                      <textarea class="form-control" name="chapterDescription" value="<?php echo $show['chapterDescription']; ?>"></textarea>
+                      <textarea class="form-control" name="chapterDescription"><?php echo $show['chapterDescription']; ?></textarea>
                       <div class="Message">
                         <?php echo $chapterDescriptionError; ?>
                       </div>
@@ -49,13 +49,20 @@
                       </div>
                     </div>
                     <div class="form-group">
-                      <label for="subject">subject :</label>                    
-                      <select  name="subject" aria-controls="example1" class="form-control input-sm">
+                      <label for="class">Class :</label>                    
+                      <select  name="class" aria-controls="example1" class="form-control input-sm">
                         <option value="">Select</option>
-                        <option value="">Physics</option>
-                        <option value="">Math</option>
-                        <option value="">Chemistry</option>
+                        <?php 
+                          $class = (empty($class)) ? '' : $class;
+                          $selectQuery = $dbh->query("SELECT * FROM `subject`");
+                          while($fetch = $selectQuery->fetch() ){
+                        ?>
+                        <option value="<?php echo $fetch['id']; ?>"<?php echo ($fetch['id'] == $show['chapterSubject']) ? " selected='selected' " : ''; ?>><?php echo $fetch['subjectTitle']; ?></option>
+                      <?php } ?>
                       </select>
+                      <div class="Message">
+                        <?php echo $SubjectError; ?>
+                      </div>
                     </div>
                     <div class="form-group">
                       <label for="chapterupdated">Chapter Update Date :</label>

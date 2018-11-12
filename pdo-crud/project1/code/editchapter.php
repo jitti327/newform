@@ -32,7 +32,7 @@
     $chapterTitle         = $_POST['chapterTitle'];
     $chapterDescription   = $_POST['chapterDescription'];
     $chapternum           = $_POST['chapternum'];
-    // $chaptertime          = $_POST['chaptertime'];
+    $chaptertime          = $_POST['class'];
     $chapterupdated       = $_POST['chapterupdated'];
 
     $error = false;
@@ -52,10 +52,10 @@
       $error = true;
     }
 
-    // if(empty($chaptertime)){
-    //   $chaptertimeError = '<span style="color: rgb(255,0,0);">** Chapter Time is required</span>';
-    //   $error = true;
-    // }
+    if(empty($chaptertime)){
+      $chaptertimeError = '<span style="color: rgb(255,0,0);">** Chapter Time is required</span>';
+      $error = true;
+    }
 
     if(empty($chapterupdated)){
       $chapterupdateddError = '<span style="color: rgb(255,0,0);">** Chapter Updation Date is required</span>';
@@ -91,7 +91,7 @@
         'chapterTitle'         => $chapterTitle,
         'chapterDescription'  => $chapterDescription,
         'chapternum'          => $chapternum,
-        // 'chaptertime'         => $chaptertime,
+        'chaptertime'         => $chaptertime,
         'chapterupdated'       => $chapterupdated
       ];
 
@@ -102,7 +102,7 @@
           `chapterTitle`= :chapterTitle,
           `chapterDescription`= :chapterDescription,
           `chapterNumber_assigned`= :chapternum,
-          -- `chapterExaminationTime`= :chaptertime,
+          `chapterSubject`= :chaptertime,
           -- `Class`= :subject,
           `chapterUpdated_on`= :chapterupdated
         WHERE 

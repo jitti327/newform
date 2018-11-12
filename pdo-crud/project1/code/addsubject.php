@@ -27,7 +27,7 @@
       $subjectpracticalnum  = $_POST['subjectpracticalnum'];
       $subjectnum           = $_POST['subjectnum'];
       $subjecttime          = $_POST['subjecttime'];
-      // $class                = $_POST['class'];
+      $class                = $_POST['class'];
       $subjectcreated       = $_POST['subjectcreated'];
 
       $error = false;
@@ -57,38 +57,38 @@
         $error = true;
       }
 
-      // if(empty($class)){
-      //   $classError = '<span style="color: rgb(255,0,0);">** Class is required</span>';
-      //   $error = true;
-      // }      
+      if(empty($class)){
+        $classError = '<span style="color: rgb(255,0,0);">** Class is required</span>';
+        $error = true;
+      }      
 
       if(empty($subjectcreated)){
         $subjectcreatedError = '<span style="color: rgb(255,0,0);">** Class is required</span>';
         $error = true;
       }
 
-    // # Finding if the email is not taken by other
+    # Finding if the email is not taken by other
 
-    // $stmt = $dbh->prepare( "
-    //   SELECT 
-    //     * 
-    //   FROM
-    //     `subject` 
-    //   WHERE 
-    //     class = :class
-    //     && 
-    //     id <> :id
-    //   LIMIT 1");
+    $stmt = $dbh->prepare( "
+      SELECT 
+        * 
+      FROM
+        `subject` 
+      WHERE 
+        class= :class 
+        && 
+        id <> :id
+      LIMIT 1");
 
-    // $stmt->execute([
-    //   'class' => $class,
-    //   'id'    => $editId
-    // ]);
+    $stmt->execute([ 
+      'class' => $class,
+      'id'    => $editId
+    ]);
 
-    // if($stmt->rowCount() != 0){
-    //   $message  = '<span style="color: rgb(255,0,0);">** Sorry Class is already added<span>';
-    //   $error = true;
-    // }
+    if($stmt->rowCount() != 0){
+      $classError = '<span style="color: rgb(255,0,0);">** Class is already taken</span>';
+      $error = true;
+    }
 
       if(!$error){
 
@@ -98,16 +98,16 @@
         'subjectpracticalnum' => $subjectpracticalnum,
         'subjectnum'          => $subjectnum,
         'subjecttime'         => $subjecttime,
-        // 'class'               => $class,
+        'class'               => $class,
         'subjectcreated'      => $subjectcreated
       ];
 
       $sql = "
         INSERT 
          INTO `subject`
-          (`subjectTitle`, `subjectDescription`, `subjectPracticalnumber`, `subjectTheoreticalnumber`, `subjectExaminationTime`, `subjectCreated_on`)
+          (`subjectTitle`, `subjectDescription`, `subjectPracticalnumber`, `subjectTheoreticalnumber`, `subjectExaminationTime`, `Class` , `subjectCreated_on`)
         VALUES 
-        (:subjectTitle , :subjectDescription , :subjectpracticalnum , :subjectnum , :subjecttime , :subjectcreated )";
+        (:subjectTitle , :subjectDescription , :subjectpracticalnum , :subjectnum , :subjecttime , :class , :subjectcreated )";
         
       $statement = $dbh->prepare($sql);
       $status    = $statement->execute($row);

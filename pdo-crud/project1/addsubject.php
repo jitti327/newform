@@ -60,15 +60,22 @@
                       <div class="Message">
                         <?php echo $subjecttimeError; ?>
                       </div>
-                    </div>
+                    </div>     
                     <div class="form-group">
                       <label for="class">Class :</label>                    
                       <select  name="class" aria-controls="example1" class="form-control input-sm">
                         <option value="">Select</option>
-                        <option value="">B.tech</option>
-                        <option value="">B.sc</option>
-                        <option value="">BCA</option>
+                        <?php 
+                          $class = (empty($class)) ? '' : $class;
+                          $selectQuery = $dbh->query("SELECT * FROM `class`");
+                            while($fetch = $selectQuery->fetch() ){
+                        ?>
+                        <option value="<?php echo $fetch['id']; ?>"<?php echo ($fetch['id'] == $class) ? " selected='selected' " : ''; ?>><?php echo $fetch['classTitle']; ?></option>
+                      <?php } ?>
                       </select>
+                      <div class="Message">
+                        <?php echo $classError; ?>
+                      </div>
                     </div>
                     <div class="form-group">
                       <label for="subjectcreated">Subject Created Date :</label>
