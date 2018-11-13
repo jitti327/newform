@@ -122,7 +122,6 @@
                   </td>
                   <td><?php echo $row['subjectTitle']; ?></td>
                   <td>
-
                     <?php 
                       // $string = $row['subjectDescription'];
                       echo mb_strimwidth($row['subjectDescription'], 0, 20, ".....");

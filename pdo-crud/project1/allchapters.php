@@ -103,8 +103,7 @@
                   <td><?php echo ++$offset; ?></td>
                   <td><?php echo $row['chapterTitle']; ?></td>
                   <td>
-                    <?php 
-
+                    <?php
                       //Used for truncate the words to 20 only
                       echo mb_strimwidth($row['chapterDescription'], 0, 20, ".....");
                       // echo $row['chapterDescription']; # Used to show the description data
