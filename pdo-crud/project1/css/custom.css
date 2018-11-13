@@ -1,0 +1,15 @@
+th{
+	color : rgba(0,0,0,0.5);
+}
+a{
+	color : rgba(0,0,0,0.5);
+}
+a:hover{
+	color : rgba(0,0,0,0.5);
+}
+i.fa.fa-sort-amount-asc {
+    float: right;
+}
+i.fa.fa-sort-amount-desc {
+    float: right;
+}
