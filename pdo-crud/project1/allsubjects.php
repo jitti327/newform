@@ -1,6 +1,42 @@
 <?php
   include("db/connection.php");
   include("code/allsubjects.php");
+
+    function renderTableHeaderPart($columnDetails, $orderBy, $order){
+
+
+    echo "<tr>";
+    echo "<th><input type='checkbox' id='checkall' /></th>";
+    echo "<th>S.No</th>";
+
+    foreach ($columnDetails as $key => $value) {
+      ?>
+      <th>
+        <a href="?order-by=<?php echo $key; ?>&order=<?php echo $order == 'desc'?'asc':'desc'; ?>"><?php echo $value; ?>
+          <?php 
+            if( $orderBy == $key){ ?>
+             <i class="fa fa-sort-amount-<?php echo $order; ?>"></i> 
+           <?php }
+          ?>
+        </a>
+      </th>
+      <?php
+    }
+    echo "<th>Edit</th>";
+    echo "<th>Delete</th>";     
+    echo "</tr>";      
+  }
+
+  $tableColumns = [
+    "Class"                       => "Class",
+    "subjectTitle"                => "Title",
+    "subjectDescription"          => "Description",
+    "subjectTheoreticalnumber"    => "Theoretical No.",
+    "subjectPracticalnumber"      => "Practical No.",
+    "subjectExaminationTime"      => "Duration",
+    "subjectCreated_on"           => "Created On",
+    "subjectUpdated_on"           => "Updated On"
+  ];
 ?>
   <div class="content-wrapper">
     <section class="content-header">
@@ -58,52 +94,8 @@
                 </div>
               </div>
               <table id="example1" class="table table-bordered table-striped">
-                <thead>
-                <tr>
-                  <th><input type="checkbox" id="checkall" /></th>
-                  <th>S.No.</th>
-                  <th>
-                    <a href="?order-by=Class&order=<?php echo $order == 'desc'?'asc':'desc'; ?>">Class
-                      <i class="fa fa-sort-amount-<?php echo $order; ?>"></i>
-                    </a>
-                  </th>
-                  <th>
-                    <a href="?order-by=subjectTitle&order=<?php echo $order == 'desc'?'asc':'desc'; ?>">Subject Name
-                      <i class="fa fa-sort-amount-<?php echo $order; ?>"></i>
-                    </a>
-                  </th>
-                  <th>
-                    <a href="?order-by=subjectDescription&order=<?php echo $order == 'desc'?'asc':'desc'; ?>">Description
-                      <i class="fa fa-sort-amount-<?php echo $order; ?>"></i>
-                    </a>
-                  </th>
-                  <th>
-                    <a href="?order-by=subjectTheoreticalnumber&order=<?php echo $order == 'desc'?'asc':'desc'; ?>">Theoretical No.
-                      <i class="fa fa-sort-amount-<?php echo $order; ?>"></i>
-                    </a>
-                  </th>
-                  <th>
-                    <a href="?order-by=subjectPracticalnumber&order=<?php echo $order == 'desc'?'asc':'desc'; ?>">Practical No.
-                      <i class="fa fa-sort-amount-<?php echo $order; ?>"></i>
-                    </a>
-                  </th>
-                  <th>
-                    <a href="?order-by=subjectExaminationTime&order=<?php echo $order == 'desc'?'asc':'desc'; ?>">Duration
-                      <i class="fa fa-sort-amount-<?php echo $order; ?>"></i>
-                    </a>
-                  </th>
-                  <th>
-                    <a href="?order-by=subjectCreated_on&order=<?php echo $order == 'desc'?'asc':'desc'; ?>">Created On
-                      <i class="fa fa-sort-amount-<?php echo $order; ?>"></i>
-                  </th>
-                  <th>
-                    <a href="?order-by=subjectUpdated_on&order=<?php echo $order == 'desc'?'asc':'desc'; ?>">Updated On
-                      <i class="fa fa-sort-amount-<?php echo $order; ?>"></i>
-                  </th>
-                  <th>Edit</th>
-                  <th>Delete</th>
-                </tr>
-                </thead>
+                
+                <thead><?php renderTableHeaderPart($tableColumns, $orderBy, $order); ?></thead>
               <?php
                 foreach($result as $row){
               ?>
@@ -167,52 +159,8 @@
               <?php
                 }
               ?>
-                <tfoot>
-                <tr>
-                  <th><input type="checkbox" id="checkall" /></th>
-                  <th>S.No.</th>
-                  <th>
-                    <a href="?order-by=Class&order=<?php echo $order == 'desc'?'asc':'desc'; ?>">Class
-                      <i class="fa fa-sort-amount-<?php echo $order; ?>"></i>
-                    </a>
-                  </th>
-                  <th>
-                    <a href="?order-by=subjectTitle&order=<?php echo $order == 'desc'?'asc':'desc'; ?>">Subject Name
-                      <i class="fa fa-sort-amount-<?php echo $order; ?>"></i>
-                    </a>
-                  </th>
-                  <th>
-                    <a href="?order-by=subjectDescription&order=<?php echo $order == 'desc'?'asc':'desc'; ?>">Description
-                      <i class="fa fa-sort-amount-<?php echo $order; ?>"></i>
-                    </a>
-                  </th>
-                  <th>
-                    <a href="?order-by=subjectTheoreticalnumber&order=<?php echo $order == 'desc'?'asc':'desc'; ?>">Theoretical No.
-                      <i class="fa fa-sort-amount-<?php echo $order; ?>"></i>
-                    </a>
-                  </th>
-                  <th>
-                    <a href="?order-by=subjectPracticalnumber&order=<?php echo $order == 'desc'?'asc':'desc'; ?>">Practical No.
-                      <i class="fa fa-sort-amount-<?php echo $order; ?>"></i>
-                    </a>
-                  </th>
-                  <th>
-                    <a href="?order-by=subjectExaminationTime&order=<?php echo $order == 'desc'?'asc':'desc'; ?>">Duration
-                      <i class="fa fa-sort-amount-<?php echo $order; ?>"></i>
-                    </a>
-                  </th>
-                  <th>
-                    <a href="?order-by=subjectCreated_on&order=<?php echo $order == 'desc'?'asc':'desc'; ?>">Created On
-                      <i class="fa fa-sort-amount-<?php echo $order; ?>"></i>
-                  </th>
-                  <th>
-                    <a href="?order-by=subjectUpdated_on&order=<?php echo $order == 'desc'?'asc':'desc'; ?>">Updated On
-                      <i class="fa fa-sort-amount-<?php echo $order; ?>"></i>
-                  </th>
-                  <th>Edit</th>
-                  <th>Delete</th>
-                </tr>
-                </tfoot>
+                
+                <tfoot><?php renderTableHeaderPart($tableColumns, $orderBy, $order); ?></tfoot>
               </table>
 
               <div class="row">

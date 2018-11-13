@@ -64,31 +64,55 @@
                   <th>S.No.</th>
                   <th>
                     <a href="?order-by=chapterTitle&order=<?php echo $order == 'desc'?'asc':'desc'; ?>">Class Name
-                      <i class="fa fa-sort-amount-<?php echo $order; ?>"></i>
+                      <?php 
+                        if( $orderBy == 'chapterTitle'){ ?>
+                         <i class="fa fa-sort-amount-<?php echo $order; ?>"></i> 
+                       <?php }
+                      ?>
                     </a>
                   </th>
                   <th>
                     <a href="?order-by=chapterDescription&order=<?php echo $order == 'desc'?'asc':'desc'; ?>">Description
-                      <i class="fa fa-sort-amount-<?php echo $order; ?>"></i>
+                      <?php 
+                        if( $orderBy == 'chapterDescription'){ ?>
+                         <i class="fa fa-sort-amount-<?php echo $order; ?>"></i> 
+                       <?php }
+                      ?>
                     </a>
                   </th>
                   <th>
-                    <a href="?order-by=chapterNumber_assigned&order=<?php echo $order == 'desc'?'asc':'desc'; ?>">Total No. asigned 
-                      <i class="fa fa-sort-amount-<?php echo $order; ?>"></i>
+                    <a href="?order-by=chapterNumber_assigned&order=<?php echo $order == 'desc'?'asc':'desc'; ?>">Total No. asigned
+                      <?php 
+                        if( $orderBy == 'chapterNumber_assigned'){ ?>
+                         <i class="fa fa-sort-amount-<?php echo $order; ?>"></i> 
+                       <?php }
+                      ?>
                     </a>
                   </th>
                   <th>
-                    <a href="?order-by=chapterSubject&order=<?php echo $order == 'desc'?'asc':'desc'; ?>">Subject 
-                      <i class="fa fa-sort-amount-<?php echo $order; ?>"></i>
+                    <a href="?order-by=chapterSubject&order=<?php echo $order == 'desc'?'asc':'desc'; ?>">Subject
+                      <?php 
+                        if( $orderBy == 'chapterSubject'){ ?>
+                         <i class="fa fa-sort-amount-<?php echo $order; ?>"></i> 
+                       <?php }
+                      ?>
                     </a>
                   </th>
                   <th>
                     <a href="?order-by=chapterCreated_on&order=<?php echo $order == 'desc'?'asc':'desc'; ?>">Created On
-                      <i class="fa fa-sort-amount-<?php echo $order; ?>"></i>
+                      <?php 
+                        if( $orderBy == 'chapterCreated_on'){ ?>
+                         <i class="fa fa-sort-amount-<?php echo $order; ?>"></i> 
+                       <?php }
+                      ?>
                   </th>
                   <th>
                     <a href="?order-by=chapterUpdated_on&order=<?php echo $order == 'desc'?'asc':'desc'; ?>">Updated On
-                      <i class="fa fa-sort-amount-<?php echo $order; ?>"></i>
+                      <?php 
+                        if( $orderBy == 'chapterUpdated_on'){ ?>
+                         <i class="fa fa-sort-amount-<?php echo $order; ?>"></i> 
+                       <?php }
+                      ?>
                   </th>
                   <th>Edit</th>
                   <th>Delete</th>
@@ -161,31 +185,55 @@
                   <th>S.No.</th>
                   <th>
                     <a href="?order-by=chapterTitle&order=<?php echo $order == 'desc'?'asc':'desc'; ?>">Class Name
-                      <i class="fa fa-sort-amount-<?php echo $order; ?>"></i>
+                      <?php 
+                        if( $orderBy == 'chapterTitle'){ ?>
+                         <i class="fa fa-sort-amount-<?php echo $order; ?>"></i> 
+                       <?php }
+                      ?>
                     </a>
                   </th>
                   <th>
                     <a href="?order-by=chapterDescription&order=<?php echo $order == 'desc'?'asc':'desc'; ?>">Description
-                      <i class="fa fa-sort-amount-<?php echo $order; ?>"></i>
+                      <?php 
+                        if( $orderBy == 'chapterDescription'){ ?>
+                         <i class="fa fa-sort-amount-<?php echo $order; ?>"></i> 
+                       <?php }
+                      ?>
                     </a>
                   </th>
                   <th>
-                    <a href="?order-by=chapterNumber_assigned&order=<?php echo $order == 'desc'?'asc':'desc'; ?>">Total No. asigned 
-                      <i class="fa fa-sort-amount-<?php echo $order; ?>"></i>
+                    <a href="?order-by=chapterNumber_assigned&order=<?php echo $order == 'desc'?'asc':'desc'; ?>">Total No. asigned
+                      <?php 
+                        if( $orderBy == 'chapterNumber_assigned'){ ?>
+                         <i class="fa fa-sort-amount-<?php echo $order; ?>"></i> 
+                       <?php }
+                      ?>
                     </a>
                   </th>
                   <th>
-                    <a href="?order-by=chapterSubject&order=<?php echo $order == 'desc'?'asc':'desc'; ?>">Subject 
-                      <i class="fa fa-sort-amount-<?php echo $order; ?>"></i>
+                    <a href="?order-by=chapterSubject&order=<?php echo $order == 'desc'?'asc':'desc'; ?>">Subject
+                      <?php 
+                        if( $orderBy == 'chapterSubject'){ ?>
+                         <i class="fa fa-sort-amount-<?php echo $order; ?>"></i> 
+                       <?php }
+                      ?>
                     </a>
                   </th>
                   <th>
                     <a href="?order-by=chapterCreated_on&order=<?php echo $order == 'desc'?'asc':'desc'; ?>">Created On
-                      <i class="fa fa-sort-amount-<?php echo $order; ?>"></i>
+                      <?php 
+                        if( $orderBy == 'chapterCreated_on'){ ?>
+                         <i class="fa fa-sort-amount-<?php echo $order; ?>"></i> 
+                       <?php }
+                      ?>
                   </th>
                   <th>
                     <a href="?order-by=chapterUpdated_on&order=<?php echo $order == 'desc'?'asc':'desc'; ?>">Updated On
-                      <i class="fa fa-sort-amount-<?php echo $order; ?>"></i>
+                      <?php 
+                        if( $orderBy == 'chapterUpdated_on'){ ?>
+                         <i class="fa fa-sort-amount-<?php echo $order; ?>"></i> 
+                       <?php }
+                      ?>
                   </th>
                   <th>Edit</th>
                   <th>Delete</th>

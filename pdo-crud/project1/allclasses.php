@@ -1,6 +1,56 @@
 <?php
   include("db/connection.php");
   include("code/allclasses.php");
+
+
+  function renderTableHeader($columnDetails, $orderBy, $order){
+    ?>
+      <thead><?php renderTableHeaderPart($columnDetails, $orderBy, $order); ?></thead>      
+    <?php
+  }
+
+
+  function renderTableFooter($columnDetails, $orderBy, $order){
+    ?>
+      <tfoot><?php renderTableHeaderPart($columnDetails, $orderBy, $order); ?></tfoot>
+    <?php
+  }
+
+  function renderTableHeaderPart($columnDetails, $orderBy, $order){
+
+
+    echo "<tr>";
+    echo "<th><input type='checkbox' id='checkall' /></th>";
+    echo "<th>S.No</th>";
+
+    foreach ($columnDetails as $key => $value) {
+      ?>
+      <th>
+        <a href="?order-by=<?php echo $key; ?>&order=<?php echo $order == 'desc'?'asc':'desc'; ?>"><?php echo $value; ?>
+          <?php 
+            if( $orderBy == $key){ ?>
+             <i class="fa fa-sort-amount-<?php echo $order; ?>"></i> 
+           <?php }
+          ?>
+        </a>
+      </th>
+      <?php
+    }
+    echo "<th>Edit</th>";
+    echo "<th>Delete</th>";     
+    echo "</tr>";      
+  }
+
+  $tableColumns = [
+    // "S.no"             => "S.no",
+    "classTitle"       => "Title",
+    "classDescription" => "Description",
+    "classDuration"    => "Duration",
+    "clasCreated_on"   => "Created On",
+    "classUpdated_on"  => "Updated On"
+  ];
+
+
 ?>
   <div class="content-wrapper">
     <section class="content-header">
@@ -9,7 +59,7 @@
         <small><a href="addclass.php">Add New Class</a></small>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="Admin.php"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="../Admin.php"><i class="fa fa-dashboard"></i> Home</a></li>
         <li><a href="allclasses.php">Allclasses</a></li>
       </ol>
     </section>
@@ -58,37 +108,7 @@
                 </div>
               </div>
               <table id="example1" class="table table-bordered table-striped">
-                <thead>
-                <tr>
-                  <th><input type="checkbox" id="checkall" /></th>
-                  <th>S.No.</th>
-                  <th>
-                    <a href="?order-by=classTitle&order=<?php echo $order == 'desc'?'asc':'desc'; ?>">Class Name
-                      <i class="fa fa-sort-amount-<?php echo $order; ?>"></i>
-                    </a>
-                  </th>
-                  <th>
-                    <a href="?order-by=classDescription&order=<?php echo $order == 'desc'?'asc':'desc'; ?>">Description
-                      <i class="fa fa-sort-amount-<?php echo $order; ?>"></i>
-                    </a>
-                  </th>
-                  <th>
-                    <a href="?order-by=classDuration&order=<?php echo $order == 'desc'?'asc':'desc'; ?>">Duration
-                      <i class="fa fa-sort-amount-<?php echo $order; ?>"></i>
-                    </a>
-                  </th>
-                  <th>
-                    <a href="?order-by=clasCreated_on&order=<?php echo $order == 'desc'?'asc':'desc'; ?>">Created On
-                      <i class="fa fa-sort-amount-<?php echo $order; ?>"></i>
-                  </th>
-                  <th>
-                    <a href="?order-by=classUpdated_on&order=<?php echo $order == 'desc'?'asc':'desc'; ?>">Updated On
-                      <i class="fa fa-sort-amount-<?php echo $order; ?>"></i>
-                  </th>
-                  <th>Edit</th>
-                  <th>Delete</th>
-                </tr>
-                </thead>
+                <thead><?php renderTableHeaderPart($tableColumns, $orderBy, $order); ?></thead>
               <?php
                 foreach($result as $row){
               ?>
@@ -140,37 +160,7 @@
               <?php
                 }
               ?>
-                <tfoot>
-                <tr>
-                  <th><input type="checkbox" id="checkall" /></th>
-                  <th>S.No.</th>
-                  <th>
-                    <a href="?order-by=classTitle&order=<?php echo $order == 'desc'?'asc':'desc'; ?>">Class Name
-                      <i class="fa fa-sort-amount-<?php echo $order; ?>"></i>
-                    </a>
-                  </th>
-                  <th>
-                    <a href="?order-by=classDescription&order=<?php echo $order == 'desc'?'asc':'desc'; ?>">Description
-                      <i class="fa fa-sort-amount-<?php echo $order; ?>"></i>
-                    </a>
-                  </th>
-                  <th>
-                    <a href="?order-by=classDuration&order=<?php echo $order == 'desc'?'asc':'desc'; ?>">Duration
-                      <i class="fa fa-sort-amount-<?php echo $order; ?>"></i>
-                    </a>
-                  </th>
-                  <th>
-                    <a href="?order-by=clasCreated_on&order=<?php echo $order == 'desc'?'asc':'desc'; ?>">Created On
-                      <i class="fa fa-sort-amount-<?php echo $order; ?>"></i>
-                  </th>
-                  <th>
-                    <a href="?order-by=classUpdated_on&order=<?php echo $order == 'desc'?'asc':'desc'; ?>">Updated On
-                      <i class="fa fa-sort-amount-<?php echo $order; ?>"></i>
-                  </th>
-                  <th>Edit</th>
-                  <th>Delete</th>
-                </tr>
-                </tfoot>
+                <tfoot><?php renderTableHeaderPart($tableColumns, $orderBy, $order); ?></tfoot>
               </table>
 
               <div class="row">

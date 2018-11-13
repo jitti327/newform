@@ -257,5 +257,10 @@
     })
   })
 </script> -->
+<!-- <script type="text/javascript">
+  $('ul.sidebar-menu tree li').click(function(){
+    alert($(this).text());
+  })
+</script> -->
 </body>
 </html>

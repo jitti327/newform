@@ -1,12 +1,14 @@
 <?php 
   #Query Running for fetching data from database
 
+  function mayMultipleDelete($tabelName){
+
     if(isset($_REQUEST['multiDelete']) && $_REQUEST['multiDelete'] == 'deleted'){
       // echo '<pre>';
       //   print_r($_REQUEST['userDlt']);
       // echo '</pre>';
       foreach( $_REQUEST['userDlt'] as $id){
-        $query = "DELETE FROM `subject` WHERE id = :id ";
+        $query = "DELETE FROM `{$tabelName}` WHERE id = :id ";
         $deleteQuery = $dbh->prepare($query);
         $response    = $deleteQuery->execute(['id' => $id]);
         if($response !== false){
@@ -17,33 +19,31 @@
       }
     }
 
-  #search parameter
-  #pagination parameter
-
-  $search      = isset($_GET['search'])   ? $_GET['search']    : "";
-  $page        = isset($_GET['page'])     ? $_GET['page']      : 1;
-  $orderBy     = isset($_GET['order-by']) ? $_GET['order-by']  : "";
-  $order       = isset($_GET['order'])    ? $_GET['order']     : 'DESC';  
-
-  $postPerPage = 10;
-
-  if(isset($_REQUEST['listing']) && $_REQUEST['listing'] == '25'){
-    $postPerPage = 25;
-  }
-  if(isset($_REQUEST['listing']) && $_REQUEST['listing'] == '50'){
-    $postPerPage = 50;
-  }
-  if(isset($_REQUEST['listing']) && $_REQUEST['listing'] == '100'){
-    $postPerPage = 100;
   }
 
-  $currentPage = empty($page) ? 1 : intval( $page );
-  $currentPage = max($currentPage, 1);
-  // $currentPage--; // Because MYSQL uses 0 index
+  /*
+  *
+  * Function Name : multipleDelete
+  * Parameter     : $table - String - Name of the table
+  *               : $ids   - Array  - Contains the ids
+  * Return        : Returns ture if entries are deleted
+  *               : Returns false if entries are not deleted
+  */
 
-  $offset      = ( $currentPage - 1) * $postPerPage;
-  $queryPart   = "";
-  $orderPart   = "";  
+  function multipleDelete($table, $ids){
+
+    return true; // In case delete is done
+    return false; // In case there is error
+
+  }
+
+  mayMultipleDelete('`subject`');
+
+  # 
+  include('config/pagination.php');
+
+
+
 
   if(!empty($search)){
     $queryPart   = "
