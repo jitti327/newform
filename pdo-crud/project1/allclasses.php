@@ -97,7 +97,12 @@
                   <td><input type="checkbox" value="<?php echo $row['id']; ?>" name="userDlt[]" class="checkthis" /></td>
                   <td><?php echo ++$offset; ?></td>
                   <td><?php echo $row['classTitle']; ?></td>
-                  <td><?php echo $row['classDescription']; ?></td>
+                  <td>
+                    <?php 
+                      echo mb_strimwidth($row['classDescription'], 0, 20, ".....");
+                      // echo $row['classDescription']; 
+                    ?>                      
+                  </td>
                   <td><?php echo $row['classDuration']; ?></td>
                   <td><?php echo $row['clasCreated_on']; ?></td>
                   <td><?php echo $row['classUpdated_on']; ?></td>

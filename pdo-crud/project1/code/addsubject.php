@@ -67,7 +67,7 @@
         $error = true;
       }
 
-    # Finding if the email is not taken by other
+  # Finding if the email is not taken by other
 
     $stmt = $dbh->prepare( "
       SELECT 

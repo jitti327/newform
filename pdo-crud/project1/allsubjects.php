@@ -63,7 +63,12 @@
                   <th><input type="checkbox" id="checkall" /></th>
                   <th>S.No.</th>
                   <th>
-                    <a href="?order-by=subjectTitle&order=<?php echo $order == 'desc'?'asc':'desc'; ?>">Class Name
+                    <a href="?order-by=Class&order=<?php echo $order == 'desc'?'asc':'desc'; ?>">Class
+                      <i class="fa fa-sort-amount-<?php echo $order; ?>"></i>
+                    </a>
+                  </th>
+                  <th>
+                    <a href="?order-by=subjectTitle&order=<?php echo $order == 'desc'?'asc':'desc'; ?>">Subject Name
                       <i class="fa fa-sort-amount-<?php echo $order; ?>"></i>
                     </a>
                   </th>
@@ -73,22 +78,17 @@
                     </a>
                   </th>
                   <th>
-                    <a href="?order-by=subjectPracticalnumber&order=<?php echo $order == 'desc'?'asc':'desc'; ?>">Practical No.
-                      <i class="fa fa-sort-amount-<?php echo $order; ?>"></i>
-                    </a>
-                  </th>
-                  <th>
                     <a href="?order-by=subjectTheoreticalnumber&order=<?php echo $order == 'desc'?'asc':'desc'; ?>">Theoretical No.
                       <i class="fa fa-sort-amount-<?php echo $order; ?>"></i>
                     </a>
                   </th>
                   <th>
-                    <a href="?order-by=subjectExaminationTime&order=<?php echo $order == 'desc'?'asc':'desc'; ?>">Duration
+                    <a href="?order-by=subjectPracticalnumber&order=<?php echo $order == 'desc'?'asc':'desc'; ?>">Practical No.
                       <i class="fa fa-sort-amount-<?php echo $order; ?>"></i>
                     </a>
                   </th>
                   <th>
-                    <a href="?order-by=Class&order=<?php echo $order == 'desc'?'asc':'desc'; ?>">Class
+                    <a href="?order-by=subjectExaminationTime&order=<?php echo $order == 'desc'?'asc':'desc'; ?>">Duration
                       <i class="fa fa-sort-amount-<?php echo $order; ?>"></i>
                     </a>
                   </th>
@@ -111,11 +111,6 @@
                 <tr>
                   <td><input type="checkbox" value="<?php echo $row['id']; ?>" name="userDlt[]" class="checkthis" /></td>
                   <td><?php echo ++$offset; ?></td>
-                  <td><?php echo $row['subjectTitle']; ?></td>
-                  <td><?php echo $row['subjectDescription']; ?></td>
-                  <td><?php echo $row['subjectPracticalnumber']; ?></td>
-                  <td><?php echo $row['subjectTheoreticalnumber']; ?></td>
-                  <td><?php echo $row['subjectExaminationTime']; ?></td>
                   <td>
                     <?php                    
                       $query = "SELECT * FROM `class` WHERE `id` = ".$row['Class'];
@@ -125,6 +120,18 @@
                       echo ( $row['Class'] == $fetch['id'] ) ? $fetch['classTitle'] : $row['Class'] ; 
                     ?>                        
                   </td>
+                  <td><?php echo $row['subjectTitle']; ?></td>
+                  <td>
+
+                    <?php 
+                      // $string = $row['subjectDescription'];
+                      echo mb_strimwidth($row['subjectDescription'], 0, 20, ".....");
+                    ?>
+                    <!-- <?php echo $row['subjectDescription']; ?>                       -->
+                  </td>
+                  <td><?php echo $row['subjectTheoreticalnumber']; ?></td>
+                  <td><?php echo $row['subjectPracticalnumber']; ?></td>
+                  <td><?php echo $row['subjectExaminationTime']; ?></td>
                   <td><?php echo $row['subjectCreated_on']; ?></td>
                   <td><?php echo $row['subjectUpdated_on']; ?></td>
                   <td>
@@ -166,7 +173,12 @@
                   <th><input type="checkbox" id="checkall" /></th>
                   <th>S.No.</th>
                   <th>
-                    <a href="?order-by=subjectTitle&order=<?php echo $order == 'desc'?'asc':'desc'; ?>">Class Name
+                    <a href="?order-by=Class&order=<?php echo $order == 'desc'?'asc':'desc'; ?>">Class
+                      <i class="fa fa-sort-amount-<?php echo $order; ?>"></i>
+                    </a>
+                  </th>
+                  <th>
+                    <a href="?order-by=subjectTitle&order=<?php echo $order == 'desc'?'asc':'desc'; ?>">Subject Name
                       <i class="fa fa-sort-amount-<?php echo $order; ?>"></i>
                     </a>
                   </th>
@@ -176,22 +188,17 @@
                     </a>
                   </th>
                   <th>
-                    <a href="?order-by=subjectPracticalnumber&order=<?php echo $order == 'desc'?'asc':'desc'; ?>">Practical No.
-                      <i class="fa fa-sort-amount-<?php echo $order; ?>"></i>
-                    </a>
-                  </th>
-                  <th>
                     <a href="?order-by=subjectTheoreticalnumber&order=<?php echo $order == 'desc'?'asc':'desc'; ?>">Theoretical No.
                       <i class="fa fa-sort-amount-<?php echo $order; ?>"></i>
                     </a>
                   </th>
                   <th>
-                    <a href="?order-by=subjectExaminationTime&order=<?php echo $order == 'desc'?'asc':'desc'; ?>">Duration
+                    <a href="?order-by=subjectPracticalnumber&order=<?php echo $order == 'desc'?'asc':'desc'; ?>">Practical No.
                       <i class="fa fa-sort-amount-<?php echo $order; ?>"></i>
                     </a>
                   </th>
                   <th>
-                    <a href="?order-by=Class&order=<?php echo $order == 'desc'?'asc':'desc'; ?>">Class
+                    <a href="?order-by=subjectExaminationTime&order=<?php echo $order == 'desc'?'asc':'desc'; ?>">Duration
                       <i class="fa fa-sort-amount-<?php echo $order; ?>"></i>
                     </a>
                   </th>

@@ -58,7 +58,7 @@
       OR
         `subjectExaminationTime` LIKE :search
       OR
-        `class` LIKE :search
+        `Class` LIKE :search
       OR
         `subjectCreated_on`  LIKE :search
       OR

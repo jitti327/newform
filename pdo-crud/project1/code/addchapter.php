@@ -21,7 +21,7 @@
       $chapterTitle         = $_POST['chapterTitle'];
       $chapterDescription   = $_POST['chapterDescription'];
       $chapternum           = $_POST['chapternum'];
-      // $subject           = $_POST['subject'];
+      $subject              = $_POST['subject'];
       $chaptercreated       = $_POST['chaptercreated'];
 
       $error = false;
@@ -41,38 +41,38 @@
         $error = true;
       }
 
-      // if(empty($subject)){
-      //   $subjectError = '<span style="color: rgb(255,0,0);">** Subject is required</span>';
-      //   $error = true;
-      // }      
+      if(empty($subject)){
+        $subjectError = '<span style="color: rgb(255,0,0);">** Subject is required</span>';
+        $error = true;
+      }      
 
       if(empty($chaptercreated)){
         $chaptercreatedError = '<span style="color: rgb(255,0,0);">** Chapter Creatioon Date is required</span>';
         $error = true;
       }
 
-    // # Finding if the email is not taken by other
+    # Finding if the email is not taken by other
 
-    // $stmt = $dbh->prepare( "
-    //   SELECT 
-    //     * 
-    //   FROM
-    //     `chapter` 
-    //   WHERE 
-    //     class = :class
-    //     && 
-    //     id <> :id
-    //   LIMIT 1");
+      $stmt = $dbh->prepare( "
+        SELECT 
+          * 
+        FROM
+          `chapter` 
+        WHERE 
+          chapterSubject= :subject 
+          && 
+          id <> :id
+        LIMIT 1");
 
-    // $stmt->execute([
-    //   'class' => $class,
-    //   'id'    => $editId
-    // ]);
+      $stmt->execute([ 
+        'subject' => $subject,
+        'id'    => $editId
+      ]);
 
-    // if($stmt->rowCount() != 0){
-    //   $message  = '<span style="color: rgb(255,0,0);">** Sorry Class is already added<span>';
-    //   $error = true;
-    // }
+      if($stmt->rowCount() != 0){
+        $classError = '<span style="color: rgb(255,0,0);">** Class is already taken</span>';
+        $error = true;
+      }
 
       if(!$error){
 
@@ -80,16 +80,16 @@
         'chapterTitle'        => $chapterTitle,
         'chapterDescription'  => $chapterDescription,
         'chapternum'          => $chapternum,
-        // 'subject'            => $subject,
+        'subject'             => $subject,
         'chaptercreated'      => $chaptercreated
       ];
 
       $sql = "
         INSERT 
          INTO `chapter`
-          (`chapterTitle`, `chapterDescription`, `chapterNumber_assigned`, `chapterCreated_on`)
+          (`chapterTitle`, `chapterDescription`, `chapterNumber_assigned`, `chapterSubject` , `chapterCreated_on`)
         VALUES 
-        (:chapterTitle , :chapterDescription , :chapternum , :chaptercreated )";
+        (:chapterTitle , :chapterDescription , :chapternum , :subject , :chaptercreated )";
         
       $statement = $dbh->prepare($sql);
       $status    = $statement->execute($row);

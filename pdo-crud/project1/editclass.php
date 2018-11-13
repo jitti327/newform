@@ -36,7 +36,7 @@
                     </div>
                     <div class="form-group">
                       <label>Description :</label>
-                      <textarea class="form-control" name="classDescription" value="<?php echo $show['classDescription']; ?>"></textarea>
+                      <textarea class="form-control" name="classDescription"><?php echo $show['classDescription']; ?></textarea>
                       <div class="Message">
                         <?php echo $classDescriptionError; ?>
                       </div>

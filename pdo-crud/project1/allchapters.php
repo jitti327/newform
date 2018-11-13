@@ -5,12 +5,12 @@
   <div class="content-wrapper">
     <section class="content-header">
       <h1>
-        Subject Data        
-        <small><a href="addchapter.php">Add New Subject</a></small>
+        Chapter Data        
+        <small><a href="addchapter.php">Add New Chapter</a></small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="Admin.php"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="allchapters.php">AllSubjects</a></li>
+        <li><a href="allchapters.php">All Chapters</a></li>
       </ol>
     </section>
 
@@ -102,7 +102,14 @@
                   <td><input type="checkbox" value="<?php echo $row['id']; ?>" name="userDlt[]" class="checkthis" /></td>
                   <td><?php echo ++$offset; ?></td>
                   <td><?php echo $row['chapterTitle']; ?></td>
-                  <td><?php echo $row['chapterDescription']; ?></td>
+                  <td>
+                    <?php 
+
+                      //Used for truncate the words to 20 only
+                      echo mb_strimwidth($row['chapterDescription'], 0, 20, ".....");
+                      // echo $row['chapterDescription']; # Used to show the description data
+                    ?>                        
+                  </td>
                   <td><?php echo $row['chapterNumber_assigned']; ?></td>
                   <td>
                     <?php                    

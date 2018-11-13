@@ -48,16 +48,20 @@
                       </div>
                     </div>
                     <div class="form-group">
-                      <label for="subject">subject :</label>                    
-                      <select  name="class" aria-controls="example1" class="form-control input-sm">
+                      <label for="subject">Subject :</label>
+                      <select  name="subject" aria-controls="example1" subject="form-control input-sm">
                         <option value="">Select</option>
                         <?php 
+                          $subject = (empty($subject)) ? '' : $subject;
                           $selectQuery = $dbh->query("SELECT * FROM `subject`");
                             while($fetch = $selectQuery->fetch() ){
                         ?>
-                        <option value="<?php echo $fetch['id']; ?>"><?php echo $fetch['subjectTitle']; ?></option>
+                        <option value="<?php echo $fetch['id']; ?>"<?php echo ($fetch['id'] == $subject) ? " selected='selected' " : ''; ?>><?php echo $fetch['subjectTitle']; ?></option>
                       <?php } ?>
                       </select>
+                      <div class="Message">
+                        <?php echo $SubjectError; ?>
+                      </div>
                     </div>
                     <div class="form-group">
                       <label for="chaptercreated">Chapter Created Date :</label>
