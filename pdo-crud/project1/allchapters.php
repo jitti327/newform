@@ -1,6 +1,38 @@
 <?php
   include("db/connection.php");
   include("code/allchapters.php");
+
+    function renderTableHeaderPart($columnDetails, $orderBy, $order){
+      echo "<tr>";
+      echo "<th><input type='checkbox' id='checkall' /></th>";
+      echo "<th>S.No</th>";
+
+      foreach ($columnDetails as $key => $value) {
+        ?>
+        <th>
+          <a href="?order-by=<?php echo $key; ?>&order=<?php echo $order == 'desc'?'asc':'desc'; ?>"><?php echo $value; ?>
+            <?php 
+              if( $orderBy == $key){ ?>
+               <i class="fa fa-sort-amount-<?php echo $order; ?>"></i> 
+             <?php }
+            ?>
+          </a>
+        </th>
+        <?php
+      }
+      echo "<th>Edit</th>";
+      echo "<th>Delete</th>";
+      echo "</tr>"; 
+    }
+
+  $tableColumns = [
+    "chapterTitle"                => "Title",
+    "chapterDescription"          => "Description",
+    "chapterNumber_assigned"      => "Total No.",
+    "chapterSubject"              => "Subject",
+    "chapterCreated_on"           => "Created On",
+    "chapterUpdated_on"           => "Updated On"
+  ];
 ?>
   <div class="content-wrapper">
     <section class="content-header">
@@ -58,66 +90,8 @@
                 </div>
               </div>
               <table id="example1" class="table table-bordered table-striped">
-                <thead>
-                <tr>
-                  <th><input type="checkbox" id="checkall" /></th>
-                  <th>S.No.</th>
-                  <th>
-                    <a href="?order-by=chapterTitle&order=<?php echo $order == 'desc'?'asc':'desc'; ?>">Class Name
-                      <?php 
-                        if( $orderBy == 'chapterTitle'){ ?>
-                         <i class="fa fa-sort-amount-<?php echo $order; ?>"></i> 
-                       <?php }
-                      ?>
-                    </a>
-                  </th>
-                  <th>
-                    <a href="?order-by=chapterDescription&order=<?php echo $order == 'desc'?'asc':'desc'; ?>">Description
-                      <?php 
-                        if( $orderBy == 'chapterDescription'){ ?>
-                         <i class="fa fa-sort-amount-<?php echo $order; ?>"></i> 
-                       <?php }
-                      ?>
-                    </a>
-                  </th>
-                  <th>
-                    <a href="?order-by=chapterNumber_assigned&order=<?php echo $order == 'desc'?'asc':'desc'; ?>">Total No. asigned
-                      <?php 
-                        if( $orderBy == 'chapterNumber_assigned'){ ?>
-                         <i class="fa fa-sort-amount-<?php echo $order; ?>"></i> 
-                       <?php }
-                      ?>
-                    </a>
-                  </th>
-                  <th>
-                    <a href="?order-by=chapterSubject&order=<?php echo $order == 'desc'?'asc':'desc'; ?>">Subject
-                      <?php 
-                        if( $orderBy == 'chapterSubject'){ ?>
-                         <i class="fa fa-sort-amount-<?php echo $order; ?>"></i> 
-                       <?php }
-                      ?>
-                    </a>
-                  </th>
-                  <th>
-                    <a href="?order-by=chapterCreated_on&order=<?php echo $order == 'desc'?'asc':'desc'; ?>">Created On
-                      <?php 
-                        if( $orderBy == 'chapterCreated_on'){ ?>
-                         <i class="fa fa-sort-amount-<?php echo $order; ?>"></i> 
-                       <?php }
-                      ?>
-                  </th>
-                  <th>
-                    <a href="?order-by=chapterUpdated_on&order=<?php echo $order == 'desc'?'asc':'desc'; ?>">Updated On
-                      <?php 
-                        if( $orderBy == 'chapterUpdated_on'){ ?>
-                         <i class="fa fa-sort-amount-<?php echo $order; ?>"></i> 
-                       <?php }
-                      ?>
-                  </th>
-                  <th>Edit</th>
-                  <th>Delete</th>
-                </tr>
-                </thead>
+                
+                <thead><?php renderTableHeaderPart($tableColumns, $orderBy, $order); ?></thead>
               <?php
                 foreach($result as $row){
               ?>
@@ -178,67 +152,8 @@
               </tr>
               <?php
                 }
-              ?>
-                <tfoot>
-                <tr>
-                  <th><input type="checkbox" id="checkall" /></th>
-                  <th>S.No.</th>
-                  <th>
-                    <a href="?order-by=chapterTitle&order=<?php echo $order == 'desc'?'asc':'desc'; ?>">Class Name
-                      <?php 
-                        if( $orderBy == 'chapterTitle'){ ?>
-                         <i class="fa fa-sort-amount-<?php echo $order; ?>"></i> 
-                       <?php }
-                      ?>
-                    </a>
-                  </th>
-                  <th>
-                    <a href="?order-by=chapterDescription&order=<?php echo $order == 'desc'?'asc':'desc'; ?>">Description
-                      <?php 
-                        if( $orderBy == 'chapterDescription'){ ?>
-                         <i class="fa fa-sort-amount-<?php echo $order; ?>"></i> 
-                       <?php }
-                      ?>
-                    </a>
-                  </th>
-                  <th>
-                    <a href="?order-by=chapterNumber_assigned&order=<?php echo $order == 'desc'?'asc':'desc'; ?>">Total No. asigned
-                      <?php 
-                        if( $orderBy == 'chapterNumber_assigned'){ ?>
-                         <i class="fa fa-sort-amount-<?php echo $order; ?>"></i> 
-                       <?php }
-                      ?>
-                    </a>
-                  </th>
-                  <th>
-                    <a href="?order-by=chapterSubject&order=<?php echo $order == 'desc'?'asc':'desc'; ?>">Subject
-                      <?php 
-                        if( $orderBy == 'chapterSubject'){ ?>
-                         <i class="fa fa-sort-amount-<?php echo $order; ?>"></i> 
-                       <?php }
-                      ?>
-                    </a>
-                  </th>
-                  <th>
-                    <a href="?order-by=chapterCreated_on&order=<?php echo $order == 'desc'?'asc':'desc'; ?>">Created On
-                      <?php 
-                        if( $orderBy == 'chapterCreated_on'){ ?>
-                         <i class="fa fa-sort-amount-<?php echo $order; ?>"></i> 
-                       <?php }
-                      ?>
-                  </th>
-                  <th>
-                    <a href="?order-by=chapterUpdated_on&order=<?php echo $order == 'desc'?'asc':'desc'; ?>">Updated On
-                      <?php 
-                        if( $orderBy == 'chapterUpdated_on'){ ?>
-                         <i class="fa fa-sort-amount-<?php echo $order; ?>"></i> 
-                       <?php }
-                      ?>
-                  </th>
-                  <th>Edit</th>
-                  <th>Delete</th>
-                </tr>
-                </tfoot>
+              ?>                
+                <tfoot><?php renderTableHeaderPart($tableColumns, $orderBy, $order); ?></tfoot>
               </table>
 
               <div class="row">

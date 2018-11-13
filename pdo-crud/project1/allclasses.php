@@ -3,22 +3,20 @@
   include("code/allclasses.php");
 
 
-  function renderTableHeader($columnDetails, $orderBy, $order){
-    ?>
-      <thead><?php renderTableHeaderPart($columnDetails, $orderBy, $order); ?></thead>      
-    <?php
-  }
+  // function renderTableHeader($columnDetails, $orderBy, $order){
+  //   ?>
+  //     <thead><?php renderTableHeaderPart($columnDetails, $orderBy, $order); ?></thead>      
+  //   <?php
+  // }
 
 
-  function renderTableFooter($columnDetails, $orderBy, $order){
-    ?>
-      <tfoot><?php renderTableHeaderPart($columnDetails, $orderBy, $order); ?></tfoot>
-    <?php
-  }
+  // function renderTableFooter($columnDetails, $orderBy, $order){
+  //   ?>
+  //     <tfoot><?php renderTableHeaderPart($columnDetails, $orderBy, $order); ?></tfoot>
+  //   <?php
+  // }
 
   function renderTableHeaderPart($columnDetails, $orderBy, $order){
-
-
     echo "<tr>";
     echo "<th><input type='checkbox' id='checkall' /></th>";
     echo "<th>S.No</th>";
@@ -37,8 +35,8 @@
       <?php
     }
     echo "<th>Edit</th>";
-    echo "<th>Delete</th>";     
-    echo "</tr>";      
+    echo "<th>Delete</th>";
+    echo "</tr>";
   }
 
   $tableColumns = [
