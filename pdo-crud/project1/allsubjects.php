@@ -118,11 +118,11 @@
                   <td><?php echo $row['subjectExaminationTime']; ?></td>
                   <td>
                     <?php                    
-                      $query = "SELECT * FROM `class` WHERE `id` = (SELECT `Class` FROM `subject` WHERE `Class` =".$row['Class'].")";
+                      $query = "SELECT * FROM `class` WHERE `id` = ".$row['Class'];
                       $subQuery = $dbh->query($query);
                       $fetch = $subQuery->fetch();
 
-                      echo ( $row['chapterSubject'] == $fetch['id'] ) ? $fetch['classTitle'] : $row['chapterSubject'] ; 
+                      echo ( $row['Class'] == $fetch['id'] ) ? $fetch['classTitle'] : $row['Class'] ; 
                     ?>                        
                   </td>
                   <td><?php echo $row['subjectCreated_on']; ?></td>

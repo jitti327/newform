@@ -104,7 +104,15 @@
                   <td><?php echo $row['chapterTitle']; ?></td>
                   <td><?php echo $row['chapterDescription']; ?></td>
                   <td><?php echo $row['chapterNumber_assigned']; ?></td>
-                  <td><?php echo $row['chapterSubject']; ?></td>
+                  <td>
+                    <?php                    
+                      $query = "SELECT * FROM `subject` WHERE `id` = ".$row['chapterSubject'];
+                      $subQuery = $dbh->query($query);
+                      $fetch = $subQuery->fetch();
+
+                      echo ( $row['chapterSubject'] == $fetch['id'] ) ? $fetch['subjectTitle'] : $row['chapterSubject'] ; 
+                    ?>
+                  </td>
                   <td><?php echo $row['chapterCreated_on']; ?></td>
                   <td><?php echo $row['chapterUpdated_on']; ?></td>
                   <td>
