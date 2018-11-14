@@ -1,9 +1,9 @@
 <?php
   include("db/connection.php");
-  include("code/allclasses.php");
-  include("code/config/afunction.php");
+include("code/allclasses.php");
+include("code/config/afunction.php");
 
-  // These are comming from the 
+  // These are comming from the above afunction.php file
   $tableColumns = [
     "classTitle"       => "Title",
     "classDescription" => "Description",

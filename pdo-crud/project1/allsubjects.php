@@ -1,7 +1,9 @@
 <?php
   include("db/connection.php");
-  include("code/allsubjects.php");
   include("code/config/afunction.php");
+  include("code/allsubjects.php");
+
+  // These are comming from the above afunction.php file
 
   $tableColumns = [
     "Class"                       => "Class",
@@ -69,6 +71,7 @@
                   </div>
                 </div>
               </div>
+                <?php echo $message; ?>
               <table id="example1" class="table table-bordered table-striped">
                 
                 <thead><?php renderTableHeaderPart($tableColumns, $orderBy, $order); ?></thead>
@@ -78,7 +81,10 @@
                 <tbody>
                 <tr>
                   <td><input type="checkbox" value="<?php echo $row['id']; ?>" name="userDlt[]" class="checkthis" /></td>
-                  <td><?php echo ++$offset; ?></td>
+                  <td>
+                    <!-- <?php echo ++$offset; ?> -->
+                    <?php echo $row['id']; ?>
+                  </td>
                   <td>
                     <?php                    
                       $query = "SELECT * FROM `class` WHERE `id` = ".$row['Class'];

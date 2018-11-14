@@ -77,15 +77,19 @@
       WHERE 
         class= :class 
         && 
+        subjectTitle = :subjectTitle 
+        && 
         id <> :id
       LIMIT 1");
 
     $stmt->execute([ 
-      'class' => $class,
-      'id'    => $editId
+      'class'        => $class,
+      'subjectTitle' => $subjectTitle,
+      'id'           => $editId
     ]);
 
     if($stmt->rowCount() != 0){
+      $subectTitleError = '<span style="color: rgb(255,0,0);">** Subject is already taken</span>';
       $classError = '<span style="color: rgb(255,0,0);">** Class is already taken</span>';
       $error = true;
     }

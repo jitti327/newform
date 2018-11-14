@@ -3,6 +3,8 @@
   include("code/allchapters.php");
   include("code/config/afunction.php");
 
+  // These are comming from the above afunction.php file
+
   $tableColumns = [
     "chapterTitle"                => "Title",
     "chapterDescription"          => "Description",

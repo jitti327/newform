@@ -57,7 +57,7 @@
     // 18,19,20
     // '18','19','20'
     // die();
-    $query = "DELETE FROM `sign-up` WHERE id IN (':id') ";
+    $query = "DELETE FROM `sign-up` WHERE id IN (:id)";
     $deleteQuery = $dbh->prepare($query);
     $response    = $deleteQuery->execute(['id' =>  implode("','", $_REQUEST['userDlt']) ]);
     if($response !== false){
