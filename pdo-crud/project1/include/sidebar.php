@@ -86,6 +86,42 @@
             <li><a href="allchapters.php"><i class="fa fa-circle-o"></i> All Chapters</a></li>
           </ul>
         </li>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-flag-checkered "></i> <span>Country</span>
+            <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="addcountry.php"><i class="fa fa-plus-square"></i> Add New Country</a></li>
+            <li><a href="allcountries.php"><i class="fa fa-circle-o"></i> All Countries</a></li>
+          </ul>
+        </li>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa  fa-flag"></i> <span>State</span>
+            <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="addstate.php"><i class="fa fa-plus-square"></i> Add New State</a></li>
+            <li><a href="allstates.php"><i class="fa fa-circle-o"></i> All States</a></li>
+          </ul>
+        </li>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-map-marker"></i> <span>City</span>
+            <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="addcity.php"><i class="fa fa-plus-square"></i> Add New City</a></li>
+            <li><a href="allcities.php"><i class="fa fa-circle-o"></i> All Cities</a></li>
+          </ul>
+        </li>
       </ul>
     </section>
     <!-- /.sidebar -->
