@@ -48,13 +48,13 @@
                 </div>
                 <div class="col-sm-4">
                   <div id="example1_filter" class="dataTables_filter">
-                  <?php searchField('search'); ?>
+                    <?php searchField('search'); ?>
                   </div>
                 </div>
               </div>
               <table id="example1" class="table table-bordered table-striped">
                 <?php  
-                // These are comming from the above afunction.php file
+                // These are comming from the above function.php file
                   $tableColumns = [
                     "classTitle"       => "Title",
                     "classDescription" => "Description",
@@ -66,7 +66,6 @@
                 <thead><?php renderTableHeaderPart($tableColumns, $order , $currentPage); ?></thead>
                 <tbody>
                   <?php
-                  echo $response;
                     if(!empty($search)){
                       if($response == "0"){
                         $message = "No matching records found";                           
@@ -77,95 +76,52 @@
                     </td>
                   </tr>
                   <?php 
-                    }
-                      }   
+                      }
+                    }   
                   ?>
-                <?php 
-                  foreach( $result as $row ){
-                ?>
-                <tr>
-                  <td><input type="checkbox" value="<?php echo $row['id']; ?>" name="userDlt[]" class="checkthis" /></td>
-                  <td>
-                    <?php 
-                      // echo ++$offset;
-                      echo $row['id']; 
-                    ?>                      
-                  </td>
-                  <td><?php echo $row['classTitle']; ?></td>
-                  <td><?php echo mb_strimwidth($row['classDescription'], 0, 20, "....."); ?></td>
-                  <!-- <?php echo $row['classDescription']; ?> -->
-                  <td><?php echo $row['classDuration']; ?></td>
-                  <td><?php echo $row['clasCreated_on']; ?></td>
-                  <td><?php echo $row['classUpdated_on']; ?></td>
-                  <td>
-                    <a class="btn btn-primary btn-sm" href="editclass.php?id=<?php echo $row['id']; ?>">
-                      <span class="glyphicon glyphicon-pencil"></span>
-                    </a>
-                  </td>
-                  <td>
-                    <a 
-                      href = "code/deleteclass.php?id=<?php echo $row['id']?>" 
-                      class="btn btn-danger btn-sm"
-                      data-toggle="tooltip" 
-                      title="Delete" 
-                      name="DeleteID"
-                    >
-                    <span class="glyphicon glyphicon-trash"></span>
-                    </a>
-                  </td>
-                </tr>
-                <?php 
-                  } 
-                ?>
+                  <?php 
+                    foreach( $result as $row ){
+                  ?>
+                  <tr>
+                    <td><input type="checkbox" value="<?php echo $row['id']; ?>" name="userDlt[]" class="checkthis" /></td>
+                    <td>
+                      <?php 
+                        // echo ++$offset;
+                        echo $row['id']; 
+                      ?>                      
+                    </td>
+                    <td><?php echo $row['classTitle']; ?></td>
+                    <td><?php echo mb_strimwidth($row['classDescription'], 0, 20, "....."); ?></td>
+                    <!-- <?php echo $row['classDescription']; ?> -->
+                    <td><?php echo $row['classDuration']; ?></td>
+                    <td><?php echo $row['clasCreated_on']; ?></td>
+                    <td><?php echo $row['classUpdated_on']; ?></td>
+                    <td>
+                      <a class="btn btn-primary btn-sm" href="editclass.php?id=<?php echo $row['id']; ?>">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                      </a>
+                    </td>
+                    <td>
+                      <a 
+                        href = "code/deleteclass.php?id=<?php echo $row['id']?>" 
+                        class="btn btn-danger btn-sm"
+                        data-toggle="tooltip" 
+                        title="Delete" 
+                        name="DeleteID"
+                      >
+                      <span class="glyphicon glyphicon-trash"></span>
+                      </a>
+                    </td>
+                  </tr>
+                  <?php 
+                    } 
+                  ?>
                 </tbody>
-
-            <!-- This Is used for Display the message While No data Found -->
                 <tfoot><?php renderTableHeaderPart($tableColumns, $order , $currentPage); ?></tfoot>
               </table>
 
-              <div class="row">                      
+              <div class="row">
                 <?php pagination($currentPage , $postPerPage , $search , $response , $totalpages); ?>
-                <!-- <div class="col-sm-5">
-                  <div class="dataTables_info" id="example1_info" role="status" aria-live="polite">Showing 1 to <?php echo $postPerPage; ?> of <?php echo $response; ?> entries
-                  </div>
-                </div> -->
-                <!-- <div class="col-sm-7">
-                  <div class="dataTables_paginate paging_simple_numbers" id="example1_paginate"> -->
-                    <!-- <ul class="pagination">
-                      <?php
-                      if( $currentPage ){ 
-                        $previous = $currentPage-1;
-                        $class    = ($currentPage == 1)? 'disabled' : '';
-                        $href     = ($currentPage == 1)? '#' : '&page=';
-                      ?>
-                      <li class="<?php echo $class; ?>">
-                        <a href="?search=<?php echo $search; ?><?php echo $href . $previous; ?>">Previous</a>
-                      </li>
-                     <?php } ?>
-                     <?php
-                        for($i =1; $i <= $totalpages; $i++){ 
-                          $class = ($i == $currentPage) ? "active" : "";
-                          $href  = ($i == $currentPage) ? "#"      : "&page={$i}";
-                       ?>
-                      <li class="<?php echo $class; ?>">
-                        <a href="?search=<?php echo $search; ?><?php echo $href; ?>">
-                          <?php echo $i; ?>
-                        </a>
-                      </li>
-                      <?php } ?>
-                      <?php  
-                        if( $currentPage ){
-                          $next  = $currentPage+1; 
-                          $class = ($currentPage == $totalpages)? 'disabled' : '';
-                          $href  = ($currentPage == $totalpages)? '#' : '&page=';
-                          ?>
-                      <li class="<?php echo $class; ?>" >
-                        <a href="?search=<?php echo $search; ?><?php echo $href . $next; ?>">Next</a>
-                      </li>
-                       <?php }  ?>
-                    </ul> -->
-                  <!-- </div>
-                </div> -->
               </div>
             </div>
             </div>

@@ -19,26 +19,4 @@
   $postPerPage    = intval($entries);
   $offset         = ( $currentPage - 1) * $postPerPage;
   $queryPart      = "";
-?><!-- 
-
-  $postPerPage = 10;
-
-  if(isset($_REQUEST['listing']) && $_REQUEST['listing'] == '25'){
-    $postPerPage = 25;
-  }
-  if(isset($_REQUEST['listing']) && $_REQUEST['listing'] == '50'){
-    $postPerPage = 50;
-  }
-  if(isset($_REQUEST['listing']) && $_REQUEST['listing'] == '100'){
-    $postPerPage = 100;
-  }
-
-  $currentPage = empty($page) ? 1 : intval( $page );
-  $currentPage = max($currentPage, 1);
-  // $currentPage--; // Because MYSQL uses 0 index
-
-  $offset      = ( $currentPage - 1) * $postPerPage;
-  $queryPart   = "";
-  $orderPart   = "";  
-
-?> -->
+?>
