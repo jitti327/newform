@@ -300,3 +300,12 @@
       </label>
     </div> 
 <?php  return true;} ?> 
+
+
+<?php 
+  /* Here I want to add the validation on submit the form:-
+  * Function Name : requiredValidation
+  */
+  function requiredValidation(){
+    return $message = '<span style="color: rgb(255,0,0);">** This field is required</span>';
+  }

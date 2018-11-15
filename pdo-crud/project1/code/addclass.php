@@ -1,4 +1,7 @@
 <?php
+  
+  include("function.php");
+
   $message = "";
 
   $editId = "";
@@ -24,22 +27,22 @@
       $error = false;
 
       if(empty($classTitle)){
-        $classTitleError = '<span style="color: rgb(255,0,0);">** Class Title is required</span>';
+        $classTitleError = requiredValidation();
         $error = true;
       }
 
       if(empty($classDescription)){
-        $classDescriptionError = '<span style="color: rgb(255,0,0);">** Description is required</span>';
+        $classDescriptionError = requiredValidation();
         $error = true;
       }
 
       if(empty($classDuration)){
-        $classDurationError = '<span style="color: rgb(255,0,0);">** Duration is required</span>';
+        $classDurationError = requiredValidation();
         $error = true;
       }
 
       if(empty($classcreated)){
-        $classDurationError = '<span style="color: rgb(255,0,0);">** Duration is required</span>';
+        $classDurationError = requiredValidation();
         $error = true;
       }
 

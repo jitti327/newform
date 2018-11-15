@@ -91,15 +91,7 @@
                   <td><input type="checkbox" value="<?php echo $row['id']; ?>" name="userDlt[]" class="checkthis" /></td>
                   <td><?php echo ++$offset; ?></td>
                     <!-- <?php echo $row['id']; ?> -->
-                  <td>
-                    <?php                    
-                      $query = "SELECT * FROM `class` WHERE `id` = ".$row['Class'];
-                      $subQuery = $dbh->query($query);
-                      $fetch = $subQuery->fetch();
-
-                      echo ( $row['Class'] == $fetch['id'] ) ? $fetch['classTitle'] : $row['Class'] ; 
-                    ?>                        
-                  </td>
+                  <td><?php echo $row['cTitle']; ?></td>
                   <td><?php echo $row['subjectTitle']; ?></td>
                   <td>
                     <?php 
