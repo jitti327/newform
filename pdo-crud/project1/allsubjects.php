@@ -89,10 +89,8 @@
                   ?>
                 <tr>
                   <td><input type="checkbox" value="<?php echo $row['id']; ?>" name="userDlt[]" class="checkthis" /></td>
-                  <td>
-                    <?php echo ++$offset; ?>
+                  <td><?php echo ++$offset; ?></td>
                     <!-- <?php echo $row['id']; ?> -->
-                  </td>
                   <td>
                     <?php                    
                       $query = "SELECT * FROM `class` WHERE `id` = ".$row['Class'];

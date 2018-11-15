@@ -67,7 +67,7 @@
 
   // # Calling the above function:-
 
-  //  mayMultipleDelete( 'class' , $id); 
+  //  mayMultipleDelete( 'name of the table' , $id); 
 
 
   /*
@@ -180,54 +180,63 @@
   *               : $totalpages  -> PerPage of records
   * Return        : True
   */ 
-    function pagination($currentPage , $postPerPage , $searchName , $response , $totalpages){ ?>
-        <div class="col-sm-5">
-          <div class="dataTables_info" id="example1_info" role="status" aria-live="polite">
-            Showing 1 to <?php echo $postPerPage; ?> of <?php echo $response; ?> entries
-          </div>
-        </div>
-        <div class="col-sm-7">
-          <div class="dataTables_paginate paging_simple_numbers" id="example1_paginate">    
-            <ul class="pagination">
-            <?php
-              if( $currentPage  ){ 
-                $previous  = $currentPage-1;
-                $class     = ($currentPage == 1)  ? 'disabled' : '';
-                $href      = ($currentPage == 1)  ? '#'        : '';
-              ?>
-                <li class="<?php echo $class; ?>">
-                  <a 
-                    href="?searchName=<?php echo $searchName; ?>&multiAction=&page=<?php echo $previous.$href;?> ">
-                    Previous</a>
-                </li>
-             <?php }
-                for($j=1; $j <= $totalpages; $j++){ 
-                  $class  = ($j == $currentPage)  ? 'active' : '';
-                  $href   = ($j == $currentPage)  ? '#'      : '';
-               ?>
-              <li class="<?php echo $class; ?>">
-                <a href="?searchName=<?php echo $searchName; ?>&multiAction=&page=<?php echo $j.$href; ?>"><?php echo $j; ?></a>
-              </li>
-              <?php } ?>
-              <?php  
-                if( $currentPage ){
-                  $next   = $currentPage+1; 
-                  $next   = ($response == 0)                ? '#'        : '';
-                  $class  = ($currentPage == $totalpages)   ? 'disabled' : '';
-                  $class  = ($response == 0)                ? 'disabled' : '';
-                  $href   = ($currentPage == $totalpages)   ? '#'        : '';
-                  ?>
-                  <li class="<?php echo $class; ?>">
-                    <a 
-                      href="?searchName=<?php echo $searchName; ?>&multiAction=&page=<?php echo $next.$href;?>">Next</a>
-                  </li>
-               <?php }  ?>
-              </ul> 
-            </div>
-          </div>  
-     <?php 
-       return true; 
-        }
+  function pagination($currentPage , $postPerPage , $searchName , $response , $totalpages){ ?>
+    <div class="col-sm-5">
+      <div class="dataTables_info" id="example1_info" role="status" aria-live="polite">
+        Showing 1 to 
+        <?php
+          if($postPerPage < $response){
+            echo $postPerPage; 
+          }
+          else{
+            echo $response;
+          }
+        ?> 
+        of <?php echo $response; ?> entries
+      </div>
+    </div>
+    <div class="col-sm-7">
+      <div class="dataTables_paginate paging_simple_numbers" id="example1_paginate">    
+        <ul class="pagination">
+        <?php
+          if( $currentPage  ){ 
+            $previous  = $currentPage-1;
+            $class     = ($currentPage == 1)  ? 'disabled' : '';
+            $href      = ($currentPage == 1)  ? '#'        : '';
+          ?>
+          <li class="<?php echo $class; ?>">
+            <a 
+              href="?searchName=<?php echo $searchName; ?>&multiAction=&page=<?php echo $href.$previous;?> ">
+              Previous</a>
+          </li>
+       <?php }
+          for($i=1; $i <= $totalpages; $i++){ 
+            $class  = ($i == $currentPage)  ? 'active' : '';
+            $href   = ($i == $currentPage)  ? '#'      : '';
+         ?>
+        <li class="<?php echo $class; ?>">
+          <a href="?searchName=<?php echo $searchName; ?>&multiAction=&page=<?php echo $i.$href; ?>"><?php echo $i; ?></a>
+        </li>
+        <?php } ?>
+        <?php  
+          if( $currentPage ){
+            $next   = $currentPage+1; 
+            // $next   = ($response == 0)                ? '#'        : '';
+            $class  = ($currentPage == $totalpages)   ? 'disabled' : '';
+            // $class  = ($response == 0)                ? 'disabled' : '';
+            $href   = ($currentPage == $totalpages)   ? '#'        : '';
+            ?>
+            <li class="<?php echo $class; ?>">
+              <a 
+                href="?searchName=<?php echo $searchName; ?>&multiAction=&page=<?php echo $next.$href;?>">Next</a>
+            </li>
+         <?php }  ?>
+        </ul> 
+      </div>
+    </div>  
+   <?php 
+     return true; 
+      }
   /*
   * Function Name : showEnteriesField 
   * Parameter     : $fieldname     -> write of the field name
@@ -235,7 +244,7 @@
                   : postPerPage -> Display of the record
   * Return        : true                
   */
-   function showEnteriesField($fieldname , $option , $postPerPage){ ?>
+  function showEnteriesField($fieldname , $option , $postPerPage){ ?>
     <div class="dataTables_length col-sm-4" id="example1_length">
       <label>Show 
         <select name="<?php echo $fieldname; ?>" aria-controls="example1" class="form-control input-sm">
@@ -251,43 +260,43 @@
   <?php return true; } ?> 
   <?php 
   /*
-   * Function Name : searchField
-   * Parameter     : $fieldName -> name of the field
-   * Return        : true
-   */ 
-    function searchField($fieldName){ ?>
-      <label>Search:
-        <div class="input-group input-group-sm">
-          <input 
-            type="search" 
-            class="form-control input-sm"
-            value="<?php echo isset($_REQUEST[$fieldName]) ? $_REQUEST[$fieldName] : '' ;?>" 
-            placeholder="What you looking for?" 
-            aria-controls="example1" 
-            name="<?php echo $fieldName; ?>">
-          <span class="input-group-btn">
-            <button class="btn btn-primary btn-sm"  type="submit" name="search"><span class="glyphicon glyphicon-search"></span></button>
-          </span>
-        </div>
-      </label>
+  * Function Name : searchField
+  * Parameter     : $fieldName -> name of the field
+  * Return        : true
+  */ 
+  function searchField($fieldName){ ?>
+    <label>Search:
+      <div class="input-group input-group-sm">
+        <input 
+          type="search" 
+          class="form-control input-sm"
+          value="<?php echo isset($_REQUEST[$fieldName]) ? $_REQUEST[$fieldName] : '' ;?>" 
+          placeholder="What you looking for?" 
+          aria-controls="example1" 
+          name="<?php echo $fieldName; ?>">
+        <span class="input-group-btn">
+          <button class="btn btn-primary btn-sm"  type="submit" name="search"><span class="glyphicon glyphicon-search"></span></button>
+        </span>
+      </div>
+    </label>
   <?php return true;} ?> 
   <?php 
   /*
-   * Function Name : bulkAction
-   * Parameter     : $fieldName -> write of the field name
-                   : $addField  -> Add new option value
-   * Return        : ture                
-   */
-    function bulkAction($fieldName , $addField){ ?>
-      <div class="dataTables_length col-sm-4" id="example1_length">
-        <label>Action :
-          <select aria-controls="example1" name="<?php echo $fieldName; ?>" class="form-control input-sm bulkaction">
-            <option value="">Select</option>
-            <?php foreach( $addField as $key => $value ){ ?>
-              <option value="<?php echo $key; ?>"><?php echo $value ?></option>
-            <?php } ?>  
-          </select>
-          <button class="btn btn-sm btn-primary btn-create" id="actionButton">Action</button>
-        </label>
-      </div> 
-  <?php  return true;} ?> 
+  * Function Name : bulkAction
+  * Parameter     : $fieldName -> write of the field name
+                  : $addField  -> Add new option value
+  * Return        : ture                
+  */
+  function bulkAction($fieldName , $addField){ ?>
+    <div class="dataTables_length col-sm-4" id="example1_length">
+      <label>Action :
+        <select aria-controls="example1" name="<?php echo $fieldName; ?>" class="form-control input-sm bulkaction">
+          <option value="">Select</option>
+          <?php foreach( $addField as $key => $value ){ ?>
+            <option value="<?php echo $key; ?>"><?php echo $value ?></option>
+          <?php } ?>  
+        </select>
+        <button class="btn btn-sm btn-primary btn-create" id="actionButton">Action</button>
+      </label>
+    </div> 
+<?php  return true;} ?> 

@@ -84,12 +84,7 @@
                   ?>
                   <tr>
                     <td><input type="checkbox" value="<?php echo $row['id']; ?>" name="userDlt[]" class="checkthis" /></td>
-                    <td>
-                      <?php 
-                        // echo ++$offset;
-                        echo $row['id']; 
-                      ?>                      
-                    </td>
+                    <td><?php echo ++$offset; ?></td>
                     <td><?php echo $row['classTitle']; ?></td>
                     <td><?php echo mb_strimwidth($row['classDescription'], 0, 20, "....."); ?></td>
                     <!-- <?php echo $row['classDescription']; ?> -->

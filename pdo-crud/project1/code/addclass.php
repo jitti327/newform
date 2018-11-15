@@ -24,22 +24,22 @@
       $error = false;
 
       if(empty($classTitle)){
-        $classTitleError = '<span style="color: rgb(255,0,0);">**Class Title is required</span>';
+        $classTitleError = '<span style="color: rgb(255,0,0);">** Class Title is required</span>';
         $error = true;
       }
 
       if(empty($classDescription)){
-        $classDescriptionError = '<span style="color: rgb(255,0,0);">**Description is required</span>';
+        $classDescriptionError = '<span style="color: rgb(255,0,0);">** Description is required</span>';
         $error = true;
       }
 
       if(empty($classDuration)){
-        $classDurationError = '<span style="color: rgb(255,0,0);">**Duration is required</span>';
+        $classDurationError = '<span style="color: rgb(255,0,0);">** Duration is required</span>';
         $error = true;
       }
 
       if(empty($classcreated)){
-        $classDurationError = '<span style="color: rgb(255,0,0);">**Duration is required</span>';
+        $classDurationError = '<span style="color: rgb(255,0,0);">** Duration is required</span>';
         $error = true;
       }
 
