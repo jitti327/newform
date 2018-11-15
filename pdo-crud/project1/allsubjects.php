@@ -1,6 +1,6 @@
 <?php
   include("db/connection.php");
-  include("code/config/afunction.php");
+  include("code/function.php");
   include("code/allsubjects.php");
 
   // These are comming from the above afunction.php file
@@ -82,8 +82,8 @@
                 <tr>
                   <td><input type="checkbox" value="<?php echo $row['id']; ?>" name="userDlt[]" class="checkthis" /></td>
                   <td>
-                    <!-- <?php echo ++$offset; ?> -->
-                    <?php echo $row['id']; ?>
+                    <?php echo ++$offset; ?>
+                    <!-- <?php echo $row['id']; ?> -->
                   </td>
                   <td>
                     <?php                    

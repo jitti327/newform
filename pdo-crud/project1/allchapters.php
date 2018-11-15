@@ -1,7 +1,7 @@
 <?php
   include("db/connection.php");
+  include("code/function.php");
   include("code/allchapters.php");
-  include("code/config/afunction.php");
 
   // These are comming from the above afunction.php file
 
@@ -166,7 +166,7 @@
                       </li>
                       <?php } ?>
                       <?php  
-                        if( $currentPage ){
+                        if( $currentPage !== $totalpages ){
                           $next  = $currentPage+1; 
                           $class = ($currentPage == $totalpages)? 'disabled' : '';
                           $href  = ($currentPage == $totalpages)? '#' : '&page=';

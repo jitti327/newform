@@ -1,6 +1,6 @@
 <?php 
 
-  multipleDelete('subject' , 'multiDelete' , 'userDlt'); //  This is used to delete multiple data
+  multipleDelete('subject' , 'multiDelete' , 'userDlt'); // This is used to delete multiple data
  
   include('config/pagination.php');
 
