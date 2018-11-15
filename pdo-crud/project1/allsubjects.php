@@ -59,7 +59,7 @@
 
                   $tableColumns = [
                     "Class"                       => "Class",
-                    "subjectTitle"                => "Title",
+                    "cTitle"                      => "Title",
                     "subjectDescription"          => "Description",
                     "subjectTheoreticalnumber"    => "Theoretical No.",
                     "subjectPracticalnumber"      => "Practical No.",
@@ -98,7 +98,7 @@
                       // $string = $row['subjectDescription'];
                       echo mb_strimwidth($row['subjectDescription'], 0, 20, ".....");
                     ?>
-                    <!-- <?php echo $row['subjectDescription']; ?>                       -->
+                    <!-- <?php echo $row['subjectDescription']; ?> -->
                   </td>
                   <td><?php echo $row['subjectTheoreticalnumber']; ?></td>
                   <td><?php echo $row['subjectPracticalnumber']; ?></td>

@@ -158,7 +158,7 @@
   function renderTableHeaderPart($columnDetails, $order ,$currentPage){
     global $currentPage;
     echo "<tr>";
-    echo '<th style="width: 74px"><input type="checkbox" id="checkall" /><i class="countChecked"></i></th>';
+    echo '<th><input type="checkbox" id="checkall" /><i class="countchecked"></i></th>';
     echo '<th>S.No.</th>';
     foreach($columnDetails as $key => $value){
  ?>

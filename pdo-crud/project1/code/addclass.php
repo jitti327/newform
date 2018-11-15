@@ -27,13 +27,13 @@
       $error = false;
 
       if(empty($classTitle)){
-        $classTitleError = requiredValidation();
-        $error = true;
+        $classTitleError        = requiredValidation();
+        $error                  = true;
       }
 
       if(empty($classDescription)){
         $classDescriptionError = requiredValidation();
-        $error = true;
+        $error                 = true;
       }
 
       if(empty($classDuration)){
