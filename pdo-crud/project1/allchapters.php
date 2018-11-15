@@ -61,7 +61,7 @@
                     "chapterTitle"                => "Title",
                     "chapterDescription"          => "Description",
                     "chapterNumber_assigned"      => "Total No.",
-                    "chapterSubject"              => "Subject",
+                    "sTitle"                      => "Subject",
                     "chapterCreated_on"           => "Created On",
                     "chapterUpdated_on"           => "Updated On"
                   ];
@@ -97,15 +97,7 @@
                       ?>                        
                     </td>
                     <td><?php echo $row['chapterNumber_assigned']; ?></td>
-                    <td>
-                      <?php                    
-                        $query = "SELECT * FROM `subject` WHERE `id` = ".$row['chapterSubject'];
-                        $subQuery = $dbh->query($query);
-                        $fetch = $subQuery->fetch();
-
-                        echo ( $row['chapterSubject'] == $fetch['id'] ) ? $fetch['subjectTitle'] : $row['chapterSubject'] ; 
-                      ?>
-                    </td>
+                    <td><?php echo $row['sTitle']; ?></td>
                     <td><?php echo $row['chapterCreated_on']; ?></td>
                     <td><?php echo $row['chapterUpdated_on']; ?></td>
                     <td>

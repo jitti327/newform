@@ -38,9 +38,14 @@
     $query = "
       SELECT
       SQL_CALC_FOUND_ROWS
-       *
+       `chapter`.*,
+       `subject`.subjectTitle as sTitle
       FROM
        `chapter`
+      INNER JOIN
+        `subject`
+      ON 
+        `chapter`.chapterSubject = `subject`.id
       {$queryPart}
       {$orderPart}
       LIMIT :offset , :postPerPage 

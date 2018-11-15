@@ -58,8 +58,8 @@
                   // These are comming from the above function.php file
 
                   $tableColumns = [
-                    "Class"                       => "Class",
-                    "cTitle"                      => "Title",
+                    "cTitle"                      => "Class",
+                    "subjectTitle"                => "Title",
                     "subjectDescription"          => "Description",
                     "subjectTheoreticalnumber"    => "Theoretical No.",
                     "subjectPracticalnumber"      => "Practical No.",
