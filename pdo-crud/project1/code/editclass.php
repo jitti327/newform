@@ -13,13 +13,11 @@
 
   $message = "";
 
-  $classTitleError = "";
+  $titleError = "";
 
-  $classDescriptionError = "";
+  $descriptionError = "";
 
-  $classDurationError = "";
-
-  $classupdatedError = "";
+  $durationError = "";
   
  try{
 
@@ -27,73 +25,68 @@
     
     #Validation Starts Here
 
-    $classTitle = $_POST['classTitle'];
-    $classDescription  = $_POST['classDescription'];
-    $classDuration  = $_POST['classDuration'];
-    $classupdated     = $_POST['classupdated'];
+    $title        = $_POST['title'];
+    $description  = $_POST['description'];
+    $duration     = $_POST['duration'];
 
     $error = false;
 
-    if(empty($classTitle)){
-      $classTitleError = '<span style="color: rgb(255,0,0);">** Class Title is required</span>';
+    if(empty($title)){
+      $titleError = requiredValidation();
       $error = true;
     }
 
-    if(empty($classDescription)){
-      $classDescriptionError = '<span style="color: rgb(255,0,0);">** Class Description is required</span>';
+    if(empty($description)){
+      $descriptionError = requiredValidation();
       $error = true;
     }
 
-    if(empty($classDuration)){
-      $classDurationError = '<span style="color: rgb(255,0,0);">** Duration is required</span>';
+    if(empty($duration)){
+      $durationError = requiredValidation();
       $error = true;
     }
 
-    if(empty($classupdated)){
-      $classupdatedError = '<span style="color: rgb(255,0,0);">** Class Updation Date is required</span>';
+    # Finding if the email is not taken by other
+
+    $stmt = $dbh->prepare( "
+      SELECT 
+        * 
+      FROM
+        `class` 
+      WHERE 
+        title = :title
+        && 
+        id <> :id
+      LIMIT 1");
+
+    $stmt->execute([
+      'title' => $title,
+      'id'    => $editId
+    ]);
+
+    if($stmt->rowCount() != 0){
+      $message  = '<span style="color: rgb(255,0,0);">** Sorry Class is already added<span>';
       $error = true;
     }
-
-    // # Finding if the classupdated is not taken by other
-
-    // $stmt = $dbh->prepare( "
-    //   SELECT 
-    //     * 
-    //   FROM
-    //     `class` 
-    //   WHERE 
-    //     id <> :id
-    //   LIMIT 1");
-
-    // $stmt->execute([ 
-    //   'id'         => $editId
-    // ]);
-
-    // if($stmt->rowCount() != 0){
-    //   $classupdatedError = '<span style="color: rgb(255,0,0);">** Class is already taken</span>';
-    //   $error = true;
-    // }
 
     # There is no error in the validation and data
     # Hence saving the data
     if(!$error){
 
       $data = [
-        'id'                => $editId,
-        'classTitle'        => $classTitle,
-        'classDescription'  => $classDescription,
-        'classDuration'     => $classDuration,
-        'classupdated'      => $classupdated
+        'id'           => $editId,
+        'title'        => $title,
+        'description'  => $description,
+        'duration'     => $duration
       ];
 
       $sql = "
         UPDATE 
           `class` 
         SET 
-          `classTitle`= :classTitle,
-          `classDescription`= :classDescription,
-          `classDuration`= :classDuration,
-          `classUpdated_on`= :classupdated
+          `title`= :title,
+          `description`= :description,
+          `duration`= :duration
         WHERE 
           `id` =:id";
     

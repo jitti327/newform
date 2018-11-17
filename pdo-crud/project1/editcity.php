@@ -56,6 +56,38 @@
                       <div class="Message">
                         <?php echo $stateError; ?>
                       </div>
+                    </div>     
+                    <div class="form-group">
+                      <label for="country">Country :</label>                    
+                      <select  name="country" aria-controls="example1" class="form-control input-sm">
+                        <option value="">Select</option>
+                        <?php 
+                          $country = (empty($country)) ? '' : $country;
+                          $selectQuery = $dbh->query("SELECT * FROM `country`");
+                            while($fetch = $selectQuery->fetch() ){
+                        ?>
+                        <option value="<?php echo $fetch['id']; ?>"<?php echo ($fetch['id'] == $country) ? " selected='selected' " : ''; ?>><?php echo $fetch['name']; ?></option>
+                      <?php } ?>
+                      </select>
+                      <div class="Message">
+                        <?php echo $countryError; ?>
+                      </div>
+                    </div>     
+                    <div class="form-group">
+                      <label for="district">District :</label>                    
+                      <select  name="district" aria-controls="example1" class="form-control input-sm">
+                        <option value="">Select</option>
+                        <?php 
+                          $district = (empty($district)) ? '' : $district;
+                          $selectQuery = $dbh->query("SELECT * FROM `district`");
+                            while($fetch = $selectQuery->fetch() ){
+                        ?>
+                        <option value="<?php echo $fetch['id']; ?>"<?php echo ($fetch['id'] == $district) ? " selected='selected' " : ''; ?>><?php echo $fetch['name']; ?></option>
+                      <?php } ?>
+                      </select>
+                      <div class="Message">
+                        <?php echo $districtError; ?>
+                      </div>
                     </div>
                     <div class="box-footer">
                       <button type="submit" name="update" class="btn btn-primary">Update</button>

@@ -60,7 +60,9 @@
                   $tableColumns = [
                     "name"                => "Name",
                     "description"         => "Description",
-                    "sName"               => "State"
+                    "cName"               => "Country",
+                    "sName"               => "State",
+                    "dName"               => "District"
                   ];
                 ?>                
                 <thead><?php renderTableHeaderPart($tableColumns, $order , $currentPage); ?></thead>
@@ -87,7 +89,9 @@
                   <td><?php echo ++$offset; ?></td>
                   <td><?php echo $row['name']; ?></td>
                   <td><?php echo mb_strimwidth($row['description'], 0, 20, "....."); ?></td>
+                  <td><?php echo $row['cName']; ?></td>
                   <td><?php echo $row['sName']; ?></td>
+                  <td><?php echo $row['dName']; ?></td>
                   <td>
                     <a class="btn btn-primary btn-sm" href="editcity.php?id=<?php echo $row['id']; ?>">
                       <span class="glyphicon glyphicon-pencil"></span>

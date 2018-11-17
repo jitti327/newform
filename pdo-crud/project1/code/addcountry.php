@@ -56,7 +56,7 @@
       if(!$error){
 
       $row = [
-        'name'       => $name,
+        'name'        => $name,
         'description' => $description
       ];
 
@@ -75,11 +75,10 @@
       $message = '<span style="color: rgb(255,0,0);"> No Class Added</sapn>';
     }
   }
-}
-catch (PDOException $e) {
-  echo 'Connection failed: ' . $e->getMessage();
-}
-
-  include("include/header.php");
-  include("include/sidebar.php");
+    include("include/header.php");
+    include("include/sidebar.php");
+  }
+  catch (PDOException $e) {
+    echo 'Connection failed: ' . $e->getMessage();
+  }
 ?>

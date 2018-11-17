@@ -19,21 +19,21 @@
     if(!empty($search)){
       $queryPart   = "
         WHERE
-          `subjectTitle` LIKE :search
+          `title` LIKE :search
         OR
-          `subjectDescription` LIKE :search
+          `description` LIKE :search
         OR
-          `subjectPracticalnumber` LIKE :search
+          `practical_number` LIKE :search
         OR
-          `subjectTheoreticalnumber` LIKE :search
+          `theoretical_number` LIKE :search
         OR
-          `subjectExaminationTime` LIKE :search
+          `duration` LIKE :search
         OR
-          `Class` LIKE :search
+          `class_id` LIKE :search
         OR
-          `subjectCreated_on`  LIKE :search
+          `created_on`  LIKE :search
         OR
-          `subjectUpdated_on`  LIKE :search
+          `updated_on`  LIKE :search
       ";
     }
 
@@ -45,13 +45,13 @@
       SELECT
       SQL_CALC_FOUND_ROWS
        `subject`.*,
-       `class`.classTitle as cTitle
+       `class`.title as cTitle
       FROM
        `subject`
       INNER JOIN 
         `class`
       ON 
-        `subject`.Class = `class`.id
+        `subject`.class_id = `class`.id
       {$queryPart}
       {$orderPart}
       LIMIT :offset , :postPerPage 
@@ -62,7 +62,7 @@
     $record->bindValue(':postPerPage', $postPerPage, PDO::PARAM_INT);
 
     if(!empty($search)){
-      $record->bindValue(':search', '%'.$search.'% ');
+      $record->bindValue(':search', '%'.$search.'%');
     }
 
     $record-> execute();

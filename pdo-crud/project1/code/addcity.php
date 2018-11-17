@@ -7,7 +7,11 @@
 
   $descriptionError = "";
 
+  $countryError = "";
+
   $stateError = "";
+
+  $districtError = "";
 
   try{
     if(isset($_POST['add'])){
@@ -16,7 +20,9 @@
 
       $name         = $_POST['name'];
       $description  = $_POST['description'];
+      $country      = $_POST['country'];
       $state        = $_POST['state'];
+      $district     = $_POST['district'];
 
       $error = false;
 
@@ -30,8 +36,18 @@
         $error = true;
       }
 
+      if(empty($county)){
+        $countryError = '<span style="color: rgb(255,0,0);">** Please Select the Country</span>';
+        $error = true;
+      }
+
       if(empty($state)){
         $stateError = '<span style="color: rgb(255,0,0);">** Please Select the state</span>';
+        $error = true;
+      }
+
+      if(empty($district)){
+        $districtError = '<span style="color: rgb(255,0,0);">** Please Select the District</span>';
         $error = true;
       }
 
@@ -43,22 +59,30 @@
       FROM
         `city`
       WHERE 
-        name= :name 
+        name= :name
         &&  
-        state_id= :state 
+        country_id= :country
+        &&  
+        state_id= :state
+        &&  
+        district_id= :district
         &&
         id <> :id
       LIMIT 1");
 
     $stmt->execute([ 
       'name'     => $name,
+      'country'  => $country,
       'state'    => $state,
+      'district' => $district,
       'id'       => $editId
     ]);
 
     if($stmt->rowCount() != 0){
       $nameError = '<span style="color: rgb(255,0,0);">** City is already taken</span>';
+      $countryError = '<span style="color: rgb(255,0,0);">** State is already taken</span>';
       $stateError = '<span style="color: rgb(255,0,0);">** State is already taken</span>';
+      $districtError = '<span style="color: rgb(255,0,0);">** State is already taken</span>';
       $error = true;
     }
 
@@ -67,15 +91,17 @@
       $row = [
         'name'          => $name,
         'description'   => $description,
-        'state'         => $state
+        'country'       => $country,
+        'state'         => $state,
+        'district'      => $district
       ];
 
       $sql = "
         INSERT 
          INTO `city`
-          (`name`, `description`, `state_id`)
+          (`name`, `description`, `country_id`, `state_id`, `district_id`)
         VALUES 
-        (:name , :description , :state)";
+        (:name , :description , :country , :state , :district)";
         
       $statement = $dbh->prepare($sql);
       $status    = $statement->execute($row);
@@ -85,11 +111,11 @@
       $message = '<span style="color: rgb(255,0,0);"> No City Added</sapn>';
     }
   }
+
+  include("include/header.php");
+  include("include/sidebar.php");
 }
 catch (PDOException $e) {
   echo 'Connection failed: ' . $e->getMessage();
 }
-
-  include("include/header.php");
-  include("include/sidebar.php");
 ?>

@@ -58,14 +58,14 @@
                   // These are comming from the above function.php file
 
                   $tableColumns = [
-                    "cTitle"                      => "Class",
-                    "subjectTitle"                => "Title",
-                    "subjectDescription"          => "Description",
-                    "subjectTheoreticalnumber"    => "Theoretical No.",
-                    "subjectPracticalnumber"      => "Practical No.",
-                    "subjectExaminationTime"      => "Duration",
-                    "subjectCreated_on"           => "Created On",
-                    "subjectUpdated_on"           => "Updated On"
+                    "cTitle"              => "Class",
+                    "title"               => "Title",
+                    "description"         => "Description",
+                    "theoretical_number"  => "Theoretical No.",
+                    "practical_number"    => "Practical No.",
+                    "duration"            => "Duration",
+                    "created_on"          => "Created On",
+                    "updated_on"          => "Updated On"
                   ];
                 ?>                
                 <thead><?php renderTableHeaderPart($tableColumns, $order , $currentPage); ?></thead>
@@ -92,19 +92,14 @@
                   <td><?php echo ++$offset; ?></td>
                     <!-- <?php echo $row['id']; ?> -->
                   <td><?php echo $row['cTitle']; ?></td>
-                  <td><?php echo $row['subjectTitle']; ?></td>
-                  <td>
-                    <?php 
-                      // $string = $row['subjectDescription'];
-                      echo mb_strimwidth($row['subjectDescription'], 0, 20, ".....");
-                    ?>
-                    <!-- <?php echo $row['subjectDescription']; ?> -->
-                  </td>
-                  <td><?php echo $row['subjectTheoreticalnumber']; ?></td>
-                  <td><?php echo $row['subjectPracticalnumber']; ?></td>
-                  <td><?php echo $row['subjectExaminationTime']; ?></td>
-                  <td><?php echo $row['subjectCreated_on']; ?></td>
-                  <td><?php echo $row['subjectUpdated_on']; ?></td>
+                  <td><?php echo $row['title']; ?></td>
+                  <td><?php echo mb_strimwidth($row['description'], 0, 20, "....."); ?></td>
+                    <!-- <?php echo $row['description']; ?> -->
+                  <td><?php echo $row['theoretical_number']; ?></td>
+                  <td><?php echo $row['practical_number']; ?></td>
+                  <td><?php echo $row['duration']; ?></td>
+                  <td><?php echo $row['created_on']; ?></td>
+                  <td><?php echo $row['updated_on']; ?></td>
                   <td>
                     <a class="btn btn-primary btn-sm" href="editsubject.php?id=<?php echo $row['id']; ?>">
                       <span class="glyphicon glyphicon-pencil"></span>

@@ -23,7 +23,11 @@
         OR
           `description` LIKE :search
         OR
+          `cName` LIKE :search
+        OR
           `sName` LIKE :search
+        OR
+          `dName` LIKE :search
       ";
     }
 

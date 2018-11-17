@@ -2,16 +2,16 @@
   include("db/connection.php");
   include("code/addcountry.php");
 ?>
-
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <section class="content-header">
       <h1>
-        <small> Add Class</small>
+        <small> Add Country</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="Admin.php"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Add Class</li>
+        <li class="active">Add Country</li>
+        <li><a href="allcountries.php">Back To Listing</a></li>
       </ol>
     </section>
 

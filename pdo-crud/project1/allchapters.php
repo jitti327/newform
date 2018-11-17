@@ -58,12 +58,12 @@
                   // These are comming from the above function.php file
 
                   $tableColumns = [
-                    "chapterTitle"                => "Title",
-                    "chapterDescription"          => "Description",
-                    "chapterNumber_assigned"      => "Total No.",
-                    "sTitle"                      => "Subject",
-                    "chapterCreated_on"           => "Created On",
-                    "chapterUpdated_on"           => "Updated On"
+                    "title"                => "Title",
+                    "description"          => "Description",
+                    "number_assigned"      => "Total No.",
+                    "sTitle"               => "Subject",
+                    "created_on"           => "Created On",
+                    "updated_on"           => "Updated On"
                   ];
                 ?>                
                 <thead><?php renderTableHeaderPart($tableColumns, $order , $currentPage); ?></thead>
@@ -88,18 +88,12 @@
                   <tr>
                     <td><input type="checkbox" value="<?php echo $row['id']; ?>" name="userDlt[]" class="checkthis" /></td>
                     <td><?php echo ++$offset; ?></td>
-                    <td><?php echo $row['chapterTitle']; ?></td>
-                    <td>
-                      <?php
-                        //Used for truncate the words to 20 only
-                        echo mb_strimwidth($row['chapterDescription'], 0, 20, ".....");
-                        // echo $row['chapterDescription']; # Used to show the description data
-                      ?>                        
-                    </td>
-                    <td><?php echo $row['chapterNumber_assigned']; ?></td>
+                    <td><?php echo $row['title']; ?></td>
+                    <td><?php echo mb_strimwidth($row['description'], 0, 20, "....."); ?></td>
+                    <td><?php echo $row['number_assigned']; ?></td>
                     <td><?php echo $row['sTitle']; ?></td>
-                    <td><?php echo $row['chapterCreated_on']; ?></td>
-                    <td><?php echo $row['chapterUpdated_on']; ?></td>
+                    <td><?php echo $row['created_on']; ?></td>
+                    <td><?php echo $row['updated_on']; ?></td>
                     <td>
                       <a class="btn btn-primary btn-sm" href="editchapter.php?id=<?php echo $row['id']; ?>">
                         <span class="glyphicon glyphicon-pencil"></span>

@@ -10,7 +10,7 @@
         <small><a href="addcountry.php">Add New Country</a></small>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="../Admin.php"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="Admin.php"><i class="fa fa-dashboard"></i> Home</a></li>
         <li><a href="allcountries.php">All Countries</a></li>
       </ol>
     </section>

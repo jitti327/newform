@@ -29,30 +29,23 @@
                   <div class="col-sm-6">
                     <div class="form-group">
                       <label for="title">Title :</label>
-                      <input type="text" name="classTitle" class="form-control" value="<?php echo $show['classTitle']; ?>">
+                      <input type="text" name="title" class="form-control" value="<?php echo $show['title']; ?>">
                       <div class="Message">
-                        <?php echo $classTitleError; ?>
+                        <?php echo $titleError; ?>
                       </div>
                     </div>
                     <div class="form-group">
                       <label>Description :</label>
-                      <textarea class="form-control" name="classDescription"><?php echo $show['classDescription']; ?></textarea>
+                      <textarea class="form-control" name="description"><?php echo $show['description']; ?></textarea>
                       <div class="Message">
-                        <?php echo $classDescriptionError; ?>
+                        <?php echo $descriptionError; ?>
                       </div>
                     </div>
                     <div class="form-group">
-                      <label for="classDuration">Class Duration :</label>
-                      <input type="text" name="classDuration" class="form-control" value="<?php echo $show['classDuration']; ?>">
+                      <label for="duration">Class Duration :</label>
+                      <input type="text" name="duration" class="form-control" value="<?php echo $show['duration']; ?>">
                       <div class="Message">
-                        <?php echo $classDurationError; ?>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label for="classupdated">Class Updated Date :</label>
-                      <input type="Date" name="classupdated" class="form-control" value="<?php echo $show['classUpdated_on']; ?>">
-                      <div class="Message">
-                        <?php echo $classupdatedError; ?>
+                        <?php echo $durationError; ?>
                       </div>
                     </div>
                     <div class="box-footer">

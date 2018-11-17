@@ -11,7 +11,7 @@
       </h1>
       <ol class="breadcrumb">
         <li><a href="Admin.php"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="allsubjects.php">Subject</a></li>
+        <li><a href="allsubject.php">Subject</a></li>
         <li><a href="editsubject.php">Edit Subject Data</a></li>
       </ol>
     </section>   
@@ -29,64 +29,57 @@
                   <div class="col-sm-6">
                     <div class="form-group">
                       <label for="title">Title :</label>
-                      <input type="text" name="subjectTitle" class="form-control" value="<?php echo $show['subjectTitle']; ?>">
+                      <input type="text" name="title" class="form-control" value="<?php echo $show['title']; ?>">
                       <div class="Message">
-                        <?php echo $subjectTitleError; ?>
+                        <?php echo $titleError; ?>
                       </div>
                     </div>
                     <div class="form-group">
                       <label>Description :</label>
-                      <textarea class="form-control" name="subjectDescription" ><?php echo $show['subjectDescription']; ?></textarea>
+                      <textarea class="form-control" name="description" ><?php echo $show['description']; ?></textarea>
                       <div class="Message">
-                        <?php echo $subjectDescriptionError; ?>
+                        <?php echo $descriptionError; ?>
                       </div>
                     </div>
                     <div class="form-group">
-                      <label for="subjectpractical">Subject Practical Number :</label>
-                      <input type="text" name="subjectpracticalnum" class="form-control"  value="<?php echo $show['subjectPracticalnumber']; ?>">
+                      <label for="practical_number">Subject Practical Number :</label>
+                      <input type="text" name="practical_number" class="form-control"  value="<?php echo $show['practical_number']; ?>">
                       <div class="Message">
-                        <?php echo $subjectpracticalnumError; ?>
+                        <?php echo $practical_numberError; ?>
                       </div>
                     </div>
                     <div class="form-group">
-                      <label for="subjectnum">Subject Theoretical Number :</label>
-                      <input type="text" name="subjectnum" class="form-control" value="<?php echo $show['subjectTheoreticalnumber']; ?>">
+                      <label for="theoretical_number">Subject Theoretical Number :</label>
+                      <input type="text" name="theoretical_number" class="form-control" value="<?php echo $show['theoretical_number']; ?>">
                       <div class="Message">
-                        <?php echo $subjectnumError; ?>
+                        <?php echo $theoretical_numberError; ?>
                       </div>
                     </div>
                     <div class="form-group">
-                      <label for="subjecttime">Subject Examination Time :</label>
-                      <input type="text" name="subjecttime" class="form-control" value="<?php echo $show['subjectExaminationTime']; ?>">
+                      <label for="duration">Subject Examination Time :</label>
+                      <input type="text" name="duration" class="form-control" value="<?php echo $show['duration']; ?>">
                       <div class="Message">
-                        <?php echo $subjecttimeError; ?>
+                        <?php echo $durationError; ?>
                       </div>
                     </div>
                     <div class="form-group">
-                      <label for="class">Class :</label>                    
-                      <select  name="class" aria-controls="example1" class="form-control input-sm">
+                      <label for="class_id">Class :</label>                    
+                      <select  name="class_id" aria-controls="example1" class="form-control input-sm">
                         <option value="">Select</option>
                         <?php 
-                          $class = (empty($class)) ? '' : $class;
+                          $class_id = (empty($class_id)) ? '' : $class_id;
                           $selectQuery = $dbh->query("SELECT * FROM `class`");
                             while($fetch = $selectQuery->fetch() ){
                         ?>
-                        <option value="<?php echo $fetch['id']; ?>"<?php echo ($fetch['id'] == $show['Class']) ? " selected='selected' " : ''; ?>><?php echo $fetch['classTitle']; ?></option>
+                        <option value="<?php echo $fetch['id']; ?>"<?php echo ($fetch['id'] == $show['class_id']) ? " selected='selected' " : ''; ?>><?php echo $fetch['title']; ?></option>
                       <?php } ?>
                       </select>
                       <div class="Message">
-                        <?php echo $classError; ?>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label for="subjectupdated">Subject Created Date :</label>
-                      <input type="Date" name="subjectupdated" class="form-control" value="<?php echo $show['subjectUpdated_on']; ?>">
-                      <div class="Message">
-                        <?php echo $subjectupdatedError; ?>
+                        <?php echo $class_idError; ?>
                       </div>
                     </div>
                     <div class="box-footer">
-                      <button type="submit" name="updatesubject" class="btn btn-primary">Update</button>
+                      <button type="submit" name="update" class="btn btn-primary">Update</button>
                     </div>
                   </div>
                 </div>
@@ -99,3 +92,4 @@
   </div>
 <?php
   include("include/footer.php");
+?>

@@ -112,6 +112,18 @@
         </li>
         <li class="treeview">
           <a href="#">
+            <i class="fa fa-map-marker"></i> <span>District</span>
+            <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="adddistrict.php"><i class="fa fa-plus-square"></i> Add New District</a></li>
+            <li><a href="alldistricts.php"><i class="fa fa-circle-o"></i> All Districts</a></li>
+          </ul>
+        </li>
+        <li class="treeview">
+          <a href="#">
             <i class="fa fa-map-marker"></i> <span>City</span>
             <span class="pull-right-container">
                   <i class="fa fa-angle-left pull-right"></i>

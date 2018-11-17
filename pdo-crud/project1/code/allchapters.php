@@ -19,15 +19,15 @@
     if(!empty($search)){
       $queryPart   = "
         WHERE
-          `chapterTitle` LIKE :search
+          `title` LIKE :search
         OR
-          `chapterDescription` LIKE :search
+          `description` LIKE :search
         OR
-          `chapterNumber_assigned` LIKE :search
+          `number_assigned` LIKE :search
         OR
-          `chapterCreated_on`  LIKE :search
+          `created_on`  LIKE :search
         OR
-          `chapterUpdated_on`  LIKE :search
+          `updated_on`  LIKE :search
       ";
     }
 
@@ -39,13 +39,13 @@
       SELECT
       SQL_CALC_FOUND_ROWS
        `chapter`.*,
-       `subject`.subjectTitle as sTitle
+       `subject`.title as sTitle
       FROM
        `chapter`
       INNER JOIN
         `subject`
       ON 
-        `chapter`.chapterSubject = `subject`.id
+        `chapter`.subject_id = `subject`.id
       {$queryPart}
       {$orderPart}
       LIMIT :offset , :postPerPage 

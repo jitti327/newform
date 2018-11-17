@@ -1,49 +1,41 @@
 <?php
   
-  include("function.php");
+  include("code/function.php");
 
   $message = "";
 
   $editId = "";
 
-  $classTitleError = "";
+  $titleError = "";
 
-  $classDescriptionError = "";
+  $descriptionError = "";
 
-  $classDurationError = "";
-
-  $classcreatedError = "";
+  $durationError = "";
 
   try{
-    if(isset($_POST['addclass'])){
+    if(isset($_POST['add'])){
       
       #Validation Starts Here
 
-      $classTitle         = $_POST['classTitle'];
-      $classDescription   = $_POST['classDescription'];
-      $classDuration      = $_POST['classDuration'];
-      $classcreated       = $_POST['classcreated'];
+      $title         = $_POST['title'];
+      $description   = $_POST['description'];
+      $duration      = $_POST['duration'];
 
       $error = false;
 
-      if(empty($classTitle)){
-        $classTitleError        = requiredValidation();
-        $error                  = true;
+      if(empty($title)){
+        $titleError        = requiredValidation();
+        $error             = true;
       }
 
-      if(empty($classDescription)){
-        $classDescriptionError = requiredValidation();
-        $error                 = true;
+      if(empty($description)){
+        $descriptionError = requiredValidation();
+        $error            = true;
       }
 
-      if(empty($classDuration)){
-        $classDurationError = requiredValidation();
-        $error = true;
-      }
-
-      if(empty($classcreated)){
-        $classDurationError = requiredValidation();
-        $error = true;
+      if(empty($duration)){
+        $durationError    = requiredValidation();
+        $error            = true;
       }
 
     # Finding if the email is not taken by other
@@ -54,14 +46,14 @@
       FROM
         `class` 
       WHERE 
-        classTitle = :classTitle
+        title = :title
         && 
         id <> :id
       LIMIT 1");
 
     $stmt->execute([
-      'classTitle' => $classTitle,
-      'id'         => $editId
+      'title' => $title,
+      'id'    => $editId
     ]);
 
     if($stmt->rowCount() != 0){
@@ -72,18 +64,17 @@
       if(!$error){
 
       $row = [
-        'classTitle'       => $classTitle,
-        'classDescription' => $classDescription,
-        'classDuration'    => $classDuration,
-        'classcreated'     => $classcreated
+        'title'       => $title,
+        'description' => $description,
+        'duration'    => $duration
       ];
 
       $sql = "
         INSERT 
          INTO `class`
-          (`classTitle`, `classDescription`, `classDuration`, `clasCreated_on`)
+          (`title`, `description`, `duration`)
         VALUES 
-        (:classTitle , :classDescription , :classDuration , :classcreated)";
+        (:title , :description , :duration )";
         
       $statement = $dbh->prepare($sql);
       $status    = $statement->execute($row);
@@ -92,12 +83,11 @@
     else{
       $message = '<span style="color: rgb(255,0,0);"> No Class Added</sapn>';
     }
-  }
+  } 
+  include("include/header.php");
+  include("include/sidebar.php");
 }
 catch (PDOException $e) {
   echo 'Connection failed: ' . $e->getMessage();
 }
-
-  include("include/header.php");
-  include("include/sidebar.php");
 ?>

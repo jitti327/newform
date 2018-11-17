@@ -14,7 +14,11 @@
 
   $descriptionError = "";
 
+  $countryError = "";
+
   $stateError = "";
+
+  $districtError = "";
   
   try{
 
@@ -24,7 +28,9 @@
 
       $name          = $_POST['name'];
       $description   = $_POST['description'];
+      $country       = $_POST['country'];
       $state         = $_POST['state'];
+      $district      = $_POST['district'];
 
       $error = false;
 
@@ -38,8 +44,18 @@
         $error = true;
       }
 
+      if(empty($country)){
+        $countryError = '<span style="color: rgb(255,0,0);">** Please Select the Country</span>';
+        $error = true;
+      }
+
       if(empty($state)){
         $stateError = '<span style="color: rgb(255,0,0);">** Please Select the State</span>';
+        $error = true;
+      }
+
+      if(empty($district)){
+        $districtError = '<span style="color: rgb(255,0,0);">** Please Select the District</span>';
         $error = true;
       }
 
@@ -51,16 +67,22 @@
         FROM
           `city` 
         WHERE 
-          name= :name 
-          &&  
-          state_id= :state 
+          name= :name
+          &&
+          country_id= :country
+          &&
+          state_id= :state
+          &&
+          district_id= :district
           &&
           id <> :id
         LIMIT 1");
 
       $stmt->execute([ 
         'name'     => $name,
+        'country'  => $country,
         'state'    => $state,
+        'district' => $district,
         'id'       => $editId
       ]);
 
@@ -71,7 +93,9 @@
           'id'           => $editId,
           'name'         => $name,
           'description'  => $description,
-          'state'      => $state
+          'country'      => $country,
+          'state'        => $state,
+          'district'     => $district
         ];
 
         $sql = "
@@ -80,7 +104,9 @@
           SET 
             `name`              = :name,
             `description`       = :description,
-            `state_id`          = :state
+            `country_id`        = :country,
+            `state_id`          = :state,
+            `district_id`       = :district
           WHERE 
             `id` =:id";
         $stmt   = $dbh->prepare($sql);

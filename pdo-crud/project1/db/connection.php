@@ -21,5 +21,5 @@
   // );
 
   // $dbConfig['user']  
-  define('URL','http://localhost/newform/pdo-crud/project1/');
+  define('URL','http://localhost/git-projects/newform/pdo-crud/project1/');
 ?>
