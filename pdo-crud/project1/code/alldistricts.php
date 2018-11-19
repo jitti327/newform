@@ -37,13 +37,18 @@
       SELECT
       SQL_CALC_FOUND_ROWS
        `district`.*,
-       `country`.name as cName
+       `country`.name as cName,
+       `state`.name as sName
       FROM
        `district`
       INNER JOIN 
         `country`
       ON 
         `district`.country_id = `country`.id
+      INNER JOIN 
+        `state`
+      ON 
+        `district`.state_id = `state`.id
       {$queryPart}
       {$orderPart}
       LIMIT :offset , :postPerPage 

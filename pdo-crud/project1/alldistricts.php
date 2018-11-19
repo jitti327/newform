@@ -61,7 +61,7 @@
                     "name"                => "Name",
                     "description"         => "Description",
                     "cName"               => "Country",
-                    "state_id"               => "State"
+                    "sName"               => "State"
                   ];
                 ?>                
                 <thead><?php renderTableHeaderPart($tableColumns, $order , $currentPage); ?></thead>
@@ -89,7 +89,7 @@
                   <td><?php echo $row['name']; ?></td>
                   <td><?php echo mb_strimwidth($row['description'], 0, 20, "....."); ?></td>
                   <td><?php echo $row['cName']; ?></td>
-                  <td><?php echo $row['state_id']; ?></td>
+                  <td><?php echo $row['sName']; ?></td>
                   <td>
                     <a class="btn btn-primary btn-sm" href="editdistrict.php?id=<?php echo $row['id']; ?>">
                       <span class="glyphicon glyphicon-pencil"></span>
