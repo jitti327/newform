@@ -1,4 +1,6 @@
 <?php
+  
+  include("function.php");
 
   $editId = "";
 
@@ -30,41 +32,42 @@
       # First Name is required
 
       if(empty($firstname)){
-        $firstnameError = '<span style="color: rgb(255,0,0);">**First Name is required</span>';
+        $firstnameError = requiredValidation();
         $error = true;
       }
 
       # Last Name is required
 
       if(empty($lastname)){
-        $lastnameError = '<span style="color: rgb(255,0,0);">**First Name is required</span>';
+        $lastnameError = requiredValidation();
         $error = true;
       }
 
       # User Name is required
 
       if(empty($username)){
-        $usernameError = '<span style="color: rgb(255,0,0);">**First Name is required</span>';
+        $usernameError = requiredValidation();
         $error = true;
       }
 
       # Email is required
 
       if(empty($email)){
-        $emailError  = '<span style="color: rgb(255,0,0);">** Email is required</span>';
+        $emailError  = requiredValidation();
         $error = true;
       }
 
       # Password is required
 
       if(empty($pass)){
-        $passError = '<span style="color: rgb(255,0,0);">** Password is required</span>';
+        $passError = requiredValidation();
         $error = true;
       }
 
       # Confirm Password is required
 
-      if(empty($cpass)){   $cpassError = '<span style="color: rgb(255,0,0);">** Confirm Password is required</span>';
+      if(empty($cpass)){   
+        $cpassError = requiredValidation();
       $error = true; }
 
 
@@ -112,7 +115,8 @@
         (:firstname , :lastname , :username , :email , :pass)";
         
       $statement = $dbh->prepare($sql);
-      $status    = $statement->execute($row);
+      $status    = $statement->execute($row);  
+      $lastUser  = $dbh->lastInsertId();
       header("Location:login.php");
     }
   }
