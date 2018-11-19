@@ -19,9 +19,9 @@
     if(!empty($search)){
       $queryPart   = "
         WHERE
-          `name` LIKE :search
+          `country`.`name` LIKE :search
         OR
-          `description` LIKE :search
+          `country`.`description` LIKE :search
       ";
 
     } 

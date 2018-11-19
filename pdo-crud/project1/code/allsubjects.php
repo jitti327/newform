@@ -19,21 +19,17 @@
     if(!empty($search)){
       $queryPart   = "
         WHERE
-          `title` LIKE :search
+          `subject`.`title` LIKE :search
         OR
-          `description` LIKE :search
+          `subject`.`description` LIKE :search
         OR
-          `practical_number` LIKE :search
+          `subject`.`practical_number` LIKE :search
         OR
-          `theoretical_number` LIKE :search
+          `subject`.`theoretical_number` LIKE :search
         OR
-          `duration` LIKE :search
+          `subject`.`duration` LIKE :search
         OR
-          `class_id` LIKE :search
-        OR
-          `created_on`  LIKE :search
-        OR
-          `updated_on`  LIKE :search
+          `subject`.`class_id` LIKE :search
       ";
     }
 

@@ -19,11 +19,11 @@
     if(!empty($search)){
       $queryPart   = "
         WHERE
-          `name` LIKE :search
+          `state`.`name` LIKE :search
         OR
-          `description` LIKE :search
+          `state`.`description` LIKE :search
         OR
-          `cName` LIKE :search
+          `country`.`name` LIKE :search
       ";
     }
 
