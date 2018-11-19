@@ -1,5 +1,6 @@
 <?php
   include("db/connection.php");
+  include("code/function.php");
   include("code/addstate.php");
 ?>
   <!-- Content Wrapper. Contains page content -->

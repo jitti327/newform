@@ -36,7 +36,7 @@
         $error = true;
       }
 
-      if(empty($county)){
+      if(empty($country)){
         $countryError = '<span style="color: rgb(255,0,0);">** Please Select the Country</span>';
         $error = true;
       }

@@ -1,6 +1,9 @@
 <?php
   include("db/connection.php");
+  include("code/function.php");
   include("code/adddistrict.php");
+  include("include/header.php");
+  include("include/sidebar.php");
 ?>
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -41,9 +44,9 @@
                       </div>
                     </div>     
                     <div class="form-group">
-                      <label for="country">Country :</label>                    
-                      <select  name="country" aria-controls="example1" class="form-control input-sm">
-                        <option value="">Select</option>
+                      <label for="country">Country :</label>
+                      <select id="country"  name="country" aria-controls="example1" class="form-control input-sm">
+                        <option value="">-Select Country-</option>
                         <?php 
                           $country = (empty($country)) ? '' : $country;
                           $selectQuery = $dbh->query("SELECT * FROM `country`");
@@ -51,22 +54,15 @@
                         ?>
                         <option value="<?php echo $fetch['id']; ?>"<?php echo ($fetch['id'] == $country) ? " selected='selected' " : ''; ?>><?php echo $fetch['name']; ?></option>
                       <?php } ?>
-                      </select>
+                      </select>                        
                       <div class="Message">
                         <?php echo $countryError; ?>
                       </div>
                     </div>     
                     <div class="form-group">
                       <label for="state">State :</label>                    
-                      <select  name="state" aria-controls="example1" class="form-control input-sm">
-                        <option value="">Select</option>
-                        <?php 
-                          $state = (empty($state)) ? '' : $state;
-                          $selectQuery = $dbh->query("SELECT * FROM `state`");
-                            while($fetch = $selectQuery->fetch() ){
-                        ?>
-                        <option value="<?php echo $fetch['id']; ?>"<?php echo ($fetch['id'] == $state) ? " selected='selected' " : ''; ?>><?php echo $fetch['name']; ?></option>
-                      <?php } ?>
+                      <select  name="state" id="state" aria-controls="example1" class="form-control input-sm">
+                        <option>-Select Country First-</option>
                       </select>
                       <div class="Message">
                         <?php echo $stateError; ?>
@@ -85,4 +81,25 @@
   </div>
   <!-- /.content-wrapper -->
 <?php
-  include("include/footer.php");
+  include("include/footer.php"); 
+?>
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $('#country').on('change',function(){
+        $country = $(this).val();
+          if($country){
+            $.ajax({
+              type:'POST',
+              url:'ajaxData.php',
+              data:{CountryId:$country},
+              success:function(html){
+                $('#state').html(html);
+              }
+            }); 
+          }
+          else{
+            $('#state').html('<option value="">-Select State-</option>'); 
+          }
+      });
+    });
+  </script>

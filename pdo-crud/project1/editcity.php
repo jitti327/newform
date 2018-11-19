@@ -42,31 +42,15 @@
                       </div>
                     </div>
                     <div class="form-group">
-                      <label for="state">State :</label>                    
-                      <select  name="state" aria-controls="example1" class="form-control input-sm">
-                        <option value="">Select</option>
-                        <?php 
-                          $state = (empty($state)) ? '' : $state;
-                          $selectQuery = $dbh->query("SELECT * FROM `state`");
-                            while($fetch = $selectQuery->fetch() ){
-                        ?>
-                        <option value="<?php echo $fetch['id']; ?>"<?php echo ($fetch['id'] == $show['state_id']) ? " selected='selected' " : ''; ?>><?php echo $fetch['name']; ?></option>
-                      <?php } ?>
-                      </select>
-                      <div class="Message">
-                        <?php echo $stateError; ?>
-                      </div>
-                    </div>     
-                    <div class="form-group">
-                      <label for="country">Country :</label>                    
-                      <select  name="country" aria-controls="example1" class="form-control input-sm">
-                        <option value="">Select</option>
+                      <label for="country">Country :</label>
+                      <select name="country" id="country" aria-controls="example1" class="form-control input-sm">
+                        <option value="">-Select Country-</option>
                         <?php 
                           $country = (empty($country)) ? '' : $country;
                           $selectQuery = $dbh->query("SELECT * FROM `country`");
                             while($fetch = $selectQuery->fetch() ){
                         ?>
-                        <option value="<?php echo $fetch['id']; ?>"<?php echo ($fetch['id'] == $country) ? " selected='selected' " : ''; ?>><?php echo $fetch['name']; ?></option>
+                        <option value="<?php echo $fetch['id']; ?>"<?php echo ($fetch['id'] == $country) ? "selected='selected' " : ''; ?>><?php echo $fetch['name']; ?></option>
                       <?php } ?>
                       </select>
                       <div class="Message">
@@ -74,21 +58,36 @@
                       </div>
                     </div>     
                     <div class="form-group">
-                      <label for="district">District :</label>                    
-                      <select  name="district" aria-controls="example1" class="form-control input-sm">
-                        <option value="">Select</option>
-                        <?php 
+                      <label for="state">State :</label>
+                      <select name="state" id="state" aria-controls="example1" class="form-control input-sm">
+                        <option value="">-Select Country First-</option>
+                    <!--<?php 
+                          $state = (empty($state)) ? '' : $state;
+                          $selectQuery = $dbh->query("SELECT * FROM `state`");
+                            while($fetch = $selectQuery->fetch() ){
+                        ?>
+                        <option value="<?php echo $fetch['id']; ?>"<?php echo ($fetch['id'] == $state) ? "selected='selected' " : ''; ?>><?php echo $fetch['name']; ?></option>
+                      <?php } ?> -->
+                      </select>
+                      <div class="Message">
+                        <?php echo $stateError; ?>
+                      </div>
+                    </div>     
+                    <div class="form-group">
+                      <label for="district">District :</label>
+                      <select name="district" id="district" aria-controls="example1" class="form-control input-sm">
+                        <option value="">-Select State First-</option>
+                        <!-- <?php 
                           $district = (empty($district)) ? '' : $district;
                           $selectQuery = $dbh->query("SELECT * FROM `district`");
                             while($fetch = $selectQuery->fetch() ){
                         ?>
-                        <option value="<?php echo $fetch['id']; ?>"<?php echo ($fetch['id'] == $district) ? " selected='selected' " : ''; ?>><?php echo $fetch['name']; ?></option>
-                      <?php } ?>
+                        <option value="<?php echo $fetch['id']; ?>"<?php echo ($fetch['id'] == $district) ? "selected='selected' " : ''; ?>><?php echo $fetch['name']; ?></option>
+                      <?php } ?> -->
                       </select>
                       <div class="Message">
                         <?php echo $districtError; ?>
                       </div>
-                    </div>
                     <div class="box-footer">
                       <button type="submit" name="update" class="btn btn-primary">Update</button>
                     </div>
@@ -102,3 +101,43 @@
   </div>
 <?php
   include("include/footer.php");
+?>
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $('#country').on('change',function(){
+        $country = $(this).val();
+          if($country){
+            $.ajax({
+              type:'POST',
+              url:'ajaxData.php',
+              data:{CountryId:$country},
+              success:function(html){
+                $('#state').html(html);
+              }
+            });
+          }
+          else{
+            $('#state').html('<option value="">-Select State-</option>');
+          }
+      });
+
+
+      $('#state').on('change',function(){
+        $state = $(this).val();
+        <?php echo $state; ?>
+          if($state){
+            $.ajax({
+              type:'POST',
+              url:'ajaxData.php',
+              data:{StateId:$state},
+              success:function(html){
+                $('#district').html(html);
+              }
+            });
+          }
+          else{
+            $('#district').html('<option value="">-Select District-</option>');
+          }
+      });
+    });
+  </script>

@@ -13,7 +13,6 @@
 
   try{
     if(isset($_POST['add'])){
-      
       #Validation Starts Here
 
       $name         = $_POST['name'];
@@ -33,7 +32,7 @@
         $error = true;
       }
 
-      if(empty($county)){
+      if(empty($country)){
         $countryError = '<span style="color: rgb(255,0,0);">** Please Select the Country</span>';
         $error = true;
       }
@@ -69,12 +68,12 @@
 
     if($stmt->rowCount() != 0){
       $nameError = '<span style="color: rgb(255,0,0);">** District is already taken</span>';
-      $countryError = '<span style="color: rgb(255,0,0);">** State is already taken</span>';
+      $countryError = '<span style="color: rgb(255,0,0);">** Country is already taken</span>';
       $stateError = '<span style="color: rgb(255,0,0);">** State is already taken</span>';
       $error = true;
     }
 
-      if(!$error){
+    if(!$error){
 
       $row = [
         'name'          => $name,
@@ -98,9 +97,6 @@
       $message = '<span style="color: rgb(255,0,0);"> No District Added</sapn>';
     }
   }
-
-  include("include/header.php");
-  include("include/sidebar.php");
 }
 catch (PDOException $e) {
   echo 'Connection failed: ' . $e->getMessage();
