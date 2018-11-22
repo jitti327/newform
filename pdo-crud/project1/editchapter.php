@@ -7,12 +7,12 @@
   <div class="content-wrapper">
     <section class="content-header">
       <h1>
-        Edit Subject Data
+        Edit Chapter Data
       </h1>
       <ol class="breadcrumb">
         <li><a href="Admin.php"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="allchapters.php">Subject</a></li>
-        <li><a href="editchapter.php">Edit Subject Data</a></li>
+        <li><a href="allchapters.php">Chapter</a></li>
+        <li><a href="editchapter.php">Edit Chapter Data</a></li>
       </ol>
     </section>   
 
@@ -28,51 +28,44 @@
                 <div class="box-body">
                   <div class="col-sm-6">
                     <div class="form-group">
-                      <label for="chapterTitle">Title :</label>
-                      <input type="text" name="chapterTitle" class="form-control" value="<?php echo $show['chapterTitle']; ?>">
+                      <label for="title">Title :</label>
+                      <input type="text" name="title" class="form-control" value="<?php echo $show['title']; ?>">
                       <div class="Message">
-                        <?php echo $chapterTitleError; ?>
+                        <?php echo $titleError; ?>
                       </div>
                     </div>
                     <div class="form-group">
                       <label>Description :</label>
-                      <textarea class="form-control" name="chapterDescription"><?php echo $show['chapterDescription']; ?></textarea>
+                      <textarea class="form-control" name="description"><?php echo $show['description']; ?></textarea>
                       <div class="Message">
-                        <?php echo $chapterDescriptionError; ?>
+                        <?php echo $descriptionError; ?>
                       </div>
                     </div>
                     <div class="form-group">
-                      <label for="chapternum">Chapter Number assigned :</label>
-                      <input type="text" name="chapternum" class="form-control" value="<?php echo $show['chapterNumber_assigned']; ?>">
+                      <label for="number_assigned">Chapter Number assigned :</label>
+                      <input type="text" name="number_assigned" class="form-control" value="<?php echo $show['number_assigned']; ?>">
                       <div class="Message">
-                        <?php echo $chapternumError; ?>
+                        <?php echo $number_assignedError; ?>
                       </div>
                     </div>
                     <div class="form-group">
-                      <label for="class">Class :</label>                    
-                      <select  name="class" aria-controls="example1" class="form-control input-sm">
+                      <label for="subject_id">Subject :</label>
+                      <select  name="subject_id" aria-controls="example1" subject="form-control input-sm">
                         <option value="">Select</option>
                         <?php 
-                          $class = (empty($class)) ? '' : $class;
+                          $subject = (empty($subject)) ? '' : $subject;
                           $selectQuery = $dbh->query("SELECT * FROM `subject`");
-                          while($fetch = $selectQuery->fetch() ){
+                            while($fetch = $selectQuery->fetch() ){
                         ?>
-                        <option value="<?php echo $fetch['id']; ?>"<?php echo ($fetch['id'] == $show['chapterSubject']) ? " selected='selected' " : ''; ?>><?php echo $fetch['subjectTitle']; ?></option>
+                        <option value="<?php echo $fetch['id']; ?>"<?php echo ($fetch['id'] == $subject) ? " selected='selected' " : ''; ?>><?php echo $fetch['title']; ?></option>
                       <?php } ?>
                       </select>
                       <div class="Message">
-                        <?php echo $SubjectError; ?>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label for="chapterupdated">Chapter Update Date :</label>
-                      <input type="Date" name="chapterupdated" class="form-control" value="<?php echo $show['chapterUpdated_on']; ?>">
-                      <div class="Message">
-                        <?php echo $chapterupdatedError; ?>
+                        <?php echo $subject_idError; ?>
                       </div>
                     </div>
                     <div class="box-footer">
-                      <button type="submit" name="updatechapter" class="btn btn-primary">Update</button>
+                      <button type="submit" name="update" class="btn btn-primary">Update</button>
                     </div>
                   </div>
                 </div>

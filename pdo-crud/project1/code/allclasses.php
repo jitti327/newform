@@ -19,15 +19,11 @@
     if(!empty($search)){
       $queryPart   = "
         WHERE
-          `classTitle` LIKE :search
+          `class`.`title` LIKE :search
         OR
-          `classDescription` LIKE :search
+          `class`.`description` LIKE :search
         OR
-          `classDuration` LIKE :search
-        OR
-          `clasCreated_on`  LIKE :search
-        OR
-          `classUpdated_on`  LIKE :search
+          `class`.`duration` LIKE :search
       ";
 
     } 

@@ -10,7 +10,7 @@
         <small><a href="addclass.php">Add New Class</a></small>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="../Admin.php"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="Admin.php"><i class="fa fa-dashboard"></i> Home</a></li>
         <li><a href="allclasses.php">Allclasses</a></li>
       </ol>
     </section>
@@ -56,11 +56,11 @@
                 <?php  
                 // These are comming from the above function.php file
                   $tableColumns = [
-                    "classTitle"       => "Title",
-                    "classDescription" => "Description",
-                    "classDuration"    => "Duration",
-                    "clasCreated_on"   => "Created On",
-                    "classUpdated_on"  => "Updated On"
+                    "title"       => "Title",
+                    "description" => "Description",
+                    "duration"    => "Duration",
+                    "created_on"  => "Created On",
+                    "updated_on"  => "Updated On"
                   ];
                 ?>
                 <thead><?php renderTableHeaderPart($tableColumns, $order , $currentPage); ?></thead>
@@ -85,12 +85,12 @@
                   <tr>
                     <td><input type="checkbox" value="<?php echo $row['id']; ?>" name="userDlt[]" class="checkthis" /></td>
                     <td><?php echo ++$offset; ?></td>
-                    <td><?php echo $row['classTitle']; ?></td>
-                    <td><?php echo mb_strimwidth($row['classDescription'], 0, 20, "....."); ?></td>
-                    <!-- <?php echo $row['classDescription']; ?> -->
-                    <td><?php echo $row['classDuration']; ?></td>
-                    <td><?php echo $row['clasCreated_on']; ?></td>
-                    <td><?php echo $row['classUpdated_on']; ?></td>
+                    <td><?php echo $row['title']; ?></td>
+                    <td><?php echo mb_strimwidth($row['description'], 0, 20, "....."); ?></td>
+                    <!-- <?php echo $row['description']; ?> -->
+                    <td><?php echo $row['duration']; ?></td>
+                    <td><?php echo $row['created_on']; ?></td>
+                    <td><?php echo $row['updated_on']; ?></td>
                     <td>
                       <a class="btn btn-primary btn-sm" href="editclass.php?id=<?php echo $row['id']; ?>">
                         <span class="glyphicon glyphicon-pencil"></span>

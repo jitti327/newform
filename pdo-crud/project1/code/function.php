@@ -1,5 +1,5 @@
 <?php
-  
+
   #
   # Parameter : id - id of the user
   # Return    : True  - in case user exists
@@ -50,7 +50,7 @@
 
   #Query Running for fetching data from database
   // function mayMultipleDelete($tableName){
-  function mayMultipleDelete( $tableName , $id){   
+  function mayMultipleDelete( $tableName , $id){
     global $dbh;
     global $message;
     $query       = "DELETE FROM `{$tableName}` WHERE id = :id ";
@@ -62,12 +62,12 @@
     }else{
       $message = '<span style="color: rgb(255,0,0);">** Your records are not deleted</span>'; 
     } 
-    return true;                 
+    return true;
   }
 
   // # Calling the above function:-
 
-  //  mayMultipleDelete( 'name of the table' , $id); 
+  //  mayMultipleDelete( 'name of the table' , $id);
 
 
   /*
@@ -158,7 +158,7 @@
   function renderTableHeaderPart($columnDetails, $order ,$currentPage){
     global $currentPage;
     echo "<tr>";
-    echo '<th style="width: 74px"><input type="checkbox" id="checkall" /><i class="countChecked"></i></th>';
+    echo '<th><input type="checkbox" id="checkall" /><i class="countchecked"></i></th>';
     echo '<th>S.No.</th>';
     foreach($columnDetails as $key => $value){
  ?>
@@ -183,10 +183,10 @@
   function pagination($currentPage , $postPerPage , $searchName , $response , $totalpages){ ?>
     <div class="col-sm-5">
       <div class="dataTables_info" id="example1_info" role="status" aria-live="polite">
-        Showing 1 to 
+        Showing 1 to
         <?php
           if($postPerPage < $response){
-            echo $postPerPage; 
+            echo $postPerPage;
           }
           else{
             echo $response;
@@ -196,7 +196,7 @@
       </div>
     </div>
     <div class="col-sm-7">
-      <div class="dataTables_paginate paging_simple_numbers" id="example1_paginate">    
+      <div class="dataTables_paginate paging_simple_numbers" id="example1_paginate">
         <ul class="pagination">
         <?php
           if( $currentPage  ){ 
@@ -235,7 +235,7 @@
       </div>
     </div>  
    <?php 
-     return true; 
+     return true;
       }
   /*
   * Function Name : showEnteriesField 
@@ -257,7 +257,7 @@
         </select> entries
       </label>
     </div>
-  <?php return true; } ?> 
+  <?php return true; } ?>
   <?php 
   /*
   * Function Name : searchField
@@ -270,7 +270,7 @@
         <input 
           type="search" 
           class="form-control input-sm"
-          value="<?php echo isset($_REQUEST[$fieldName]) ? $_REQUEST[$fieldName] : '' ;?>" 
+          value="<?php echo isset($_REQUEST[$fieldName]) ? $_REQUEST[$fieldName] : '' ;?>"
           placeholder="What you looking for?" 
           aria-controls="example1" 
           name="<?php echo $fieldName; ?>">
@@ -287,7 +287,8 @@
                   : $addField  -> Add new option value
   * Return        : ture                
   */
-  function bulkAction($fieldName , $addField){ ?>
+  function bulkAction($fieldName , $addField){ 
+  ?>
     <div class="dataTables_length col-sm-4" id="example1_length">
       <label>Action :
         <select aria-controls="example1" name="<?php echo $fieldName; ?>" class="form-control input-sm bulkaction">
@@ -299,4 +300,13 @@
         <button class="btn btn-sm btn-primary btn-create" id="actionButton">Action</button>
       </label>
     </div> 
-<?php  return true;} ?> 
+<?php  return true;} ?>
+
+
+<?php 
+  /* Here I want to add the validation on submit the form:-
+  * Function Name : requiredValidation
+  */
+  function requiredValidation(){
+    return $message = '<span style="color: rgb(255,0,0);">** This field is required</span>';
+  }

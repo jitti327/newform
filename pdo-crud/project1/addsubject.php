@@ -2,7 +2,6 @@
   include("db/connection.php");
   include("code/addsubject.php");
 ?>
-
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <section class="content-header">
@@ -12,6 +11,7 @@
       <ol class="breadcrumb">
         <li><a href="Admin.php"><i class="fa fa-dashboard"></i> Home</a></li>
         <li class="active">Add Subject</li>
+        <li><a href="allsubjects.php">Back To Listing</a></li>
       </ol>
     </section>
 
@@ -28,64 +28,57 @@
                   <div class="col-sm-6">
                     <div class="form-group">
                       <label for="title">Title :</label>
-                      <input type="text" name="subjectTitle" class="form-control" placeholder="Enter Subject Title Here ..." value="">
+                      <input type="text" name="title" class="form-control" placeholder="Enter Subject Title Here ..." value="">
                       <div class="Message">
-                        <?php echo $subectTitleError; ?>
+                        <?php echo $titleError; ?>
                       </div>
                     </div>
                     <div class="form-group">
                       <label>Description :</label>
-                      <textarea class="form-control" name="subjectDescription" value="" rows="3" placeholder="Enter Description Here ..."></textarea>
+                      <textarea class="form-control" name="description" value="" rows="3" placeholder="Enter Description Here ..."></textarea>
                       <div class="Message">
-                        <?php echo $subjectDescriptionError; ?>
+                        <?php echo $descriptionError; ?>
                       </div>
                     </div>
                     <div class="form-group">
-                      <label for="subjectpractical">Subject Practical Number :</label>
-                      <input type="text" name="subjectpracticalnum" class="form-control" placeholder="Enter Practical Number Here ..." value="">
+                      <label for="practical_number">Subject Practical Number :</label>
+                      <input type="text" name="practical_number" class="form-control" placeholder="Enter Practical Number Here ..." value="">
                       <div class="Message">
-                        <?php echo $subjectpracticalnumError; ?>
+                        <?php echo $practical_numberError; ?>
                       </div>
                     </div>
                     <div class="form-group">
-                      <label for="subjectnum">Subject Theoretical Number :</label>
-                      <input type="text" name="subjectnum" class="form-control" placeholder="Enter Theoretical Number Here ..." value="">
+                      <label for="theoretical_number">Subject Theoretical Number :</label>
+                      <input type="text" name="theoretical_number" class="form-control" placeholder="Enter Theoretical Number Here ..." value="">
                       <div class="Message">
-                        <?php echo $subjectnumError; ?>
+                        <?php echo $theoretical_numberError; ?>
                       </div>
                     </div>
                     <div class="form-group">
-                      <label for="subjecttime">Subject Examination Time :</label>
-                      <input type="text" name="subjecttime" class="form-control" placeholder="Enter Examination Time Here ..." value="">
+                      <label for="duration">Subject Examination Time :</label>
+                      <input type="text" name="duration" class="form-control" placeholder="Enter Examination Time Here ..." value="">
                       <div class="Message">
-                        <?php echo $subjecttimeError; ?>
+                        <?php echo $durationError; ?>
                       </div>
                     </div>     
                     <div class="form-group">
-                      <label for="class">Class :</label>                    
-                      <select  name="class" aria-controls="example1" class="form-control input-sm">
+                      <label for="class_id">Class :</label>                    
+                      <select  name="class_id" aria-controls="example1" class="form-control input-sm">
                         <option value="">Select</option>
                         <?php 
-                          $class = (empty($class)) ? '' : $class;
+                          $class_id = (empty($class_id)) ? '' : $class_id;
                           $selectQuery = $dbh->query("SELECT * FROM `class`");
                             while($fetch = $selectQuery->fetch() ){
                         ?>
-                        <option value="<?php echo $fetch['id']; ?>"<?php echo ($fetch['id'] == $class) ? " selected='selected' " : ''; ?>><?php echo $fetch['classTitle']; ?></option>
+                        <option value="<?php echo $fetch['id']; ?>"<?php echo ($fetch['id'] == $class_id) ? " selected='selected' " : ''; ?>><?php echo $fetch['title']; ?></option>
                       <?php } ?>
                       </select>
                       <div class="Message">
-                        <?php echo $classError; ?>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label for="subjectcreated">Subject Created Date :</label>
-                      <input type="Date" name="subjectcreated" class="form-control" placeholder="Enter Subject Created Date Here ..." value="">
-                      <div class="Message">
-                        <?php echo $subjectcreatedError; ?>
+                        <?php echo $class_idError; ?>
                       </div>
                     </div>
                     <div class="box-footer">
-                      <button type="submit" name="addsubject" class="btn btn-primary">Submit</button>
+                      <button type="submit" name="add" class="btn btn-primary">Submit</button>
                     </div>
                   </div>
                 </div>

@@ -1,5 +1,7 @@
 <?php 
   
+  include("function.php");
+  
   # Does this ID exists ??
   # If not through 404 page error
 
@@ -13,83 +15,75 @@
 
   $message = "";
 
-  $subjectTitleError = "";
+  $titleError = "";
 
-  $subjectDescriptionError = "";
+  $descriptionError = "";
 
-  $subjectpracticalnumError = "";
+  $practical_numberError = "";
 
-  $subjectnumError = "";
+  $theoretical_numberError = "";
 
-  $subjecttimeError = "";
+  $durationError = "";
 
-  $classError = "";
-
-  $subjectupdatedError = "";
+  $class_idError = "";
   
  try{
 
-  if(isset($_REQUEST['updatesubject'])){
+  if(isset($_REQUEST['update'])){
     
     #Validation Starts Here
 
-    $subjectTitle         = $_POST['subjectTitle'];
-    $subjectDescription   = $_POST['subjectDescription'];
-    $subjectpracticalnum  = $_POST['subjectpracticalnum'];
-    $subjectnum           = $_POST['subjectnum'];
-    $subjecttime          = $_POST['subjecttime'];
-    $class                = $_POST['class'];
-    $subjectupdated       = $_POST['subjectupdated'];
+    $title                = $_POST['title'];
+    $description          = $_POST['description'];
+    $practical_number     = $_POST['practical_number'];
+    $theoretical_number   = $_POST['theoretical_number'];
+    $duration             = $_POST['duration'];
+    $class_id             = $_POST['class_id'];
 
     $error = false;
 
-    if(empty($subjectTitle)){
-      $subjectTitleError = '<span style="color: rgb(255,0,0);">** Subject Title is required</span>';
+    if(empty($title)){
+      $titleError = requiredValidation();
       $error = true;
     }
 
-    if(empty($subjectDescription)){
-      $subjectDescriptionError = '<span style="color: rgb(255,0,0);">** Subject Description is required</span>';
+    if(empty($description)){
+      $descriptionError = requiredValidation();
       $error = true;
     }
 
-    if(empty($subjectpracticalnum)){
-      $subjectpracticalnumError = '<span style="color: rgb(255,0,0);">** Practical Number is required</span>';
+    if(empty($practical_number)){
+      $practical_numberError = requiredValidation();
       $error = true;
     }
 
-    if(empty($subjectnum)){
-      $subjectnumError = '<span style="color: rgb(255,0,0);">** Subject Theoretical Number is required</span>';
+    if(empty($theoretical_number)){
+      $theoretical_numberError = requiredValidation();
       $error = true;
     }
 
-    if(empty($subjecttime)){
-      $subjecttimeError = '<span style="color: rgb(255,0,0);">** Subject Time is required</span>';
+    if(empty($duration)){
+      $durationError = requiredValidation();
       $error = true;
     }
 
-    if(empty($class)){
-      $classError = '<span style="color: rgb(255,0,0);">** Class is required</span>';
-      $error = true;
-    }
-
-    if(empty($subjectupdated)){
-      $subjectupdateddError = '<span style="color: rgb(255,0,0);">** Subject Updation Date is required</span>';
+    if(empty($class_id)){
+      $class_idError = requiredValidation();
       $error = true;
     }
 
     # Finding if the email is not taken by other
 
-    $query = "SELECT * FROM `subject`WHERE Class = :class AND id = :id";
+    $query = "SELECT * FROM `subject` WHERE class_id = :class_id AND id = :id";
     $stmt = $dbh->prepare( $query );
 
     $stmt->execute([ 
-      'class' => $class,
-      'id' => $editId
+      'class_id' => $class_id,
+      'id'       => $editId
     ]);
 
     if($stmt->rowCount() != 0){
-      $classError = '<span style="color: rgb(255,0,0);">** Class is already taken</span>';
+      $class_idError = '<span style="color: rgb(255,0,0);">** Class is already taken</span>';
       $error = true;
     }
 
@@ -98,26 +92,24 @@
     if(!$error){
       $data = [
         'id'                  => $editId,
-        'subjectTitle'        => $subjectTitle,
-        'subjectDescription'  => $subjectDescription,
-        'subjectpracticalnum' => $subjectpracticalnum,
-        'subjectnum'          => $subjectnum,
-        'subjecttime'         => $subjecttime,
-        'class'               => $class,
-        'subjectupdated'      => $subjectupdated
+        'title'               => $title,
+        'description'         => $description,
+        'practical_number'    => $practical_number,
+        'theoretical_number'  => $theoretical_number,
+        'duration'            => $duration,
+        'class_id'            => $class_id
       ];
 
       $sql = "
         UPDATE 
           `subject` 
         SET 
-          `subjectTitle`             = :subjectTitle,
-          `subjectDescription`       = :subjectDescription,
-          `subjectPracticalnumber`   = :subjectpracticalnum,
-          `subjectTheoreticalnumber` = :subjectnum,
-          `subjectExaminationTime`   = :subjecttime,
-          `Class`                    = :class,
-          `subjectUpdated_on`        = :subjectupdated
+          `title`              = :title,
+          `description`        = :description,
+          `practical_number`   = :practical_number,
+          `theoretical_number` = :theoretical_number,
+          `duration`           = :duration,
+          `class_id`           = :class_id
         WHERE 
           `id` =:id";
       $stmt   = $dbh->prepare($sql);
@@ -138,11 +130,13 @@
   $edit = $dbh->prepare( "SELECT * FROM `subject` WHERE id= :id");
   $edit-> execute($row);
   $show = $edit->fetch();
+  
+  include("include/header.php");
+  include("include/sidebar.php");
+
 }
 catch (pdoException $e) {
   echo 'Connection failed: ' . $e->getMessage();
  // header("Location: 500.php");
   //die();
 }
-  include("include/header.php");
-  include("include/sidebar.php");

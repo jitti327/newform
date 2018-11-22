@@ -2,7 +2,6 @@
   include("db/connection.php");
   include("code/addchapter.php");
 ?>
-
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <section class="content-header">
@@ -12,6 +11,7 @@
       <ol class="breadcrumb">
         <li><a href="Admin.php"><i class="fa fa-dashboard"></i> Home</a></li>
         <li class="active">Add Chapter</li>
+        <li><a href="allchapters.php">Back To Listing</a></li>
       </ol>
     </section>
 
@@ -27,51 +27,44 @@
                 <div class="box-body">
                   <div class="col-sm-6">
                     <div class="form-group">
-                      <label for="chapterTitle">Title :</label>
-                      <input type="text" name="chapterTitle" class="form-control" placeholder="Enter Chapter Title Here ..." value="">
+                      <label for="title">Title :</label>
+                      <input type="text" name="title" class="form-control" placeholder="Enter Chapter Title Here ..." value="">
                       <div class="Message">
-                        <?php echo $chapterTitleError; ?>
+                        <?php echo $titleError; ?>
                       </div>
                     </div>
                     <div class="form-group">
                       <label>Description :</label>
-                      <textarea class="form-control" name="chapterDescription" value="" placeholder="Enter Description Here ..."></textarea>
+                      <textarea class="form-control" name="description" value="" placeholder="Enter Description Here ..."></textarea>
                       <div class="Message">
-                        <?php echo $chapterDescriptionError; ?>
+                        <?php echo $descriptionError; ?>
                       </div>
                     </div>
                     <div class="form-group">
-                      <label for="chapternum">Chapter Number assigned :</label>
-                      <input type="text" name="chapternum" class="form-control" placeholder="Enter Number assigned Here ..." value="">
+                      <label for="number_assigned">Chapter Number assigned :</label>
+                      <input type="text" name="number_assigned" class="form-control" placeholder="Enter Number assigned Here ..." value="">
                       <div class="Message">
-                        <?php echo $chapternumError; ?>
+                        <?php echo $number_assignedError; ?>
                       </div>
                     </div>
                     <div class="form-group">
-                      <label for="subject">Subject :</label>
-                      <select  name="subject" aria-controls="example1" subject="form-control input-sm">
+                      <label for="subject_id">Subject :</label>
+                      <select  name="subject_id" aria-controls="example1" subject="form-control input-sm">
                         <option value="">Select</option>
                         <?php 
                           $subject = (empty($subject)) ? '' : $subject;
                           $selectQuery = $dbh->query("SELECT * FROM `subject`");
                             while($fetch = $selectQuery->fetch() ){
                         ?>
-                        <option value="<?php echo $fetch['id']; ?>"<?php echo ($fetch['id'] == $subject) ? " selected='selected' " : ''; ?>><?php echo $fetch['subjectTitle']; ?></option>
+                        <option value="<?php echo $fetch['id']; ?>"<?php echo ($fetch['id'] == $subject) ? " selected='selected' " : ''; ?>><?php echo $fetch['title']; ?></option>
                       <?php } ?>
                       </select>
                       <div class="Message">
-                        <?php echo $SubjectError; ?>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label for="chaptercreated">Chapter Created Date :</label>
-                      <input type="Date" name="chaptercreated" class="form-control" placeholder="Enter Chapter Created Date Here ..." value="">
-                      <div class="Message">
-                        <?php echo $chaptercreatedError; ?>
+                        <?php echo $subject_idError; ?>
                       </div>
                     </div>
                     <div class="box-footer">
-                      <button type="submit" name="addchapter" class="btn btn-primary">Submit</button>
+                      <button type="submit" name="add" class="btn btn-primary">Submit</button>
                     </div>
                   </div>
                 </div>

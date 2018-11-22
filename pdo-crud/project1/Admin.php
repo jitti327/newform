@@ -1,5 +1,6 @@
 <?php
   include("db/connection.php");
+  include("code/Admin.php");
   include("include/header.php");
   include("include/sidebar.php");
 ?>
@@ -13,27 +14,106 @@
         <small>Control panel</small>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="Admin.php"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="Admin.php"><i class="fa fa-dashboard"></i>Home</a></li>
         <li class="active">Dashboard</li>
       </ol>
     </section>
 
     <!-- Main content -->
     <section class="content">
+      <!-- Info boxes -->
+      <div class="row">
+        <div class="col-md-3 col-sm-6 col-xs-12">
+          <div class="info-box">
+            <a href="data.php">
+              <span class="info-box-icon bg-aqua">
+                <i class="ion ion-ios-people-outline"></i>
+              </span>
+            </a>
+
+            <div class="info-box-content">
+              <span class="info-box-text">Total Users :</span>
+              <span class="info-box-number"> <?php echo $all['users']; ?></span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
+        </div>
+        <!-- /.col -->
+        <div class="col-md-3 col-sm-6 col-xs-12">
+          <div class="info-box">
+            <a href="data.php">
+              <span class="info-box-icon bg-yellow">
+                <i class="ion ion-ios-people-outline"></i>
+              </span>
+            </a>
+
+            <div class="info-box-content">
+              <span class="info-box-text">New Users :</span>
+              <span class="info-box-number"> <?php echo $all['new']; ?></span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
+        </div>
+        <!-- /.col -->
+
+        <!-- fix for small devices only -->
+        <div class="clearfix visible-sm-block"></div>
+
+        <div class="col-md-3 col-sm-6 col-xs-12">
+          <div class="info-box">
+            <a href="data.php">
+              <span class="info-box-icon bg-green">
+                <i class="ion ion-ios-people-outline"></i>
+              </span>
+            </a>
+
+            <div class="info-box-content">
+              <span class="info-box-text">Active Users :</span>
+              <span class="info-box-number"> <?php echo $all['unblock']; ?></span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
+        </div>
+        <!-- /.col -->
+        <div class="col-md-3 col-sm-6 col-xs-12">
+          <div class="info-box">
+            <a href="data.php">
+              <span class="info-box-icon bg-red">
+                <i class="ion ion-ios-people-outline"></i>
+              </span>
+            </a>
+
+            <div class="info-box-content">
+              <span class="info-box-text">Blocked Users :</span>
+              <span class="info-box-number"> <?php echo $all['block']; ?></span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+
+
+
+
       <!-- Small boxes (Stat box) -->
       <div class="row">
         <div class="col-lg-3 col-xs-6">
           <!-- small box -->
           <div class="small-box bg-aqua">
             <div class="inner">
-              <h3>150</h3>
-
-              <p>New Orders</p>
+              <h4>Total Subjects : </h4>
+              <h3 align="center"><?php echo $data; ?></h3>
             </div>
             <div class="icon">
-              <i class="ion ion-bag"></i>
+              <i class="fa fa-book "></i>
             </div>
-            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="allsubjects.php" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
@@ -41,14 +121,13 @@
           <!-- small box -->
           <div class="small-box bg-green">
             <div class="inner">
-              <h3>53<sup style="font-size: 20px">%</sup></h3>
-
-              <p>Bounce Rate</p>
+              <h4>Total Classes : </h4>
+              <h3><?php echo $data; ?></h3>
             </div>
             <div class="icon">
               <i class="ion ion-stats-bars"></i>
             </div>
-            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="allclasses.php" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
@@ -84,6 +163,11 @@
         <!-- ./col -->
       </div>
       <!-- /.row -->
+
+
+
+
+
       <!-- Main row -->
       <div class="row">
         <!-- Left col -->
