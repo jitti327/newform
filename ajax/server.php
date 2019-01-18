@@ -1,7 +1,7 @@
 <?php
-
-  sleep(1);
+echo "Hello";
+  // sleep(1);
 
 ?>
 
-This is static response.
+This is static response. And  we only print the static data here
